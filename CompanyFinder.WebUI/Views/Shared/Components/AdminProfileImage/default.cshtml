@@ -1,0 +1,32 @@
+﻿@model ProfileImage
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.ImageUrl != null && Model.UserId != null)
+	{
+		<div class="user-profile-img">
+			<img src="~/img/us/profileImage/@Model.ImageUrl" style="max-height:120px;max-width:120px;min-height:120px;min-width:120px;" asp-append-version="true" />
+		</div>		
+	}
+	else
+	{
+		if (Model.UserId != null)
+		{
+			<div class="user-profile-img">
+				<img src="~/img/statics/user.png" style="max-height:120px;max-width:120px;min-height:120px;min-width:120px;" asp-append-version="true" />
+			</div>
+			
+		}
+	}
+}
+else
+{
+	<div class="user-profile-img">
+		<a>
+			<img src="~/img/statics/noImage.jpg" style="max-height:120px;max-width:120px;min-height:120px;min-width:120px;" asp-append-version="true" />
+		</a>
+	</div>
+}

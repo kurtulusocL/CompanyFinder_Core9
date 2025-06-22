@@ -1,0 +1,26 @@
+﻿@model User
+@{
+	Layout = null;
+}
+
+
+@if (Model != null)
+{
+	<div class="sidebar-header">
+		@await Component.InvokeAsync("AdminLayoutNavbarUserProfileImage", new { id = Model.Id })
+		<h4 style="color:black">@Model.NameSurname</h4>
+		<p>@Model.UserName</p>
+		<strong>b2b</strong>
+	</div>
+}
+else
+{
+	<div class="sidebar-header">
+		<a>
+			<img src="~/img/statics/cancelled.jpg" style="max-height:75px;max-width:75px;min-height:75px;min-width:75px;" asp-append-version="true" />
+		</a>
+		<h5 style="color:black">No Name Surname</h5>
+		<p>No Email</p>
+		<strong>b2b</strong>
+	</div>
+}

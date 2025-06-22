@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Slider>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="item">
+		<img class="d-block w-100" src="~/temp/web/img/slide-1.jpg" alt="First slide">
+		<div class="caption d-md-block">
+			@if (item.Title != null)
+			{
+				<div class="display">@item.Title </div>
+			}
+			@if (item.Text != null)
+			{
+				<div class="content">@item.Text</div>
+			}
+			<a class="view_more" asp-controller="Pricing" asp-action="Index">Fiyatlandırma</a>
+			<a class="view_more contact_us" asp-controller="Contact" asp-action="Index">İletişim</a>
+		</div>
+	</div>
+}

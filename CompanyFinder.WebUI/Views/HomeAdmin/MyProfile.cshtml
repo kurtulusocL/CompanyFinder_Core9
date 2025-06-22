@@ -1,0 +1,142 @@
+﻿@model User
+@{
+	ViewData["Title"] = "Profile";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="user-profile-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="user-profile-wrap shadow-reset">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="row">
+									<div class="col-lg-3">
+										@await Component.InvokeAsync("AdminProfileImage", new { id = Model.Id })
+									</div>
+									<div class="col-lg-9">
+										<div class="user-profile-content">
+											<h2>@Model.NameSurname</h2>
+											@if (Model.Title != null)
+											{
+												<p class="profile-founder">
+													@Model.Title of <strong>bi2bi.com</strong>
+												</p>
+											}
+											else
+											{
+												<p class="profile-founder">
+													No Title
+												</p>
+											}
+											<p class="profile-des">
+												<a asp-controller="HomeAdmin" asp-action="CreateProfileImage" asp-route-id="@Model.Id" class="btn btn-custon-rounded-two btn-success">Create Profile Image</a> <a asp-controller="AccountAdmin" asp-action="ChangePassword" asp-route-id="@Model.Id" class="btn btn-custon-rounded-two btn-info">Change Password</a> <a asp-controller="AccountAdmin" asp-action="UpdateProfile" asp-route-id="@Model.Id" class="btn btn-custon-rounded-two btn-success">Update Profile</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="user-profile-social-list">
+									<table class="table small m-b-xs">
+										<tbody>
+											<tr>
+												<td>
+													Email: @Model.Email
+												</td>
+												<td>
+													Username: @Model.UserName
+												</td>
+											</tr>
+											<tr>
+												<td>
+													@Model.City, @Model.Country
+												</td>
+												<td>
+													Phone: @Model.PhoneNumber
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Birthdate: @Model.Birthdate.ToShortDateString()
+												</td>
+												<td>
+													Gender: @Model.Gender
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="user-profile-social-list">
+									<table class="table small m-b-xs">
+										<tbody>
+											<tr>
+												<td>
+													Joined: @Model.CreatedDate.ToShortDateString()
+												</td>
+												@if (Model.UpdatedDate != null)
+												{
+													<td>
+														Updated: @Model.UpdatedDate.Value.ToShortDateString()
+													</td>
+												}
+												else
+												{
+													<td>
+														<span class="badge badge-info">Profile Didn't' Update Yet</span>
+													</td>
+												}
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="user-prfile-activity-area mg-b-40 mg-t-30">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="user-profile-mutual-friends shadow-reset mg-t-30">
+						<h2>Profile Images</h2>
+						<p>Click To Image for Delete</p>
+						@if (Model.ProfileImages.Count() > 0)
+						{
+							@await Component.InvokeAsync("AdminProfileImageList", new { id = Model.Id })
+						}
+					</div>
+					<div class="widget-flot-bg shadow-reset mg-t-30">
+						<div class="admin-widget-flot-ch">
+							<h1>@Model.ToDos.Count()</h1>
+							<h3>Tasks</h3>
+							<p>Authorized Tasks</p>
+						</div>
+					</div>
+					<div class="widget-flot-bg shadow-reset mg-t-30">
+						<div class="admin-widget-flot-ch">
+							<h1>@Model.CompanyMessages.Count()</h1>
+							<h3>Company Message</h3>
+							<p>Message sent to companies</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="post-user-profile-awrap shadow-reset">
+						@if (Model.ToDos.Count() > 0)
+						{
+							@await Component.InvokeAsync("AdminProfileTask", new { id = Model.Id })
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,202 @@
+﻿@model CompanyPartnership
+@{
+	ViewData["Title"] = "Talep / Teklif Detayı";
+	ViewData["Subtitle"] = "Açık Talep / Teklif Detay Bilgileri";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="post-detail">
+						<div class="about-post">
+							<h4>@Model.Title</h4>
+							<div class="post-status">
+								<ul>
+									<li><i class="flat flaticon-folder"></i> <span>@Model.ProductCategory.Name</span></li>
+									<li><i class="flat flaticon-chat"></i> <span>@Model.Hits.Count() görüntülenme</span></li>
+									<li><i class="flat flaticon-chat"></i> <span>@Model.Likes.Count() beğeni</span></li>
+									<li><i class="flat flaticon-chat"></i> <span>@Model.SavedContents.Count() kaydedilme</span></li>
+									<li><i class="flat flaticon-calendar"></i> <span>@Model.CreatedDate.ToShortDateString() de eklendi.</span></li>
+								</ul>
+							</div>
+							<div class="description">
+								<p>@Html.Raw(Model.Desc)</p>
+								<div class="special-quote">
+									Kategorisi: @Model.ProductCategory.Name
+								</div>
+								@if (Model.Detail != null)
+								{
+									<p>@Model.Detail</p>
+								}
+								<p style="color:black">
+									Teklif / Talep Başlangıcı: @Model.StartDate.ToShortDateString(), <strong style="color:darkred">Bitiş: @Model.ExpiryDate.ToShortDateString()</strong>
+								</p>
+								@if (Model.Price != null)
+								{
+									<p>@Model.Price.Value.ToString()</p>
+								}
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="tags_share">
+							<div class="tags">
+								<div class="title">Beğen (@Model.Likes.Count()), Kaydet (@Model.SavedContents.Count())</div>
+								<ul>
+									<li><a asp-controller="CompanyPartnership" asp-action="Like" asp-route-id="@Model.Id" class="btn btn-danger btn-sm">Beğen</a></li>
+									<li><a asp-controller="CompanyPartnership" asp-action="SavePartnership" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Kaydet</a></li>
+								</ul>
+							</div>
+							<div class="share_on">
+								<div class="title">Bildir :</div>
+								<div class="icons">
+									<a asp-controller="CompanyPartnership" asp-action="Report" asp-route-id="@Model.Id" class="btn btn-warning btn-sm" target="_blank" style="color:black">Bildir</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					@if (Model.CompanyId != null)
+					{
+						<div class="author_sec">
+							<div class="author-pic">
+								<img src="~/img/company/logo/@Model.Company.Logo" style="max-height:140px;max-width:140px;" asp-append-version="true" />
+							</div>
+							<div class="about-author">
+								<div class="name_designation">
+									<h6>@Model.Company.Name</h6>
+									@if (Model.Company.CityId != null)
+									{
+										<h6>@Model.Company.City.Name, @Model.Company.Country.Name</h6>
+									}
+									else
+									{
+										<h6>@Model.Company.Country.Name</h6>
+									}
+								</div>
+								<div class="clearfix"></div>
+								<div class="description">
+									@await Component.InvokeAsync("CompanyUserCompanyPartnershipContactInfo", new { id = Model.CompanyId })
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					}
+					@await Component.InvokeAsync("HitPartnership", new { id = Model.Id })
+				</div>
+				<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Arama Yap</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="search">
+								<partial name="_PartnershipSearch" />
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Bu Talepleri Gördünüz Mü?</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("CompanyUserRandomPartnership")
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Açık Teklifler</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="Available" class="btn btn-success btn-sm" style="color:black">Açık Tekliflere Bak</a>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="StartDate" class="btn btn-primary btn-sm" style="color:black">Başlangıç Tarihine Göre Sırala</a>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="ExpiryDate" class="btn btn-warning btn-sm" style="color:black">Bitiş Tarihine Göre Sıralılar</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Kategoriler</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("CompanyUserPartnershipCategory")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımızdan</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAd")
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+</section>

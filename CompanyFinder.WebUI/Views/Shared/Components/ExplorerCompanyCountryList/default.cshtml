@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Country>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li>
+		<a asp-controller="Company" asp-action="Country" asp-route-id="@item.Id">@item.Name</a>
+	</li>
+}

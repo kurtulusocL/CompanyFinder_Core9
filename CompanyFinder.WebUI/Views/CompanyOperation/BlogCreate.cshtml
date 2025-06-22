@@ -1,0 +1,72 @@
+﻿@model Blog
+@{
+	ViewData["Title"] = "Blog Makalesi Ekleme";
+	ViewData["Subtitle"] = "Buradan Blog Makalesi Yazıp Yayınlayabilirsiniz.";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="BlogCreate" method="post" enctype="multipart/form-data">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Kategori Listesi *</strong>
+									<select class="form-control" asp-for="BlogCategoryId" name="BlogCategoryId" required>
+										@foreach (var item in ViewBag.BlogCategories)
+										{
+											<option value="@item.Id">@item.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 form-group">
+								<strong style="color:blue">Makale Resmi *</strong>
+								<input class="form-control btn-info" type="file" name="image" accept=".png, .jpg, .jpeg" required>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Blog Makalesi Başlığı *</strong>
+								<input type="text" asp-for="Title" name="Title" placeholder="Blog Makalesi Başlığı *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Blog Makalesi Alt Başlığı</strong>
+								<input type="text" asp-for="Subtitle" name="Subtitle" placeholder="Blog Makalesi Alt Başlığı" />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Blog Makalesi *</strong>
+								<textarea type="text" class="ckeditor" asp-for="Desc" name="Desc" placeholder="Makalenizi Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Makalesini Kaydet & Yayınla </button>
+								<input type="hidden" asp-for="UserId" />
+								<input type="hidden" asp-for="CompanyId" />
+								<input type="hidden" asp-for="BlogCategoryId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

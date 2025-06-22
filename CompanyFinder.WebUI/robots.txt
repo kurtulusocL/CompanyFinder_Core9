@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+User-agent: YandexBot
+User-agent: Bingbot
+
+Allow: //
+
+Sitemap: https://localhost:44378/sitemap.xml

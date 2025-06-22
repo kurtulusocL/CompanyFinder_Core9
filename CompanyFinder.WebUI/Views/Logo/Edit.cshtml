@@ -1,0 +1,116 @@
+﻿@model Logo
+@{
+	ViewData["Title"] = "Update Logo";
+	ViewData["Subtitle"] = "Logo Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Logo" asp-action="kurtulusocL">Logo Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Logo" asp-action="LogoOps">Logo Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="basic-form-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline12-list shadow-reset mg-t-30">
+						<div class="sparkline12-hd">
+							<div class="main-sparkline12-hd">
+								<h1>@ViewData["Title"]</h1>
+								<div class="sparkline12-outline-icon">
+									<span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline12-graph">
+							<div class="basic-login-form-ad">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="all-form-element-inner">
+											<form asp-controller="Logo" asp-action="Edit" method="post" enctype="multipart/form-data">
+												@Html.AntiForgeryToken()
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-sm-5">
+															<div class="form-group">
+																<label style="color:blue">Logo Image <span class="text-danger">*</span></label>
+																<input class="form-control btn-danger" type="file" name="image" accept=".png, .jpg, .jpeg" required>
+															</div>
+														</div>
+														<div class="col-lg-7">
+															<strong style="color:blue">Logo Text </strong>
+															<input type="text" asp-for="Title" name="Title" class="form-control" />
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="login-btn-inner">
+														<div class="row">
+															<div class="col-lg-7"></div>
+															<div class="col-lg-5">
+																<div class="login-horizental cancel-wp pull-left">
+																	<a class="Warning Warning-color mg-b-10" href="#" data-toggle="modal" data-target="#WarningModalhdbgcl">Warning</a>
+																	<button class="btn btn-custon-rounded-four btn-primary" type="submit">Update Logo</button>
+																	<a asp-controller="Logo" asp-action="kurtulusocL" class="btn btn-custon-rounded-four btn-warning">Cancel</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<partial name="_adminCrudAlertPartial" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="WarningModalhdbgcl" class="modal modal-adminpro-general Customwidth-popup-WarningModal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header header-color-modal bg-color-3">
+					<h4 class="modal-title">Logo Update Alert</h4>
+					<div class="modal-close-area modal-close-df">
+						<a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+					</div>
+				</div>
+				<div class="modal-body">
+					<span class="adminpro-icon adminpro-warning-danger modal-check-pro information-icon-pro"></span>
+					<h2>Warning!</h2>
+					<p>Type logo title while updating. There are two style of logo as title: Horizontal and Vertical. Horizontal logo is for icon and Vertical logo is for normal usage.</p>
+				</div>
+				<div class="modal-footer">
+					<a data-dismiss="modal" href="#">Okay</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

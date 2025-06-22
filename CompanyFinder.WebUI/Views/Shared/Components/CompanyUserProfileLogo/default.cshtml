@@ -1,0 +1,13 @@
+﻿@model Company
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<img src="~/img/company/logo/@Model.Logo" style="max-height:80px;max-width:80px;" asp-append-version="true" />
+}
+else
+{
+	<img src="~/img/statics/emptyCompany.jpg" style="max-height:80px;max-width:80px;" asp-append-version="true" />
+}

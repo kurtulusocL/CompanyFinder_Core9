@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DropInformation>
+@{
+	Layout = null;
+}
+
+<div class="projects-settings-wrap">
+	<div class="note-heading-indicate">
+		<h2><i class="fa fa-cube"></i> Latest Dropped Informations</h2>
+		<p> Totally @Model.Count() dropped informations.</p>
+	</div>
+	<div class="notes-list-area notes-menu-scrollbar">
+		<ul class="notes-menu-list">
+			@foreach (var item in Model)
+			{
+				<li>
+					<a asp-controller="DropInformation" asp-action="DropInformationDetail" asp-route-id="@item.Id">
+						<div class="notes-list-flow">
+							<div class="notes-content">
+								<p> @item.CompanyName, @item.Location</p>
+								<p>@item.Email</p>
+								<span>@item.CreatedDate.ToShortDateString()</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

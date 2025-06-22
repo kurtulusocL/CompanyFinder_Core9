@@ -1,0 +1,18 @@
+﻿@{
+	Layout = null;
+}
+
+@if (ViewData["userCount"] == null)
+{
+	<div class="counter_content">
+		<h2><span class="counter">0</span></h2>
+		<div class="title">Kullanıcı</div>
+	</div>
+}
+else
+{
+	<div class="counter_content">
+		<h2><span class="counter">@ViewData["userCount"]</span></h2>
+		<div class="title">Kullanıcı</div>
+	</div>
+}

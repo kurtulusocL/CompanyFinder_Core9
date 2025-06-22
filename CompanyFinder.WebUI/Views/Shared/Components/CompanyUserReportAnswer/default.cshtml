@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ReportAnswer>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 project_description">
+		<h4>@item.Title</h4>
+		<p>@item.Desc</p>
+		@if (item.IsSatisfield == false)
+		{
+			<a asp-controller="CompanyOperation" asp-action="SetReportAnswerSatisfield" asp-route-id="@item.Id">Cevabı Beğen</a>
+		}
+	</div>
+}

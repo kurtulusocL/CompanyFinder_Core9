@@ -1,0 +1,18 @@
+﻿@{
+	Layout = null;
+}
+
+@if (ViewData["blogCount"] == null)
+{
+	<div class="counter_content">
+		<div class="display"><span class="counter">0</span></div>
+		<div class="title">Blog Makalesi</div>
+	</div>
+}
+else
+{
+	<div class="counter_content">
+		<div class="display"><span class="counter">@ViewData["blogCount"]</span></div>
+		<div class="title">Blog Makalesi</div>
+	</div>
+}

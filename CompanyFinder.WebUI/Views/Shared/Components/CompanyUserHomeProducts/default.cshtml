@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 port-item design development">
+		<a asp-controller="CompanyOperation" asp-action="ProductUpdate" asp-route-id="@item.Id" class="btn btn-success btn-rounded btn-sm"> Bilgileri Güncelle</a>
+		<div class="project portfolio-inner">
+			<img src="~/img/company/product/@item.ImageUrl" style="max-height:350px;max-height:264px;" asp-append-version="true">
+			<div class="label">
+				<div class="label-text"> <a asp-controller="HomeCompany" asp-action="ProductDetail" asp-route-id="@item.Id" target="_blank" class="text-title"> @item.Name</a> </div>
+				<div class="label-bg"></div>
+			</div>
+			<div class="zoom"> <a href="/img/company/product/@item.ImageUrl" class="popup-box" data-lightbox="image" data-title="@item.Name"> <i class="flat flaticon-magnifying-glass"></i> </a> </div>
+		</div>
+	</div>
+}

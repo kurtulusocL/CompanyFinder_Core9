@@ -1,0 +1,85 @@
+﻿@model CompanyPartnership
+@{
+	ViewData["Title"] = "Firma Teklif / Talep Sayfası";
+	ViewData["Subtitle"] = "Firmanızın Teklif ya da Talebini Buradan Güncelleyebilirsiniz";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="CompanyPartnershipUpdate" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Kategori Listesi *</strong>
+									<select class="form-control" asp-for="ProductCategoryId" name="ProductCategoryId" required>
+										@foreach (var item in ViewBag.Categories)
+										{
+											<option value="@item.Id">@item.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Teklif/Talep Başlığı *</strong>
+								<input type="text" asp-for="Title" name="Title" placeholder="Teklif Talep Başlığı *" required />
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+								<strong style="color:blue">Teklif/Talep Başlama Tarihi *</strong>
+								<input type="date" asp-for="StartDate" name="StartDate" required />
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+								<strong style="color:blue"> Teklif /Talep Bitiş Tarihi *</strong>
+								<input type="date" asp-for="ExpiryDate" name="ExpiryDate" required />
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+								<strong style="color:blue"> Teklif /Talep Fiyatı</strong>
+								<input type="text" asp-for="Price" name="Price" placeholder="İleride eklenecek bir özellik." disabled />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Teklif /Talep Metni *</strong>
+								<textarea type="text" class="ckeditor" asp-for="Desc" name="Desc" placeholder="Teklif /Talep Açıklamasını Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Teklif /Talep Detayı</strong>
+								<textarea type="text" class="form-control" asp-for="Detail" name="Detail" placeholder="Ek açıklama yazmak ister misiniz?"></textarea>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Teklif /Talep Uygunluk Durumu *</strong></span>
+								<input type="radio" asp-for="IsAvailable" name="IsAvailable" id="IsAvailable_Yes" value="True" />
+								<input type="radio" asp-for="IsAvailable" name="IsAvailable" id="IsAvailable_No" value="False" />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Teklif /Talep Güncelle ve Yayınla </button>
+								<input type="hidden" asp-for="UserId" />
+								<input type="hidden" asp-for="CompanyId" />
+								<input type="hidden" asp-for="ProductCategoryId" />
+								<input type="hidden" asp-for="Id" value="@Model.Id" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,170 @@
+﻿@using System.Web
+@model IEnumerable<Ad>
+@{
+	ViewData["Title"] = "Active Ad List By Expiry Date";
+	ViewData["Subtitle"] = "Ad Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Ad" asp-action="kurtulusocL">Ad Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="AdCompany" asp-action="kurtulusocL">Ad Company Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Ad" asp-action="TargetLessAd">TargetLess Ad</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Ad" asp-action="TargetfullAd">Targetfull Ad</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Ad" asp-action="ExpiryDateAds">Ad By Expiry Date</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Ad" asp-action="AdOps">Ad Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline12-outline-icon">
+									<a asp-controller="Ad" asp-action="Create" class="btn btn-custon-rounded-two btn-primary">+ Add New One</a>
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="image">Image</th>
+											<th data-field="company">Company</th>
+											<th data-field="text">Text</th>
+											<th data-field="showDate">Show Date</th>
+											<th data-field="expiryDate">Expiry Date</th>
+											<th data-field="target">Has Target</th>
+											<th>Counts</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.ImageUrl != null)
+													{
+														<img src="~/img/us/ad/@item.ImageUrl" class="btn-responsive" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/noImage.jpg" class="btn-responsive" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px" asp-append-version="true" />
+													}
+												</td>
+												<td>
+													<ul>
+														<li>Name: @item.AdCompany.Name</li>
+														<li>Location: @item.AdCompany.City, @item.AdCompany.Country</li>
+													</ul>
+													<a asp-controller="Ad" asp-action="AdCompanyList" asp-route-id="@item.AdCompanyId" class="btn btn-custon-rounded-two btn-info">
+														See All Ads
+													</a>
+												</td>
+												<td>
+													@if (item.Text.Length > 40)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Text, 40) + " ...")
+													}
+													else
+													{
+														@item.Text
+													}
+												</td>
+												<td>@item.ShowDate.ToShortDateString()</td>
+												<td>@item.ExpiryDate.ToShortDateString()</td>
+												<td>
+													@if (item.HasTarget == true)
+													{
+														<strong style="color:darkblue">Ad Has Target</strong>
+													}
+													else
+													{
+														<strong style="color:darkblue">Ad Has Not Target</strong>
+													}
+												</td>
+												<td>
+													<ul>
+														<li>Hits: @item.Hits.Count()</li>
+														<li>Targets: @item.AdTargets.Count()</li>
+													</ul>
+												</td>
+												<td>
+													<a asp-controller="Ad" asp-action="CreateAdTarget" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-primary btn-sm">Add Target</a>
+													<a asp-controller="Ad" asp-action="AdDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-info btn-sm">Detail</a>
+													<a asp-controller="Ad" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-success btn-sm">Edit</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

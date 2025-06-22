@@ -1,0 +1,31 @@
+﻿@model Blog
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<li class="megamenu-column">
+		<ul>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="UserBlogList" asp-route-id="@Model.UserId">Eklediğiniz Tüm Blog Makaleleri</a></li>
+			<li class="dropdown-item"><a> --> Blog Makalesine Gelenler --></a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourBlogLikeList" asp-route-id="@Model.UserId">Beğenilen Blog Makaleleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourBlogHitList" asp-route-id="@Model.UserId">Görüntülenen Blog Makaleleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourSavedBlogList" asp-route-id="@Model.UserId">Kaydedilen Blog Makaleleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourBlogReportList" asp-route-id="@Model.UserId">Blog Makalesine Gelen Şikayetler</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourBlogCommentList" asp-route-id="@Model.UserId">Blog Makalesine Gelen Yorumlar</a></li>
+		</ul>
+	</li>
+}
+else
+{
+	<li class="megamenu-column">
+		<ul>
+			<li class="dropdown-item"><a> Blog Makalesine Gelenler</a></li>
+			<li class="dropdown-item">Beğenilen Blog Makaleleriniz</li>
+			<li class="dropdown-item">Kaydedilen Blog Makaleleriniz</li>
+			<li class="dropdown-item">Blog Makalesine Gelen Şikayetler</li>
+			<li class="dropdown-item"><a>Blog Makalesine Gelen Yorumlar</a></li>
+		</ul>
+	</li>
+}

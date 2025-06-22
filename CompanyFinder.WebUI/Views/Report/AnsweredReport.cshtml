@@ -1,0 +1,325 @@
+﻿@using System.Web
+@model IEnumerable<Report>
+@{
+	ViewData["Title"] = "Active Answered Report List";
+	ViewData["Subtitle"] = "Report Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Report" asp-action="kurtulusocL">Report Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="AnsweredReport">Answered Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="NotAnsweredReport">Not Answered Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="FixedReport">Fixed Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="NotFixedReport">Not Fixed Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="ReportOps">Report Answer Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="userInfo">User Info</th>
+											<th data-field="reportFor">Report For</th>
+											<th data-field="reportTitle">Report Title</th>
+											<th data-field="description">Description</th>
+											<th data-field="isFixed">Is Fixed</th>
+											<th data-field="category">Category</th>
+											<th data-field="hit">Hit</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.UserId != null)
+													{
+														<ul>
+															<li>UserId: @item.UserId</li>
+															<li>Name Surname: @item.User.NameSurname</li>
+															<li>Email: @item.User.NameSurname</li>
+															<li>Location: @item.User.City, @item.User.Country</li>
+														</ul>
+														<a asp-controller="Report" asp-action="ByUser" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Reports
+														</a>
+														<a asp-controller="Report" asp-action="ByUserForAdmin" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Reports for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No User Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.BlogId != null || item.CommentId != null || item.CommentAnswerId != null || item.CompanyId != null || item.ProductId != null || item.CompanyPartnershipId != null || item.CompanyFormId != null || item.CompanyFormAnswerId != null)
+													{
+														if (item.BlogId != null)
+														{
+															<ul>
+																<li>Blog Report</li>
+																<li>BlogId: @item.BlogId</li>
+															</ul>
+															<a asp-controller="Report" asp-action="ByBlog" asp-route-id="@item.BlogId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.CommentId != null)
+														{
+															<ul>
+																<li>Comment Report</li>
+																<li>CommentId: @item.CommentId</li>
+															</ul>
+															<a asp-controller="Report" asp-action="ByComment" asp-route-id="@item.CommentId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.CommentAnswerId != null)
+														{
+															<ul>
+																<li>Comment Answer Report</li>
+																<li>Comment AnswerId: @item.CommentAnswerId</li>
+															</ul>
+															<a asp-controller="Report" asp-action="CommentAnswer" asp-route-id="@item.CommentAnswerId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.CompanyId != null)
+														{
+															<ul>
+																<li>Company Report</li>
+																<li>CompanyId: @item.CompanyId</li>
+															</ul>
+															<a asp-controller="Report" asp-action="ByCompany" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.ProductId != null)
+														{
+															<ul>
+																<li>Product Report</li>
+																<li>ProductId: @item.ProductId</li>
+															</ul>
+															<a asp-controller="Report" asp-action="ByProduct" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														@if (item.CompanyPartnershipId != null)
+														{
+															<ul>
+																<li>Company Partnership Report</li>
+																<li>CompanyId: @item.CompanyPartnershipId</li>
+																@if (item.CompanyPartnership.CompanyId != null)
+																{
+																	<li>CompanyId: @item.CompanyPartnership.CompanyId</li>
+																	<li>Company: @item.CompanyPartnership.Company.Name</li>
+																}
+																else
+																{
+																	<li>
+																		<strong style="color:maroon">No Company Info</strong>
+																	</li>
+																}
+															</ul>
+															<a asp-controller="Report" asp-action="ByPartnership" asp-route-id="@item.CompanyPartnershipId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.CompanyFormId != null)
+														{
+															<ul>
+																<li>Company Form Report</li>
+																<li>Company FormId: @item.CompanyFormId</li>
+																@if (item.CompanyForm.CompanyId != null)
+																{
+																	<li>CompanyId: @item.CompanyForm.CompanyId</li>
+																	<li>Company: @item.CompanyForm.Company.Name</li>
+																}
+																else
+																{
+																	<li>
+																		<strong style="color:maroon">No Company Info</strong>
+																	</li>
+																}
+															</ul>
+															<a asp-controller="Report" asp-action="ByCompanyForm" asp-route-id="@item.CompanyFormId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+														if (item.CompanyFormAnswerId != null)
+														{
+															<ul>
+																<li>Company Form Answer Report</li>
+																<li>Company Form AnswerId: @item.CompanyFormAnswerId</li>
+																@if (item.CompanyFormAnswer.CompanyFormId != null)
+																{
+																	<li>Company FormId: @item.CompanyFormId</li>
+																}
+																else
+																{
+																	<li>
+																		<strong style="color:maroon">No Company Form Info</strong>
+																	</li>
+																}
+															</ul>
+															<a asp-controller="Report" asp-action="ByCompanyFormAnswer" asp-route-id="@item.CompanyFormAnswerId" class="btn btn-custon-rounded-two btn-info">
+																See All Reports
+															</a>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Not Information</strong>
+													}
+												</td>
+												<td>
+													@if (item.Title.Length > 65)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 65) + " ...")
+													}
+													else
+													{
+														@item.Title
+													}
+												</td>
+												<td>
+													@if (item.Desc.Length > 65)
+													{
+														@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 65) + " ..."))
+													}
+													else
+													{
+														@Html.Raw(item.Desc)
+													}
+												</td>
+												<td>
+													@if (item.IsFixed == true)
+													{
+														<strong style="color:darkblue">Fixed Report</strong>
+														if (item.FixedDate != null)
+														{
+															<span>Fixed at</span>
+															<span class="badge badge-info">@item.FixedDate.Value.ToShortDateString()</span>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Not Fixed Report</strong>
+													}
+												</td>
+												<td>
+													@item.ReportCategory.Name
+													<br />
+													<a asp-controller="Report" asp-action="ByCategory" asp-route-id="@item.ReportCategoryId" class="btn btn-custon-rounded-two btn-info">
+														See All Reports
+													</a>
+												</td>
+												<td>
+													@if (item.Hit != null)
+													{
+														<i class="fa fa-eye"></i> 
+														@item.Hit.Value.ToString()
+													}
+													else
+													{
+														<span>
+															<i class="fa fa-eye"></i> 0
+														</span>
+													}
+												</td>
+												<td>
+													<a asp-controller="Report" asp-action="ReportDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+													@if (item.IsFixed == true)
+													{
+														<a asp-controller="Report" asp-action="SetNotFixed" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-warning btn-sm">Set Not Fixed</a>
+													}
+													else
+													{
+														<a asp-controller="Report" asp-action="SetFixed" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-warning btn-sm">Set Fixed</a>
+													}
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

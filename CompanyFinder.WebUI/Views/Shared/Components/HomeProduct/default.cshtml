@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="item col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<div class="client_dp">
+			<img src="~/img/company/product/@item.ImageUrl" style="max-height:118px;max-width:118px;" asp-append-version="true" />
+		</div>
+		<div class="team-card">
+			<div class="name_designation">
+				<h5>
+					<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
+						@item.Name
+					</a>
+				</h5>
+				<span>@item.Questions.Count() ataştırma</span>
+			</div>
+			<div class="description">
+				@if (item.Price != null)
+				{
+					<p>@item.Price.Value.ToString("C2")</p>
+				}
+				@if (item.ProductSubcategoryId != null)
+				{
+					<p>@item.ProductCategory.Name, @item.ProductSubcategory.Name</p>
+				}
+				else
+				{
+					<p>@item.ProductCategory.Name</p>
+				}
+			</div>
+			<div class="social_links">
+				<ul style="color:black">
+					<li>@item.Hits.Count() görüntülenme</li>
+					<li>@item.Likes.Count() beğeni</li>
+					<li>@item.SaveContents.Count() kaydedilme</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+}

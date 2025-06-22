@@ -1,0 +1,21 @@
+﻿@model Report
+@{
+	Layout = null;
+}
+
+@if (ViewData["reportCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Report</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["reportCount"]</span></h3>
+		</div>
+	</div>
+}

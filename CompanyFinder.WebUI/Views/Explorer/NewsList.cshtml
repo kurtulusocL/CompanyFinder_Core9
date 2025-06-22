@@ -1,0 +1,78 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<News>
+@{
+	ViewData["Title"] = "Bizden Haberler";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						<div class="item blog_card">
+							<div class="post-img">
+								<img src="~/img/us/news/@item.ImageUrl" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="Explorer" asp-action="NewsDetail" asp-route-id="@item.Id">
+										@if (item.Title.Length > 27)
+										{
+											@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 27) + " ...")
+										}
+										else
+										{
+											@item.Title
+										}
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li><span>@item.Hit.ToString() görüntülenme</span></li>
+										<li><span>@item.Like.ToString() beğeni</span></li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.Subtitle.Length > 80)
+									{
+										<p>
+											@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Subtitle, 80) + " ...")
+										</p>
+									}
+									else
+									{
+										<p>@item.Subtitle</p>
+									}
+									<a asp-controller="Explorer" asp-action="NewsDetail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Devamını Oku</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					@Html.PagedListPager(Model, page => Url.Action("NewsList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>

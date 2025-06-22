@@ -1,0 +1,231 @@
+﻿@model Product
+@{
+	ViewData["Title"] = "Delete Product";
+	ViewData["Subtitle"] = "Product Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="ProductManagement" asp-action="kurtulusocL">Product Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="AvailableProduct">Availables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotAvailableProduct">Not Availables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="CommentableProduct">Commentables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotCommentableProduct">Not Commentables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="QuestionableProduct">Questionables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotQuestionableProduct">Not Questionables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="ProductOps">Product Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							<div class="perso-img">
+								<img src="~/img/company/product/@Model.ImageUrl" class="img-circle circle-border m-b-md" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" asp-append-version="true">
+							</div>
+							<h2>
+								Name: @Model.Name
+							</h2>
+							@if (Model.OtherText != null)
+							{
+								@Model.OtherText
+							}
+							else
+							{
+								<strong style="color:darkred">No Other Text</strong>
+							}
+							<p>
+								@if (Model.IsCommentable == true)
+								{
+									<strong style="color:darkblue">Commentable Product</strong>
+								}
+								else
+								{
+									<strong style="color:darkred">Not Commentable Product</strong>
+								}
+							</p>
+							<p>
+								@if (Model.IsQuestionable == true)
+								{
+									<strong style="color:darkblue">Questionable Product</strong>
+								}
+								else
+								{
+									<strong style="color:darkred">Not Questionable Product</strong>
+								}
+							</p>
+							<p>
+								@if (Model.IsAvailable == true)
+								{
+									<strong style="color:darkblue">Available Product</strong>
+								}
+								else
+								{
+									if (Model.AvailableDate != null)
+									{
+										<strong style="color:darkred">Not Available Product</strong> <span>It Gonna Be Available</span> <span class="badge badge-info">
+											@Model.AvailableDate.Value.ToShortDateString()
+										</span>
+									}
+									else
+									{
+										<strong style="color:darkred">Not Available Product</strong>
+									}
+								}
+							</p>
+							@if (Model.ProductSubcategoryId != null)
+							{
+								<span>
+									Category: @Model.ProductCategory.Name - Subcategory: @Model.ProductSubcategory.Name
+								</span>
+							}
+							else
+							{
+								<span>
+									Category: @Model.ProductCategory.Name - <strong style="color:maroon">No Subcategory</strong>
+								</span>
+							}
+							@if (Model.CompanyId != null)
+							{
+								<p>
+									<ul>
+										<li>Company Id: @Model.CompanyId</li>
+										<li>Company: @Model.Company.Name</li>
+									</ul>
+								</p>
+							}
+							else
+							{
+								<p>
+									<strong style="color:darkred">No Company Information</strong>
+								</p>
+							}
+							@if (Model.UserId != null)
+							{
+								<p>
+									<ul>
+										<li>UserId: @Model.UserId</li>
+										<li>User: @Model.User.NameSurname</li>
+										<li>Email: @Model.User.Email</li>
+										<li>Location: @Model.User.City, @Model.User.Country</li>
+									</ul>
+								</p>
+							}
+							else
+							{
+								<p>No User Info</p>
+							}
+							<div class="social-widget-result social-widget1-result">
+								<ul>
+									<li>
+										<span>
+											Comments: @Model.Comments.Count()
+										</span>
+									</li>
+									<li>
+									<li>
+										<span>
+											Hits: @Model.Hits.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Likes: @Model.Likes.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Pictures: @Model.Pictures.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Questions: @Model.Questions.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Reports: @Model.Reports.Count()
+										</span>
+									</li>
+
+									<li>
+										<span>
+											Saved: @Model.SaveContents.Count()
+										</span>
+									</li>
+								</ul>
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="widget-text-box">
+								<h4>Description: @Html.Raw(Model.Desc)</h4>
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+								}
+								@if (Model.IsActive == true)
+								{
+									<p>Active</p>
+								}
+								else
+								{
+									<p>DeActive</p>
+								}
+								@if (Model.IsDeleted == true)
+								{
+									<p>Deleted</p>
+								}
+								else
+								{
+									<p>Not Deleted</p>
+								}
+								<div class="text-right like-love-list">
+									<a href="#" onclick="confirmDelete('ProductManagement', 'DeleteProduct', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

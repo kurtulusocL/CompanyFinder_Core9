@@ -1,0 +1,142 @@
+﻿@model Picture
+@{
+	ViewData["Title"] = "Delete Picture";
+	ViewData["Subtitle"] = "Picture Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Picture" asp-action="kurtulusocL">Picture Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Picture" asp-action="PictureOps">Picture Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="perso-img">
+							@if (Model.BlogId != null || Model.CompanyId != null || Model.ProductId != null)
+							{
+								if (Model.BlogId != null)
+								{
+									@await Component.InvokeAsync("DeleteBlogImage", new { id = Model.BlogId })
+								}
+								if (Model.CompanyId != null)
+								{
+									@await Component.InvokeAsync("DeleteCompanyImage", new { id = Model.CompanyId })
+								}
+								if (Model.ProductId != null)
+								{
+									@await Component.InvokeAsync("DeleteProductImage", new { id = Model.ProductId })
+								}
+							}
+							else
+							{
+								<strong style="color:darkred">No Any Image</strong>
+							}
+						</div>
+						<div class="widget-text-box">
+							<h4>Image From</h4>
+							@if (Model.BlogId != null || Model.CompanyId != null || Model.ProductId != null)
+							{
+								if (Model.BlogId != null)
+								{
+									<ul>
+										<li>Blog Image</li>
+										<li>BlogId: @Model.BlogId</li>
+										<li>Blog Title: @Model.Blog.Title</li>
+										@if (Model.Blog.Company != null)
+										{
+											<li>Blog CompanyId: @Model.Blog.CompanyId</li>
+											<li>Blog Company: @Model.Blog.Company.Name</li>
+										}
+										else
+										{
+											<li><strong style="color:darkred">No Blog Company</strong></li>
+										}
+									</ul>
+								}
+								if (Model.CompanyId != null)
+								{
+									<ul>
+										<li>Company Image</li>
+										<li>Company Id: @Model.CompanyId</li>
+										<li>Company: @Model.Company.Name</li>
+									</ul>
+								}
+								if (Model.ProductId != null)
+								{
+									<ul>
+										<li>Procuct Image</li>
+										<li>ProductId: @Model.ProductId</li>
+										<li>Product: @Model.Product.Name</li>
+										@if (Model.Product.CompanyId != null)
+										{
+											<li>Product CompanyId: @Model.Product.CompanyId</li>
+											<li>Product Company: @Model.Product.Company.Name</li>
+										}
+										else
+										{
+											<li><strong style="color:darkred">No Product Company</strong></li>
+										}
+									</ul>
+								}
+							}
+							else
+							{
+								<strong style="color:darkred">Not Information</strong>
+							}
+							@if (Model.UpdatedDate != null)
+							{
+								<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+							}
+							@if (Model.IsActive == true)
+							{
+								<p>Active</p>
+							}
+							else
+							{
+								<p>DeActive</p>
+							}
+							@if (Model.IsDeleted == true)
+							{
+								<p>Deleted</p>
+							}
+							else
+							{
+								<p>Not Deleted</p>
+							}
+							<div class="text-right like-love-list">
+								<a href="#" onclick="confirmDelete('Picture', 'DeletePicture', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model Appointment
+@{
+	Layout = null;
+}
+
+<form asp-controller="Company" asp-action="CreateAppointment" method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<input type="text" asp-for="Subject" name="Subject" placeholder="Randevu Konusu *" required />
+	</div>
+	<div class="form-group">
+		<span class="badge badge-info">Randevu Tarihi *</span>
+		<input type="date" asp-for="AppointmentDate" name="AppointmentDate" required />
+	</div>
+	<div class="form-group">
+		<textarea asp-for="Desc" name="Desc" placeholder="Randevu Açıklama Metninin Buraya Yazabilirsiniz *" required></textarea>
+	</div>
+	<div class="form-group">
+		<button type="submit">Randevu Talep Et <i class="flat flaticon-plane"></i></button>
+		<input type="hidden" asp-for="CompanyId" />
+		<input type="hidden" asp-for="UserId" />
+	</div>
+</form>
+<partial name="_explorerAlertPartial" />

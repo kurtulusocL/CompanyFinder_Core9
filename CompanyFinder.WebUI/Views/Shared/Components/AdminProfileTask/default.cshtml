@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ToDo>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="user-profile-post">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<div class="user-profile-img-post">
+					@await Component.InvokeAsync("AdminProfileImage", new { id = item.Id })
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div class="user-profile-post-name">
+					@if (item.UserId != null)
+					{
+						<h2><a>@item.User.NameSurname</a></h2>
+					}
+					else
+					{
+						<h2><a>---</a></h2>
+					}
+					<p>
+						<span>Started At: @item.StartDate.ToShortDateString() - End Date: @item.EndDate.ToShortDateString()</span>
+					</p>
+					<p>
+						@if (item.IsFinished == true)
+						{
+							<span class="badge badge-info">Finished Task</span>
+						}
+						else
+						{
+							<span class="badge badge-info">Open Task</span>
+						}
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+				<div class="admin-comment-month user-profile-post-action">
+					<button class="comment-setting" data-toggle="collapse" data-target="#adminpro-demo1">...</button>
+					<ul id="adminpro-demo1" class="comment-action-st collapse">
+						@if (item.IsFinished == false)
+						{
+							<li>
+								<a asp-controller="ToDo" asp-action="SetFinished" asp-route-id="@item.Id">Set Finished</a>
+							</li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="profile-user-post-content">
+					<p>@item.Title</p>
+					@if (item.Subtitle != null)
+					{
+						<p>@item.Subtitle</p>
+					}
+					<p>@Html.Raw(item.Desc)</p>
+					<div class="user-post-reply">
+						<div class="btn-group">
+							@if (item.IsFinished == false)
+							{
+								<a asp-controller="ToDo" asp-action="SetFinished" asp-route-id="@item.Id" class="btn btn-white btn-xs"> Set Finished</a>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+			@await Component.InvokeAsync("ToDoHitRead", new { id = item.UserId })
+		</div>
+	</div>
+}

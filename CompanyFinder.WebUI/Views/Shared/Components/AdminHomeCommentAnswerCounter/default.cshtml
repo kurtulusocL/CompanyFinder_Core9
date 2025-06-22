@@ -1,0 +1,21 @@
+﻿@model CommentAnswer
+@{
+	Layout = null;
+}
+
+@if (ViewData["commentAnswerCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Comment Answer</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["commentAnswerCount"]</span></h3>
+		</div>
+	</div>
+}

@@ -1,0 +1,121 @@
+﻿@model Blog
+@{
+	ViewData["Title"] = "Blog Makalesi Detayı";
+	ViewData["Subtitle"] = "Eklenilen Tüm Blog Makaleleri ve Onlara Gelen Yorum ve Şikayetler";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="post-img"> <img src="~/img/company/blog/@Model.ImageUrl" style="max-height:528px;max-width:825px;" asp-append-version="true" /></div>
+					<div class="post-detail">
+						<div class="about-post">
+							<h4>@Model.Title</h4>
+							<div class="post-status">
+								<ul>
+									<li><i class="flat flaticon-chat"></i> <span>@Model.Comments.Count()</span></li>
+									<li><i class="flat flaticon-eye"></i> <span>@Model.Hits.Count() görüntülenme</span></li>
+									<li><i class="flat flaticon-heart"></i> <span>@Model.Likes.Count() beğenilme</span> </li>
+									<li><i class="flat flaticon-adjust"></i> <span>@Model.SaveContents.Count() kaydetme</span></li>
+									<li><i class="flat flaticon-calendar"></i> <span>@Model.CreatedDate.ToShortDateString()</span></li>
+								</ul>
+							</div>
+							<div class="description">
+								@if (Model.Subtitle != null)
+								{
+									<p>Altbaşlığı: @Model.Subtitle</p>
+								}
+								<div class="special-quote">
+									Kategorisi: @Model.BlogCategory.Name
+								</div>
+								<p> @Html.Raw(Model.Desc)</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<hr />
+					<div id="faq">
+						<div class="container">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div id="accordion">
+									<div class="card">
+										<div class="card-header" id="headingOne">
+											<h5 class="mb-0">
+												<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+													<span class="s_no">Gelen Yorumlar</span>
+												</button>
+											</h5>
+										</div>
+										<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+											<div class="card-body">
+												<div class="comments">
+													<h5>Toplamda Bu Blog Makalesi İçin <span> @Model.Comments.Count() yorum </span> yapılmış.</h5>
+													<div class="separator left-align">
+														<ul>
+															<li></li>
+															<li></li>
+															<li></li>
+														</ul>
+													</div>
+													<div class="clearfix"></div>
+													<ol class="comments-list">
+														@await Component.InvokeAsync("CompanyUserBlogComment", new { id = Model.Id })
+													</ol>													
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr />
+									<div class="card">
+										<div class="card-header" id="headingTwo">
+											<h5 class="mb-0">
+												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													<span class="s_no">Gelen Şikayet Bildirimleri</span>
+												</button>
+											</h5>
+										</div>
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+											<div class="card-body">
+												<div class="comments">
+													<h5>Toplamda Bu Blog Makalesi İçin <span> @Model.Reports.Count() şikayet bildirimi</span> yapılmış.</h5>
+													<div class="separator left-align">
+														<ul>
+															<li></li>
+															<li></li>
+															<li></li>
+														</ul>
+													</div>
+													<div class="clearfix"></div>
+													<ol class="comments-list">
+														@await Component.InvokeAsync("CompanyUserBlogReport", new { id = Model.Id })
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

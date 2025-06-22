@@ -1,0 +1,145 @@
+﻿@model IEnumerable<AdTarget>
+@{
+	ViewData["Title"] = "Active Ad Target List";
+	ViewData["Subtitle"] = "Ad Target Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="AdTarget" asp-action="kurtulusocL">Ad Target Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Ad" asp-action="kurtulusocL">Ad Home</a> <span class="bread-slash">/</span>
+									</li>									
+									<li>
+										<a asp-controller="AdTarget" asp-action="AdTargetOps">Ad Target Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">									
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+								data-toggle="table"
+								data-pagination="true"
+								data-resizable="true"
+								data-search="true"
+								data-show-columns="true"
+								data-show-pagination-switch="true"
+								data-show-refresh="true"
+								data-key-events="true"
+								data-show-toggle="true"
+								data-cookie="true"
+								data-cookie-id-table="saveId"
+								data-show-export="true"
+								data-click-to-select="true"
+								data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>										
+											<th data-field="city">City</th>
+											<th data-field="country">Country</th>
+											<th data-field="ad">Ad</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>												
+												<td>@item.Id</td>
+												<td>
+													@if (item.CityId != null)
+													{
+														<span>@item.City.Name</span>
+														<br />
+														<a asp-controller="AdTarget" asp-action="TargetCity" asp-route-id="@item.CityId" class="btn btn-custon-rounded-three btn-info btn-sm">See All City Targets</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No City Target</strong>
+													}
+												</td>
+												<td>
+													@if (item.Country != null)
+													{
+														<span>@item.Country.Name</span>
+														<br />
+														<a asp-controller="AdTarget" asp-action="TargetCountry" asp-route-id="@item.CountryId" class="btn btn-custon-rounded-three btn-info btn-sm">See All Country Targets</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Country Target</strong>
+													}
+												</td>
+												<td>
+													@if (item.AdId != null)
+													{
+														<ul>
+															<li>Ad ID: @item.AdId</li>															
+															<li>Ad Dates: @item.Ad.ShowDate.ToShortDateString() - @item.Ad.ExpiryDate.ToShortDateString()</li>
+														</ul>
+														<a asp-controller="AdTarget" asp-action="TargetAd" asp-route-id="@item.AdId" class="btn btn-custon-rounded-three btn-info btn-sm">See All Ad Targets</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Target Ad</strong>
+													}
+												</td>
+												<td>
+													<a asp-controller="AdTarget" asp-action="TargetDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-info btn-sm">Detail</a>
+													<a asp-controller="AdTarget" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-success btn-sm">Edit</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

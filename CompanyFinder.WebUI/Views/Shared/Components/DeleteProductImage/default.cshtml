@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Picture>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	if (item.BlogId != null)
+	{
+		<img src="~/img/company/product/multiImage/@item.ImageUrl" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" class="img-responsive" asp-append-version="true" />
+	}
+	else
+	{
+		<img src="~/img/statics/noImage.jpg" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" class="img-responsive" asp-append-version="true" />
+	}
+}

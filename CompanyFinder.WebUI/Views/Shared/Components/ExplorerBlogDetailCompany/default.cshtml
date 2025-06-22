@@ -1,0 +1,49 @@
+﻿@model Blog
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	@if (Model.CompanyId != null)
+	{
+		<div class="author_sec">
+			<div class="author-pic"> <img src="~/img/company/logo/@Model.Company.Logo" style="max-height:141px;max-width:141px" asp-append-version="true" /> </div>
+			<div class="about-author">
+				<div class="name_designation">
+					<h6>@Model.Company.Name</h6>
+				</div>
+				<div class="clearfix"></div>
+				<div class="description">
+					<p>Kuruluş: @Model.Company.FoundationDate.ToShortDateString()</p>
+					@if (Model.Company.WebsiteUrl != null)
+					{
+						<p>
+							<a href="@Model.Company.WebsiteUrl" class="btn btn-info btn-sm" target="_blank">İnternet Sitesine Bak</a>
+						</p>
+					}
+				</div>
+				<div class="description">
+					<p>
+						@await Component.InvokeAsync("ExplorerCompanyContact", new { id = Model.CompanyId })
+					</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	}
+	else
+	{
+		<div class="author_sec">
+			<div class="author-pic"> <img src="~/img/statics/emptyCompany.jpg" style="max-height:141px;max-width:141px" asp-append-version="true" /> </div>
+			<div class="clearfix"></div>
+		</div>
+	}
+}
+else
+{
+	<div class="author_sec">
+		<div class="author-pic"> <img src="~/img/statics/emptyCompany.jpg" style="max-height:141px;max-width:141px" asp-append-version="true" /> </div>
+		<div class="clearfix"></div>
+	</div>
+}

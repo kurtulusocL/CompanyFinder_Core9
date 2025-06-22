@@ -1,0 +1,179 @@
+﻿@using System.Web
+@model IEnumerable<CompanyForm>
+@{
+	ViewData["Title"] = "Active Company Form List By Company";
+	ViewData["Subtitle"] = "Company Form Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="kurtulusocL">Company Form Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="Answerable">Answerable Company Forms</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="NotAnswerable">NotAnswerable Company Forms</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="CompanyFormOps">Company Form Answer Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="image">Image</th>
+											<th data-field="companyInfo">Company Info</th>
+											<th data-field="category">category</th>
+											<th data-field="title">Title</th>
+											<th data-field="description">Description</th>
+											<th data-field="answerable">Answerable</th>
+											<th>Counts</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													<img src="~/img/company/formImage/@item.ImageUrl" style="max-height:90px;max-width:90px;" asp-append-version="true" />
+												</td>
+												<td>
+													@if (item.CompanyId != null)
+													{
+														<ul>
+															<li>CompanyId: @item.CompanyId</li>
+															<li>Company: @item.Company.Name</li>
+														</ul>
+														<br />
+														<a asp-controller="CompanyFormManagement" asp-action="ByCompanyForAdmin" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+															See All Topics for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Company Info</strong>
+													}
+												</td>
+												<td>
+													@item.FormCategory.Name
+													<br />
+													<a asp-controller="CompanyFormManagement" asp-action="ByCategory" asp-route-id="@item.FormCategoryId" class="btn btn-custon-rounded-two btn-info">
+														See All Topics
+													</a>
+												</td>
+												<td>
+													@if (item.Title.Length > 55)
+													{
+														@HttpUtility.HtmlEncode(ReadMore.SafeSubstring(item.Title, 55) + " ...")
+													}
+													else
+													{
+														@item.Title
+													}
+												</td>
+												<td>
+													@if (item.Desc.Length > 55)
+													{
+														@Html.Raw(HttpUtility.HtmlEncode(ReadMore.SafeSubstring(item.Desc, 55) + " ..."))
+													}
+													else
+													{
+														@Html.Raw(item.Desc)
+													}
+												</td>
+												<td>
+													@if (item.IsAnswerable == true)
+													{
+														<span class="badge badge-info">Answerable</span>
+													}
+													else
+													{
+														<span class="badge badge-warning">Not Answerable</span>
+													}
+												</td>
+												<td>
+													<ul>
+														<li>Answers: @item.CompanyFormAnswers.Count()</li>
+														<li>Hits: @item.Hits.Count()</li>
+														<li>Likes: @item.Likes.Count()</li>
+														<li>Reports: @item.Reports.Count()</li>
+													</ul>
+												</td>
+												<td>
+													<a asp-controller="CompanyFormManagement" asp-action="CompanyFormDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

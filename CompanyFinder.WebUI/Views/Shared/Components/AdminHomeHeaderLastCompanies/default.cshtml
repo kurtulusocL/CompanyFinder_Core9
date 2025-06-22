@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Company>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li>
+		<a asp-controller="CompanyManagement" asp-action="CompanyDetail" asp-route-id="@item.Id">
+			<div class="message-img">
+				<img src="~/img/company/logo/@item.Logo" style="max-height:70px;max-width:70px;min-height:70px;min-width:70px;" asp-append-version="true" />
+			</div>
+			<div class="message-content">
+				<h2>@item.Name</h2>
+				@if (item.CityId != null)
+				{
+					<p>@item.City, @item.Country</p>
+				}
+				else
+				{
+					<p>@item.Country</p>
+				}
+				@if (item.CompanySubcategoryId != null)
+				{
+					<p>
+						@item.CompanySubcategory.Name, @item.CompanyCategory.Name
+					</p>
+				}
+				else
+				{
+					<p>@item.CompanyCategory.Name</p>
+				}
+				<p>@item.CreatedDate.ToShortDateString()</p>
+			</div>
+		</a>
+	</li>
+}

@@ -1,0 +1,88 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<CompanyForm>
+@{
+	ViewData["Title"] = "Forum Listeniz";
+	ViewData["Subtitle"] = "Konu Açtığınız Forumların Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						<div class="item blog_card">
+							<div class="post-img">
+								<img src="~/img/company/formImage/@item.ImageUrl" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>@item.Title</h5>
+								<div class="post-status">
+									<ul>
+										<li><i class="flat flaticon-folder"></i> <span>@item.FormCategory.Name</span></li>
+										<li><i class="flat flaticon-chat"></i> <span>@item.CompanyFormAnswers.Count()</span></li>
+										<li><span>@item.Hits.Count() görütülenme</span></li>
+										<li><span>@item.Likes.Count() beğeni</span></li>
+										<li>Yayın: <span>@item.CreatedDate.ToShortDateString()</span></li>
+									</ul>
+								</div>
+								<div class="description">
+									<p>
+										@if (item.Subtitle != null)
+										{
+											<span>Altbaşlık: @item.Subtitle</span>
+										}
+									</p>
+									<p>
+										Konu: @Html.Raw(item.Desc)
+									</p>
+									<p>
+										@if (item.IsAnswerable == true)
+										{
+											<a asp-controller="CompanyOperation" asp-action="SetNotAnswerableCompanyForm" asp-route-id="@item.Id" style="color:black" class="btn btn-warning btn-sm">Yoruma Kapat</a>
+										}
+										else
+										{
+											<a asp-controller="CompanyOperation" asp-action="SetAnswerableCompanyForm" asp-route-id="@item.Id" style="color:black" class="btn btn-success btn-sm">Yoruma Aç</a>
+										}
+										@if (item.CompanyFormAnswers.Count() > 0)
+										{
+											<a asp-controller="HomeCompany" asp-action="YourFormTopicAnswerList" asp-route-id="@item.Id" style="color:black" class="btn btn-info btn-sm">Cevapları Görüntüle</a>
+										}
+										<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteCompanyForm', @item.Id); return false;" class="btn btn-danger btn-sm">Sil</a>
+									</p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					@Html.PagedListPager(Model, page => Url.Action("YourCompanyForumList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>

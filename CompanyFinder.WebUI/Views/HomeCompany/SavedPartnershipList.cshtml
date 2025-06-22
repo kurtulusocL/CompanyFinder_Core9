@@ -1,0 +1,95 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<SavedContent>
+@{
+	ViewData["Title"] = "Kayıt Edilen Talep / Teklifler";
+	ViewData["Subtitle"] = "Firmaların, Kaydettiğiniz Teklif / Talep Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="inner">
+	<div id="web-developer" class="gray-bg">
+		<div class="container">
+			<div class="section_heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+				<div class="row">
+					@foreach (var item in Model)
+					{
+						if (item.CompanyPartnershipId != null)
+						{
+							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+								<div class="item team-card card_mr_bt">									
+									<div class="name_designation">
+										@if (item.CompanyPartnership.CompanyId != null)
+										{
+											<h5>Firma: @item.CompanyPartnership.Company.Name</h5>
+										}
+									</div>
+									<div class="description">
+										<p>
+											@if (item.CompanyPartnership.Title.Length > 32)
+											{
+												@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.CompanyPartnership.Title, 31) + " ...")
+											}
+											else
+											{
+												@item.CompanyPartnership.Title
+											}
+										</p>
+										<p>Kayıt Tarihi: @item.SavedDate.ToShortDateString()</p>
+										<p>
+											Teklif / Talep Başlangıcı: @item.CompanyPartnership.StartDate.ToShortDateString(), Teklif / Talep Bitişi: @item.CompanyPartnership.ExpiryDate.ToShortDateString()
+										</p>
+									</div>
+									<div class="social_links">
+										<ul>
+											<li><a asp-controller="CompanyPartnership" asp-action="Detail" asp-route-id="@item.CompanyPartnershipId" class="btn btn-info btn-sm">Talep / Teklif Detayı</a></li>
+											@if (item.IsSaved == true)
+											{
+
+												<li>
+													<a asp-controller="CompanyOperation" asp-action="SetNotSavedCompanyPartnershipContent" asp-route-id="@item.Id" class="btn btn-dark btn-sm">Kaydetmeyi Geri Al</a>
+												</li>
+											}
+											<li><a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteSavedCompanyPartnershipContent', @item.Id); return false;" class="btn btn-danger btn-sm">Sil</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						}
+					}
+				</div>
+				<div class="pagination">
+					<div class="pagination-info">
+						@Html.PagedListPager(Model, page => Url.Action("SavedPartnershipList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

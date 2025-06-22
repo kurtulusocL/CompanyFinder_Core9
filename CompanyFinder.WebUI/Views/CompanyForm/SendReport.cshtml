@@ -1,0 +1,62 @@
+﻿@model Report
+@{
+	ViewData["Title"] = "Firma Form Yazısı Şikayeti";
+	ViewData["Subtitle"] = "Buradan Firmanın Form Yazısı İle İlgili Şikayetinizi Bildirebilirsiniz.";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyForm" asp-action="SendReport" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Bildirim Kategori Listesi *</strong>
+									<select class="form-control" asp-for="ReportCategoryId" name="ReportCategoryId" required>
+										@foreach (var item in ViewBag.ReportCategories)
+										{
+											<option value="@item.Id">@item.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Bildirim Başlığı *</strong>
+								<input type="text" asp-for="Title" name="Title" placeholder="Bildirim Başlığı *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Şikayet Metni *</strong>
+								<textarea type="text" class="form-control" asp-for="Desc" name="Desc" placeholder="Şikayet Metni *" required></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Bildirimi Gönder </button>
+								<input type="hidden" asp-for="CompanyFormId" />
+								<input type="hidden" asp-for="UserId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_frontEndAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

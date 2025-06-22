@@ -1,0 +1,81 @@
+﻿@model ProductCategory
+@{
+	ViewData["Title"] = "Delete Product Category";
+	ViewData["Subtitle"] = "Product Category Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="ProductCategory" asp-action="kurtulusocL">Product Category Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductCategory" asp-action="ProductCategoryOps">Product Category Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							<h2>@Model.Name</h2>
+						</div>
+						<div class="social-widget-result social-widget1-result">
+							<span>@Model.Products.Count() products</span>
+							<span>@Model.ProductSubcategories.Count() product subcategories</span>
+							<span>@Model.CompanyPartnerships.Count() company partnerships</span>
+							<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+						</div>
+						<div class="widget-text-box">
+							<h4></h4>
+							@if (Model.UpdatedDate != null)
+							{
+								<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+							}
+							@if (Model.IsActive == true)
+							{
+								<p>Active</p>
+							}
+							else
+							{
+								<p>DeActive</p>
+							}
+							@if (Model.IsDeleted == true)
+							{
+								<p>Deleted</p>
+							}
+							else
+							{
+								<p>Not Deleted</p>
+							}
+							<div class="text-right like-love-list">
+								<a href="#" onclick="confirmDelete('ProductCategory', 'DeleteProductCategory', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

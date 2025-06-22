@@ -1,0 +1,18 @@
+﻿@{
+	Layout = null;
+}
+
+@if (ViewData["companyCount"] == null)
+{
+	<div class="counter_content">
+		<h2><span class="counter">0</span></h2>
+		<div class="title">Firma</div>
+	</div>
+}
+else
+{
+	<div class="counter_content">
+		<h2><span class="counter">@ViewData["companyCount"]</span></h2>
+		<div class="title">Firma</div>
+	</div>
+}

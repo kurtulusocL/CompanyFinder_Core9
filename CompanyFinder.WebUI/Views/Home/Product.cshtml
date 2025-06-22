@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Product>
+@{
+	ViewData["Title"] = "Ürün Listesi";
+	ViewData["Subtitle"] = "Sisteme Kaydolan Firmaların Bazı Ürünleri";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						<div class="item blog_card">
+							<div class="post-img">
+								<img src="~/img/company/product/@item.ImageUrl" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">@item.Name</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li>@item.Hits.Count() görüntülenme</li>
+										<li>@item.Likes.Count() beğeni</li>
+										<li>@item.SaveContents.Count() kaydedilme</li>
+										<li>@item.Questions.Count() araştırma</li>
+										<li>@item.Comments.Count() yorum</li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.ProductSubcategoryId != null)
+									{
+										<p>
+											@item.ProductSubcategory.Name, @item.ProductCategory.Name
+										</p>
+									}
+									else
+									{
+										<p>@item.ProductCategory.Name</p>
+									}
+									@if (item.Price != null)
+									{
+										<p>Fiyat: @item.Price.Value.ToString("C2")</p>
+									}
+									<a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detaya Bak</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					Tüm ürünleri görüntülemek, firmanızı kaydetmek ya da firmalarla iletişime geçmek için firmanızı lütfen kaydedin; eğer kayıtlı kullanıcıysanız lütfen giriş yapın.
+					<a asp-controller="AccountCompany" asp-action="Register" class="btn btn-primary">Firma Kaydı</a>
+					<br />
+					<a asp-controller="AccountCompany" asp-action="Login" class="btn btn-primary">Firma Girişi</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>
+<section id="counter">
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="row">				
+				<div class="counter-column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("AboutCompanyCounter")
+				</div>
+				<div class="counter-column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("AboutProductCounter")
+				</div>
+				<div class="counter-column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("AboutUserCounter")
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay"></div>
+</section>

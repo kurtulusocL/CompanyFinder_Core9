@@ -1,0 +1,216 @@
+﻿@model IEnumerable<Company>
+@{
+	ViewData["Title"] = "Firma Eşleşme Sonuçları";
+	ViewData["Subtitle"] = "Eşleşme Sonuçları Firma Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-with-sidebar">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 posts">
+					@foreach (var item in Model)
+					{
+						<div class="item blog_card card_mr_bt d-flex">
+							<div class="post-img">
+								<img src="~/img/company/logo/@item.Logo" style="max-heigh:237px;max-width:371px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="Company" asp-action="Detail" asp-route-id="@item.Id">
+										@item.Name
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										@if (item.CityId != null)
+										{
+											<li>
+												<span>
+													<a asp-controller="Company" asp-action="City" asp-route-id="@item.CityId">@item.City.Name, </a>
+												</span>
+												<span>
+													<a asp-controller="Company" asp-action="Country" asp-route-id="@item.CountryId">@item.Country.Name</a>
+												</span>
+											</li>
+										}
+										else
+										{
+											<li>
+												<span>
+													<a asp-controller="Company" asp-action="Country" asp-route-id="@item.CountryId">@item.Country.Name</a>
+												</span>
+											</li>
+										}
+										<li>@item.Hits.Count() görüntülenme</li>
+										<li>@item.Likes.Count() beğeni</li>
+										<li>@item.SaveContents.Count() kaydedilme</li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.CompanySubcategoryId != null)
+									{
+										<p>
+											<a asp-controller="Company" asp-action="Subcategory" asp-route-id="@item.CompanySubcategoryId" class="btn btn-info">Altkategorisi: @item.CompanySubcategory.Name</a> <a asp-controller="Company" asp-action="Category" asp-route-id="@item.CompanyCategoryId" class="btn btn-info">Kategorisi: @item.CompanyCategory.Name</a>
+										</p>
+									}
+									else
+									{
+										<p>
+											<a asp-controller="Company" asp-action="Category" asp-route-id="@item.CompanyCategoryId" class="btn btn-info">Kategorisi: @item.CompanyCategory.Name</a>
+										</p>
+									}
+									<p>Firmanın toplamda @item.Products.Count() ürün ve @item.Appointments.Count() randevu talebi vardır.</p>
+									<a asp-controller="Company" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Firma Detayı</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					}
+				</div>
+				<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Ara</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<partial name="_CompanySearch" />
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Bu Firmaları Gördünüz Mü?</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("ExplorerCompanyRandomCompany")
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Kategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Altkategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanySubcategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Şehirleri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCityList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Ülkeleri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCountryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımız</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAd")
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+</section>

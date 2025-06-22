@@ -1,0 +1,137 @@
+﻿@model User
+@{
+	Layout = null;
+}
+
+<nav id="sidebar">
+	@await Component.InvokeAsync("AdminLayoutNavbarUser", new { id = Model.Id })
+	<div class="left-custom-menu-adp-wrap">
+		<ul class="nav navbar-nav left-sidebar-menu-pro">
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Our Content</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="About" asp-action="kurtulusocL" class="dropdown-item">About Us</a>
+					<a asp-controller="Announcement" asp-action="kurtulusocL" class="dropdown-item">Announcement</a>
+					<a asp-controller="Contact" asp-action="kurtulusocL" class="dropdown-item">Contact</a>
+					<a asp-controller="DropInformation" asp-action="kurtulusocL" class="dropdown-item">Drop Information</a>
+					<a asp-controller="LayoutInfo" asp-action="kurtulusocL" class="dropdown-item">Layout Info</a>
+					<a asp-controller="Logo" asp-action="kurtulusocL" class="dropdown-item">Logo</a>
+					<a asp-controller="News" asp-action="kurtulusocL" class="dropdown-item">News</a>
+					<a asp-controller="SectorNewsManagement" asp-action="kurtulusocL" class="dropdown-item">Sector News</a>
+					<a asp-controller="OurServices" asp-action="kurtulusocL" class="dropdown-item">Our Services</a>
+					<a asp-controller="Pricing" asp-action="kurtulusocL" class="dropdown-item">Pricing</a>
+					<a asp-controller="Slider" asp-action="kurtulusocL" class="dropdown-item">Slider</a>
+					<a asp-controller="SocialMedia" asp-action="kurtulusocL" class="dropdown-item">Social Media</a>
+					@if (User.IsInRole("Admins") || User.IsInRole("SecondAdmins"))
+					{
+						<a asp-controller="ToDo" asp-action="kurtulusocL" class="dropdown-item">Task List</a>
+					}
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="mini-dn">Category & Location</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="BlogCategory" asp-action="kurtulusocL" class="dropdown-item">Blog Category</a>
+					<a asp-controller="CompanyCategory" asp-action="kurtulusocL" class="dropdown-item">Company Category</a>
+					<a asp-controller="CompanySubcategory" asp-action="kurtulusocL" class="dropdown-item">Company Subcategory</a>
+					<a asp-controller="ProductCategory" asp-action="kurtulusocL" class="dropdown-item">Product Category</a>
+					<a asp-controller="ProductSubcategory" asp-action="kurtulusocL" class="dropdown-item">Product Subcategory</a>
+					<a asp-controller="ReportCategory" asp-action="kurtulusocL" class="dropdown-item">Report Category</a>
+					<a asp-controller="CancelMembershipReason" asp-action="kurtulusocL" class="dropdown-item">Cancel Account Reason</a>
+					<a asp-controller="City" asp-action="kurtulusocL" class="dropdown-item">City</a>
+					<a asp-controller="Country" asp-action="kurtulusocL" class="dropdown-item">Country</a>
+					<a asp-controller="CustomerStatus" asp-action="kurtulusocL" class="dropdown-item">Customer Status</a>
+					<a asp-controller="FormCategory" asp-action="kurtulusocL" class="dropdown-item">Form Category</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Company</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="ProductManagement" asp-action="kurtulusocL" class="dropdown-item">Products</a>
+					<a asp-controller="Stock" asp-action="kurtulusocL" class="dropdown-item">Unit in Stock</a>
+					<a asp-controller="BlogManagement" asp-action="kurtulusocL" class="dropdown-item">Blogs</a>
+					<a asp-controller="Picture" asp-action="kurtulusocL" class="dropdown-item">Pictures</a>
+					<a asp-controller="CompanyContact" asp-action="kurtulusocL" class="dropdown-item">Contact</a>
+					<a asp-controller="CompanyMessage" asp-action="kurtulusocL" class="dropdown-item">Company Message</a>
+					<a asp-controller="CompanyPartnershipManagement" asp-action="kurtulusocL" class="dropdown-item">Partnerships</a>
+					<a asp-controller="CompanyFormManagement" asp-action="kurtulusocL" class="dropdown-item">Company Form</a>
+					<a asp-controller="CompanyFormAnswer" asp-action="kurtulusocL" class="dropdown-item">Form Answer</a>
+					<a asp-controller="Customer" asp-action="kurtulusocL" class="dropdown-item">Customers</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Hit & Like & Saved</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown form-left-menu-std animated flipInX">
+					<a asp-controller="Hit" asp-action="kurtulusocL" class="dropdown-item">Hit List</a>
+					<a asp-controller="Like" asp-action="kurtulusocL" class="dropdown-item">Likeds</a>
+					<a asp-controller="SavedContent" asp-action="kurtulusocL" class="dropdown-item">Saved Contents</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Answers</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+					<a asp-controller="Appointment" asp-action="kurtulusocL" class="dropdown-item">Appointment</a>
+					<a asp-controller="AppointmentAnswer" asp-action="kurtulusocL" class="dropdown-item">Appointment Answers</a>
+					<a asp-controller="Comment" asp-action="kurtulusocL" class="dropdown-item">Comments</a>
+					<a asp-controller="CommentAnswer" asp-action="kurtulusocL" class="dropdown-item">Comment Answers</a>
+					<a asp-controller="Feedback" asp-action="kurtulusocL" class="dropdown-item">Feedbacks</a>
+					<a asp-controller="Question" asp-action="kurtulusocL" class="dropdown-item">Questions</a>
+					<a asp-controller="QuestionAnswer" asp-action="kurtulusocL" class="dropdown-item">Question Answers</a>
+					<a asp-controller="Report" asp-action="kurtulusocL" class="dropdown-item">Reports</a>
+					<a asp-controller="ReportAnswer" asp-action="kurtulusocL" class="dropdown-item">Report Answers</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Ad</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown form-left-menu-std animated flipInX">
+					<a asp-controller="Ad" asp-action="kurtulusocL" class="dropdown-item">Ad List</a>
+					<a asp-controller="AdCompany" asp-action="kurtulusocL" class="dropdown-item">Ad Company</a>
+					<a asp-controller="AdTarget" asp-action="kurtulusocL" class="dropdown-item">Ad Target</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="mini-dn">User</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="User" asp-action="kurtulusocL" class="dropdown-item">User List</a>
+					<a asp-controller="UserSession" asp-action="kurtulusocL" class="dropdown-item">Authenticated Users</a>
+					<a asp-controller="ProfileImage" asp-action="kurtulusocL" class="dropdown-item">Profile Images</a>
+					<a asp-controller="UserRole" asp-action="kurtulusocL" class="dropdown-item">User Role</a>
+					<a asp-controller="CancelMembership" asp-action="kurtulusocL" class="dropdown-item">Cancel Request</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Log & Audit</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="ExceptionLogger" asp-action="kurtulusocL" class="dropdown-item">Exception Logger</a>
+					<a asp-controller="Audit" asp-action="kurtulusocL" class="dropdown-item">Audit</a>
+					<a asp-controller="BlackList" asp-action="kurtulusocL" class="dropdown-item">BlackLists</a>
+					<a asp-controller="Blocked" asp-action="kurtulusocL" class="dropdown-item">Blockeds</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Agreements</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="DataPolicy" asp-action="kurtulusocL" class="dropdown-item">Data Policy</a>
+					<a asp-controller="Frequently" asp-action="kurtulusocL" class="dropdown-item">Frequently</a>
+					<a asp-controller="UserAgreement" asp-action="kurtulusocL" class="dropdown-item">User Agreement</a>
+				</div>
+			</li>
+			@if (User.IsInRole("Admins"))
+			{
+				<li class="nav-item">
+					<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Save Admin</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+					<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+						<a asp-controller="AccountAdmin" asp-action="Register" class="dropdown-item">Save Admin</a>
+						<a asp-controller="User" asp-action="Admin" class="dropdown-item">Set Role</a>
+					</div>
+				</li>
+			}	
+			<li class="nav-item">
+				<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"> <span class="mini-dn">Save Company</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+				<div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+					<a asp-controller="AccountAdmin" asp-action="RegisterCompany" class="dropdown-item">Register Company</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

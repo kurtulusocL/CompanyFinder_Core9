@@ -1,0 +1,63 @@
+﻿@model About
+@{
+	ViewData["Title"] = "Delete About";
+	ViewData["Subtitle"] = "About Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="About" asp-action="kurtulusocL">About Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="About" asp-action="AboutOps">About Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="widgets-personal-info-area">
+        <div class="container-fluid">
+            <div class="row">               
+                <div class="col-lg-12">
+                    <div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+                        <div class="perso-img">
+                            <img src="~/img/us/about/@Model.ImageUrl" class="img-circle circle-border m-b-md" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" asp-append-version="true">
+                        </div>
+                        <div class="persoanl-widget-hd persoanl1-widget-hd">
+                            <h2>@Model.Title</h2>
+                            <p>@Model.Subtitle</p>
+                        </div>
+                        <div class="social-widget-result social-widget1-result">
+                            <span>@Model.Hit.ToString() hits</span>
+                        </div>
+                        <div class="widget-text-box">
+                            <h4>Created At: @Model.CreatedDate.ToShortDateString()</h4>
+                            <p>@Html.Raw(Model.Desc)</p>
+                            <div class="text-right like-love-list">
+                                <a href="#" onclick="confirmDelete('About', 'DeleteAbout', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

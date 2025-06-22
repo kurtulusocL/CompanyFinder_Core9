@@ -1,0 +1,193 @@
+﻿@using System.Web
+@model IEnumerable<AppointmentAnswer>
+@{
+	ViewData["Title"] = "Active Approved Appointment Answer List";
+	ViewData["Subtitle"] = "Appointment Answer Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="AppointmentAnswer" asp-action="kurtulusocL">Appointment Answer Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Appointment" asp-action="kurtulusocL">Appointment Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="AppointmentAnswer" asp-action="ApprovedAnswer">Approved Appointment Answer</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="AppointmentAnswer" asp-action="NotApprovedAnswer">Not Approved Appointment Answers</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="AppointmentAnswer" asp-action="AnswerOps">Appointment Answer Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="subject">Title</th>
+											<th data-field="description">Description</th>
+											<th data-field="date">Answer Date</th>
+											<th data-field="approvedStatus">Approved Status</th>
+											<th data-field="companyInfo">Appointment Info</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.Title.Length > 40)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 40) + " ...")
+													}
+													else
+													{
+														@item.Title
+													}
+												</td>
+												<td>
+													@if (item.Desc.Length > 40)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 40) + " ...")
+													}
+													else
+													{
+														@item.Desc
+													}
+												</td>
+												<td>@item.ReAppointmentDate.ToShortDateString()</td>
+												<td>
+													@if (item.ReAppointmentApproved == true)
+													{
+														if (item.ReApprovedDate != null)
+														{
+															<strong style="color:darkblue">Approved Appointment Answer</strong>
+															<br />
+															<span>Approved At @item.ReApprovedDate.Value.ToLongDateString()</span>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Not Approved Appointment Answer</strong>
+													}
+												</td>
+												<td>
+													@if (item.AppointmentId != null)
+													{
+														<ul>
+															<li>AppointmentId: @item.AppointmentId</li>
+															@if (item.Appointment.CompanyId != null)
+															{
+																<li>Appointment Company Id: @item.Appointment.CompanyId</li>
+																<li>Appointment Company: @item.Appointment.Company.Name</li>
+															}
+															else
+															{
+																<li>
+																	<strong style="color:darkred">Not Appointment Company</strong>
+																</li>
+															}
+															@if (item.Appointment.UserId != null)
+															{
+																<li>Appointment UserId: @item.Appointment.UserId</li>
+																<li>Appointment User: @item.Appointment.User.NameSurname</li>
+																<li>Appointment User Email: @item.Appointment.User.Email</li>
+																<li>Appointment User Location: @item.Appointment.User.City, @item.Appointment.User.Country</li>
+															}
+															else
+															{
+																<li>
+																	<strong style="color:darkred">Not Appointment User</strong>
+																</li>
+															}
+														</ul>
+														<a asp-controller="AppointmentAnswer" asp-action="AnswerByAppointment" asp-route-id="@item.AppointmentId" class="btn btn-custon-rounded-two btn-info">
+															See All Appointments
+														</a>
+														<a asp-controller="AppointmentAnswer" asp-action="AnswerByAppointmentForAdmin" asp-route-id="@item.AppointmentId" class="btn btn-custon-rounded-two btn-info">
+															See All Appointments for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">Not Appointment Info</strong>
+													}
+												</td>
+												<td>
+													<a asp-controller="AppointmentAnswer" asp-action="AnswerDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

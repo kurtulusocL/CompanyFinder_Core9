@@ -1,0 +1,33 @@
+﻿@{
+	ViewData["Title"] = "500";
+	ViewData["Subtitle"] = "Server Error";
+	ViewData["Desc"] = "Şuanda sistemsel bir sorunla boğuşmaktayız... Bu sorundan dolayı özür dileriz ve sorunu en kısa sürede çözeceğimizden şüpheniz olmasın. Anasayfaya dönmek ister misiniz?";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="page-not-found" class="gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-4 col-sm-12 col-xs-12 text-center img_sec">
+				<img src="~/temp/web/img/error_404.png" alt="Error 404" />
+			</div>
+			<div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 text-center content_sec">
+				<div class="errow-heading">
+					<img src="~/temp/web/img/oops.png" alt="oops" />
+				</div>
+				<div class="error-content">
+					<h4>@ViewData["Title"], @ViewData["Subtitle"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Desc"]</p>
+					<a asp-controller="Home" asp-action="Index">Anasayfa</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

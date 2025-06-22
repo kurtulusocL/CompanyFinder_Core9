@@ -1,0 +1,17 @@
+﻿@model Question
+@{
+	Layout = null;
+}
+
+<form asp-controller="Product" asp-action="CreateQuestion" method="post">
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<textarea asp-for="Text" name="Text" placeholder="Buradan Sorunuzu Sorabilirsiniz. *" required></textarea>
+	</div>
+	<div class="form-group">
+		<button type="submit">Soruyu Sor <i class="flat flaticon-plane"></i></button>
+		<input type="hidden" asp-for="ProductId" />
+		<input type="hidden" asp-for="UserId" />
+	</div>
+</form>
+<partial name="_explorerAlertPartial" />

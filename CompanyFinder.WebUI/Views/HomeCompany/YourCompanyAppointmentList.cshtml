@@ -1,0 +1,105 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Appointment>
+@{
+	ViewData["Title"] = "Gelen Randevular Listesi";
+	ViewData["Subtitle"] = "Diğer Firmalardan Gelen Randevu Talepleri";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						@if (item.CompanyId != null)
+						{
+							<div class="item blog_card">
+								@if (item.UserId != null)
+								{
+									@await Component.InvokeAsync("GetCompanyLogo", new { id = item.UserId })
+								}
+								else
+								{
+									<img src="~/img/statics/noImage.jpg" style="max-height:100px;max-width:100px;" asp-append-version="true" />
+								}
+								<div class="post-detail">
+									@if (item.UserId != null)
+									{
+										<h5>@item.User.NameSurname</h5>
+										<h8 style="color:blue">@await Component.InvokeAsync("GetCompanyInformation", new { id = item.UserId })</h8>
+									}
+									<div class="post-status">
+										<ul>
+											<li><i class="flat flaticon-calender"></i> <span>Randevu Tarihi: @item.AppointmentDate.ToShortDateString()</span></li>
+										</ul>
+									</div>
+									<div class="description">
+										<p>Randevu Konusu: @item.Subject</p>
+										<p>Randevu Açıklaması: @item.Desc</p>
+									</div>
+									<div class="post-status">
+										<ul>
+											@if (item.AppointmentAnswers.Count() > 0)
+											{
+												<li>
+													<a asp-controller="HomeCompany" asp-action="AppointmentAnswerList" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Randevuya Cevabınız</a>
+												</li>
+											}
+											@if (item.IsApproved == true)
+											{
+												<li>
+													<a asp-controller="CompanyOperation" asp-action="SetNotApprovedAppointment" asp-route-id="@item.Id" class="btn btn-primary btn-sm">İptal Et</a>
+												</li>
+												<li>
+													<a asp-controller="CompanyOperation" asp-action="AppointmentAnswerCreate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Yeni Randevu Düzenleme Talep Et</a>
+												</li>
+											}
+											else
+											{
+												<li>
+													<a asp-controller="CompanyOperation" asp-action="SetApprovedAppointment" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Onayla</a>
+												</li>
+												<li>
+													<a asp-controller="CompanyOperation" asp-action="AppointmentAnswerCreate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Randevu Talebine Cevap Yazarbilirsiniz</a>
+												</li>
+											}
+											<li>
+												<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteAppointment', @item.Id); return false;" class="btn btn-danger btn-sm">Randevuyu Sil</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						}
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					@Html.PagedListPager(Model, page => Url.Action("YourCompanyAppointmentList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>

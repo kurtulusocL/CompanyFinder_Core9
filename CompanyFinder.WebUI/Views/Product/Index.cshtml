@@ -1,0 +1,200 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+@{
+	ViewData["Title"] = "Ürünler";
+	ViewData["Subtitle"] = "Firmaların Ürünleri Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-with-sidebar">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 posts">
+					@foreach (var item in Model)
+					{
+						<div class="item blog_card card_mr_bt d-flex">
+							<div class="post-img">
+								<img src="~/img/company/product/@item.ImageUrl" style="max-heigh:237px;max-width:371px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
+										@item.Name
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										@if (item.IsAvailable == true)
+										{
+											<li>
+												<span>
+													<a asp-controller="Product" asp-action="AvailableProduct" class="btn btn-outline-dark btn-sm">Ürün Stokta</a>
+												</span>
+											</li>
+										}
+										else
+										{
+											<li>
+												@if (item.AvailableDate != null)
+												{
+													<span class="badge badge-warning">
+														Ürün @item.AvailableDate.Value.ToShortDateString() tarihinde stokta olacak.
+													</span>
+												}
+											</li>
+										}
+										<li><span>@item.Hits.Count() görüntülenme</span></li>
+										<li><span>@item.Likes.Count() beğeni</span></li>
+										<li><span>@item.SaveContents.Count() kaydedilme</span></li>
+										<li><span>@item.Questions.Count() araştırma</span></li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.CompanyId != null)
+									{
+										<a asp-controller="Product" asp-action="Company" asp-route-id="@item.CompanyId" class="btn btn-outline-success btn-sm">
+											Firma: @item.Company.Name
+										</a>
+										@await Component.InvokeAsync("ExplorerProductCompanyLocation", new { id = item.CompanyId })
+									}
+									@if (item.Desc.Length > 95)
+									{
+										@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 95) + " ..."))
+									}
+									else
+									{
+										@Html.Raw(item.Desc)
+									}
+									<p>
+										@if (item.ProductSubcategoryId != null)
+										{
+											<a asp-controller="Product" asp-action="Subcategory" asp-route-id="@item.ProductSubcategoryId" class="btn btn-outline-info btn-sm">Altkategorisi: @item.ProductSubcategory.Name</a> <a asp-controller="Product" asp-action="Category" asp-route-id="@item.ProductCategoryId" class="btn btn-outline-info btn-sm">Kategorisi: @item.ProductCategory.Name</a>
+										}
+										else
+										{
+											<a asp-controller="Product" asp-action="Category" asp-route-id="@item.ProductCategoryId" class="btn btn-outline-info btn-sm">Kategorisi: @item.ProductCategory.Name</a>
+										}
+									</p>
+									<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detayı İncele</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					}
+				</div>
+				<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Arama Yap</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<partial name="_ProductSearch" />
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Bu Ürünleri Gördünüz Mü?</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("ExplorerProductRandom")
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Ürün Kategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerProductCategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Ürün Altkategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerProductSubcategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımız</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAd")
+						</div>
+					</div>
+				</aside>
+			</div>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item">
+						@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<City>
+@{
+	Layout = null;
+}
+
+@foreach(var item in Model)
+{
+	<div class="author-permissio-wrap shadow-reset">		
+		<div class="author-content">
+			<h4>@item.Name - <span class="badge badge-info">@item.Companies.Count() companies</span></h4>
+			@if (item.CountryId != null)
+			{
+				<span style="color:darkblue">Country: <span style="color:maroon">@item.Country.Name</span></span>
+			}
+			else
+			{
+				<span>Country: ---</span>
+			}
+		</div>
+	</div>
+}

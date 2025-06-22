@@ -1,0 +1,198 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<CompanyPartnership>
+@{
+	ViewData["Title"] = "Talep / Teklif Arama Sonuçları";
+	ViewData["Subtitle"] = "Açık Talep / Teklif Arama Sonuçları Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-with-sidebar">
+	<div class="container">
+		<h3 class="d-none">heading</h3>
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 posts">
+					@foreach (var item in Model)
+					{
+						<div class="item blog_card card_mr_bt d-flex">
+							<div class="post-img">
+								@if (item.CompanyId != null)
+								{
+									<img src="~/img/company/logo/@item.Company.Logo" style="max-height:237px;max-width:371px;" asp-append-version="true" />
+								}
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="CompanyPartnership" asp-action="Detail" asp-route-id="@item.Id">
+										@item.Title
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li><i class="flat flaticon-folder"></i> <span>@item.ProductCategory.Name</span></li>
+										<li><i class="flat flaticon-chat"></i> <span>@item.Hits.Count() görüntülenme</span></li>
+										<li><i class="flat flaticon-calendar"></i> <span>@item.StartDate.ToShortDateString()</span></li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.CompanyId != null)
+									{
+										if (item.Company.CityId != null)
+										{
+											<p>
+												Firma: @item.Company.Name
+												<br />
+												<span>Lokasyon: @item.Company.City.Name, @item.Company.Country.Name</span>
+											</p>
+											<br />
+											<a asp-controller="CompanyPartnership" asp-action="Company" asp-route-id="@item.CompanyId" class="btn btn-dark btn sm">Firma Teklif / Taleplerini Gör</a>
+										}
+										else
+										{
+											<p>
+												Firma: @item.Company.Name
+												<br />
+												<span>Lokasyon: @item.Company.Country.Name</span>
+											</p>
+											<br />
+											<a asp-controller="CompanyPartnership" asp-action="Company" asp-route-id="@item.CompanyId" class="btn btn-dark btn sm">Firma Teklif / Taleplerini Gör</a>
+										}
+									}
+									<br />
+									<a asp-controller="CompanyPartnership" asp-action="Category" asp-route-id="@item.ProductCategoryId" class="btn btn-dark btn sm">@item.ProductCategory.Name</a>
+									<br />
+									@if (item.Price != null)
+									{
+										<p>@item.Price.Value.ToString("C2")</p>
+									}
+									<a asp-controller="CompanyPartnership" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm" style="color:black">Detayı İncele</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					}
+				</div>
+				<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Arama Yap</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="search">
+								<partial name="_PartnershipSearch" />
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Bu Talepleri Gördünüz Mü?</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("CompanyUserRandomPartnership")
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Açık Teklifler</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="Available" class="btn btn-success btn-sm" style="color:black">Açık Tekliflere Bak</a>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="StartDate" class="btn btn-primary btn-sm" style="color:black">Başlangıç Tarihine Göre Sırala</a>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="ExpiryDate" class="btn btn-warning btn-sm" style="color:black">Bitiş Tarihine Göre Sıralılar</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Kategoriler</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("CompanyUserPartnershipCategory")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımızdan</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAd")
+						</div>
+					</div>
+				</aside>
+			</div>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item">
+						@Html.PagedListPager(Model, page => Url.Action("PartnershipSearchResult", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,279 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="mobile-menu">
+				<nav id="dropdown">
+					<ul class="mobile-menu-nav">
+						<li>
+							<a asp-controller="HomeAdmin" asp-action="Index" asp-route-id="@ViewData["adminId"]">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Charts" href="#">Our Content <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="About" asp-action="kurtulusocL">About Us</a>
+								</li>
+								<li>
+									<a asp-controller="Announcement" asp-action="kurtulusocL">Announcement</a>
+								</li>
+								<li>
+									<a asp-controller="Contact" asp-action="kurtulusocL">Contact</a>
+								</li>
+								<li>
+									<a asp-controller="DropInformation" asp-action="kurtulusocL">Drop Information</a>
+								</li>
+								<li>
+									<a asp-controller="LayoutInfo" asp-action="kurtulusocL">Layout Info</a>
+								</li>
+								<li>
+									<a asp-controller="Logo" asp-action="kurtulusocL">Logo</a>
+								</li>
+								<li>
+									<a asp-controller="News" asp-action="kurtulusocL">News</a>
+								</li>
+								<li>
+									<a asp-controller="SectorNews" asp-action="kurtulusocL">Sector News</a>
+								</li>
+								<li>
+									<a asp-controller="OurServices" asp-action="kurtulusocL">Our Services</a>
+								</li>
+								<li>
+									<a asp-controller="Pricing" asp-action="kurtulusocL">Pricing</a>
+								</li>
+								<li>
+									<a asp-controller="PricingContact" asp-action="kurtulusocL">Asked Price</a>
+								</li>
+								<li>
+									<a asp-controller="Slider" asp-action="kurtulusocL">Slider</a>
+								</li>
+								<li>
+									<a asp-controller="SocialMedia" asp-action="kurtulusocL">Social Media</a>
+								</li>
+								@if (User.IsInRole("Admins") || User.IsInRole("SecondAdmins"))
+								{
+									<li>
+										<a asp-controller="ToDo" asp-action="kurtulusocL">Task List</a>
+									</li>
+								}
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#demo" href="#">Category & Location <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="demo" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="BlogCategory" asp-action="kurtulusocL">Blog Category</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyCategory" asp-action="kurtulusocL">Company Category</a>
+								</li>
+								<li>
+									<a asp-controller="CompanySubcategory" asp-action="kurtulusocL">Company Subcategory</a>
+								</li>
+								<li>
+									<a asp-controller="ProductCategory" asp-action="kurtulusocL">Product Category</a>
+								</li>
+								<li>
+									<a asp-controller="ProductSubcategory" asp-action="kurtulusocL">Product Subcategory</a>
+								</li>
+								<li>
+									<a asp-controller="ReportCategory" asp-action="kurtulusocL">Report Category</a>
+								</li>
+								<li>
+									<a asp-controller="CancelMembershipReason" asp-action="kurtulusocL">Cancel Membership Reason</a>
+								</li>
+								<li>
+									<a asp-controller="PricingCategory" asp-action="kurtulusocL">Pricing Category</a>
+								</li>
+								<li>
+									<a asp-controller="City" asp-action="kurtulusocL">City</a>
+								</li>
+								<li>
+									<a asp-controller="Country" asp-action="kurtulusocL">Country</a>
+								</li>
+								<li>
+									<a asp-controller="CustomerStatus" asp-action="kurtulusocL">Customer Status</a>
+								</li>
+								<li>
+									<a asp-controller="FormCategory" asp-action="kurtulusocL">Company Form Category</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#others" href="#">Company <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="others" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="CompanyManagement" asp-action="kurtulusocL">Companies</a>
+								</li>
+								<li>
+									<a asp-controller="ProductManagement" asp-action="kurtulusocL">Products</a>
+								</li>
+								<li>
+									<a asp-controller="BlogManagement" asp-action="kurtulusocL">Blogs</a>
+								</li>
+								<li>
+									<a asp-controller="Picture" asp-action="kurtulusocL">Pictures</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyContact" asp-action="kurtulusocL">Company Contact</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyMessage" asp-action="kurtulusocL">Company Message</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyPartnershipManagement" asp-action="kurtulusocL">Company Partnership</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyFormManagement" asp-action="kurtulusocL">Company Form</a>
+								</li>
+								<li>
+									<a asp-controller="CompanyFormAnswer" asp-action="kurtulusocL">Company Form Answer</a>
+								</li>
+								<li>
+									<a asp-controller="Customer" asp-action="kurtulusocL">Customers</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Tablesmob" href="#">Hit & Like & Saved <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="Tablesmob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="Hit" asp-action="kurtulusocL">Hit List</a>
+								</li>
+								<li>
+									<a asp-controller="Like" asp-action="kurtulusocL">Likeds</a>
+								</li>
+								<li>
+									<a asp-controller="SavedContent" asp-action="kurtulusocL">Saved Contents</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Answers <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="Miscellaneousmob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="Appointment" asp-action="kurtulusocL">Appointment</a>
+								</li>
+								<li>
+									<a asp-controller="AppointmentAnswer" asp-action="kurtulusocL">Appointment Answers</a>
+								</li>
+								<li>
+									<a asp-controller="Comment" asp-action="kurtulusocL">Comments</a>
+								</li>
+								<li>
+									<a asp-controller="CommentAnswer" asp-action="kurtulusocL">Comment Answers</a>
+								</li>
+								<li>
+									<a asp-controller="Feedback" asp-action="kurtulusocL">Feedbacks</a>
+								</li>
+								<li>
+									<a asp-controller="Question" asp-action="kurtulusocL">Questions</a>
+								</li>
+								<li>
+									<a asp-controller="QuestionAnswer" asp-action="kurtulusocL">Question Answers</a>
+								</li>
+								<li>
+									<a asp-controller="Report" asp-action="kurtulusocL">Reports</a>
+								</li>
+								<li>
+									<a asp-controller="ReportAnswer" asp-action="kurtulusocL">Report Answers</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Chartsmob" href="#">Ad <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="Chartsmob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="Ad" asp-action="kurtulusocL" class="dropdown-item">Ad List</a>
+								</li>
+								<li>
+									<a asp-controller="AdCompany" asp-action="kurtulusocL">Ad Company</a>
+								</li>
+								<li>
+									<a asp-controller="AdTarget" asp-action="kurtulusocL">Ad Target</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a data-toggle="collapse" data-target="#formsmob" href="#">User <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="formsmob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="User" asp-action="kurtulusocL">User List</a>
+								</li>
+								<li>
+									<a asp-controller="UserSession" asp-action="kurtulusocL">Authenticated Users</a>
+								</li>
+								<li>
+									<a asp-controller="ProfileImage" asp-action="kurtulusocL">Profile Images</a>
+								</li>
+								<li>
+									<a asp-controller="UserRole" asp-action="kurtulusocL">User Role</a>
+								</li>
+								<li>
+									<a asp-controller="CancelMembership" asp-action="kurtulusocL">Cancel Request</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Appviewsmob" href="#">Log & Audit <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="Appviewsmob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="ExceptionLogger" asp-action="kurtulusocL">Exception Logger</a>
+								</li>
+								<li>
+									<a asp-controller="Audit" asp-action="kurtulusocL">Audit</a>
+								</li>
+								<li>
+									<a asp-controller="BlackList" asp-action="kurtulusocL">BlackLists</a>
+								</li>
+								<li>
+									<a asp-controller="Blocked" asp-action="kurtulusocL">Blockeds</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a data-toggle="collapse" data-target="#Pagemob" href="#">Agreements <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="Pagemob" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="DataPolicy" asp-action="kurtulusocL">Data Policy</a>
+								</li>
+								<li>
+									<a asp-controller="Frequently" asp-action="kurtulusocL">Frequently</a>
+								</li>
+								<li>
+									<a asp-controller="UserAgreement" asp-action="kurtulusocL">User Agreement</a>
+								</li>
+							</ul>
+						</li>
+						@if (User.IsInRole("Admins"))
+						{
+							<li>
+								<a data-toggle="collapse" data-target="#last" href="#">Admin Ops <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+								<ul id="last" class="collapse dropdown-header-top">
+									<li>
+										<a asp-controller="AccountAdmin" asp-action="Register">Save Admin</a>
+									</li>
+									<li>
+										<a asp-controller="AccountAdmin" asp-action="RoleAssign">Set Role</a>
+									</li>
+								</ul>
+							</li>
+						}
+						<li>
+							<a data-toggle="collapse" data-target="#lastt" href="#">Save Company <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+							<ul id="lastt" class="collapse dropdown-header-top">
+								<li>
+									<a asp-controller="AccountAdmin" asp-action="RegisterCompany">Register Admin</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>

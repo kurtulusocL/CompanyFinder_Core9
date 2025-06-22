@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Ad>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="item">
+		<a href="@item.RedirectWebUrl" target="_blank">
+			<img src="~/img/us/ad/@item.ImageUrl" style="max-height:84px;max-width:187px;" alt="@item.Text" />
+		</a>
+	</div>
+}

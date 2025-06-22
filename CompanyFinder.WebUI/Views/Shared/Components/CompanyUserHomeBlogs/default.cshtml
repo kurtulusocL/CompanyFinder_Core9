@@ -1,0 +1,43 @@
+﻿@using System.Web
+@model IEnumerable<Blog>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		<a asp-controller="CompanyOperation" asp-action="BlogUpdate" asp-route-id="@item.Id" class="btn btn-success btn-rounded btn-sm"> Makaleyi Güncelle</a>
+		<div class="item blog_card">
+			<div class="post-img">
+				<img src="~/img/company/blog/@item.ImageUrl" style="max-height:207px;max-width:350px;" asp-append-version="true" />
+			</div>
+			<div class="post-detail">
+				<h5>
+					@if (item.Title.Length > 35)
+					{
+						<a asp-controller="HomeCompany" asp-action="BlogDetail" asp-route-id="@item.Id">
+							@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 35) + " ...")
+						</a>
+					}
+					else
+					{
+						<a asp-controller="HomeCompany" asp-action="BlogDetail" asp-route-id="@item.Id">
+							@item.Title
+						</a>
+					}
+				</h5>
+				<div class="post-status">
+					<ul>
+						<li><i class="flat flaticon-folder"></i> <span><a asp-controller="HomeCompany" asp-action="BlogByCategory" asp-route-id="@item.BlogCategoryId">@item.BlogCategory.Name</a></span></li>
+						<li><i class="flat flaticon-chat"></i> <span>@item.Comments.Count()</span></li>
+					</ul>
+				</div>
+				<div class="description">					
+					<a asp-controller="HomeCompany" asp-action="BlogDetail" asp-route-id="@item.Id" class="view_more">Tamamını Oku</a>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+}

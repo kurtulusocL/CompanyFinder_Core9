@@ -1,0 +1,71 @@
+﻿@model Company
+@{
+	Layout = null;
+}
+
+<div class="row">
+	<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		@if (Model.Products.Count() > 0)
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">@Model.Products.Count()</span></div>
+				<div class="title">Toplam Ürün</div>
+			</div>
+		}
+		else
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">0</span></div>
+				<div class="title">Toplam Ürün</div>
+			</div>
+		}
+	</div>
+	<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		@if (Model.Blogs.Count() > 0)
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">@Model.Blogs.Count()</span></div>
+				<div class="title">Toplam Blog</div>
+			</div>
+		}
+		else
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">0</span></div>
+				<div class="title">Toplam Blog</div>
+			</div>
+		}		
+	</div>
+	<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		@if (Model.Pictures.Count() > 0)
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">@Model.Pictures.Count()</span></div>
+				<div class="title">Toplam Resim</div>
+			</div>
+		}
+		else
+		{
+			<div class="counter_content">
+			<div class="display"><span class="counter">0</span></div>
+			<div class="title">Toplam Resim</div>
+		</div>
+		}		
+	</div>
+	<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		@if (Model.Customers.Count() > 0)
+		{
+			<div class="counter_content">
+				<div class="display"><span class="counter">@Model.Customers.Count()</span></div>
+				<div class="title">Toplam Müşteri</div>
+			</div>
+		}
+		else
+		{
+			<div class="counter_content">
+			<div class="display"><span class="counter">0</span></div>
+			<div class="title">Toplam Müşteri</div>
+		</div>
+		}		
+	</div>
+</div>

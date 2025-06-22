@@ -1,0 +1,55 @@
+﻿@model Feedback
+@{
+	ViewData["Title"] = "Geri Bildirim Gönderimi";
+	ViewData["Subtitle"] = "Bize Buradan Herhangi Bir Konu Hakkında Ger Bildiğim Gönderebilirsiniz.";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="SendFeedback" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">							
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Geri Bildirim Başlığı *</strong>
+								<input type="text" asp-for="Title" name="Title" placeholder="Geri Bildirim Başlığı *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Geri Bildirim Konusu *</strong>
+								<input type="text" asp-for="Subject" name="Subject" placeholder="Geri Bildirim Konusu *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Geri Bildirim Metni *</strong>
+								<textarea type="text" class="form-control" asp-for="Desc" name="Desc" placeholder="Geri Bildirim Metnini Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Geri Bildirim Gönder </button>
+								<input type="hidden" asp-for="UserId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

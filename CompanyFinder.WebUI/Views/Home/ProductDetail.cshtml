@@ -1,0 +1,126 @@
+﻿@model Product
+@{
+	ViewData["Title"] = "Ürün Detayı";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="post-img">
+						<img src="~/img/company/product/@Model.ImageUrl" style="max-height:528px;max-width:828px;" asp-append-version="true" />
+					</div>
+					<div class="post-detail">
+						<div class="about-post">
+							<h4>@Model.Name</h4>
+							<div class="post-status">
+								<ul>
+									<li>@Model.Hits.Count() görüntülenme</li>
+									<li>@Model.Likes.Count() beğeni</li>
+									<li>@Model.SaveContents.Count() kaydedilme</li>
+									<li>@Model.Questions.Count() araştırma</li>
+									<li>@Model.Comments.Count() yorum</li>
+									@if (Model.Price != null)
+									{
+										<li>@Model.Price.Value.ToString("C2")</li>
+									}
+								</ul>
+							</div>
+							<div class="description" style="color:black">
+								@if (Model.OtherText != null)
+								{
+									<div class="special-quote">
+										@Model.OtherText
+									</div>
+								}
+								<p>
+									@Html.Raw(Model.Desc)
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 home-demos">
+							<div class="heading text-center">
+								<h6>Ürünün Diğer Resimleri</h6>
+							</div>
+							<hr />
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerProductDetailImages", new { id = Model.Id })
+							</div>
+						</div>
+						<div class="tags_share">
+							<div class="tags">
+								<div class="title">Ürün Kategorisi: </div>
+								<ul style="color:black">
+									@if (Model.ProductSubcategoryId != null)
+									{
+										<li>
+											<a>@Model.ProductSubcategory.Name, @Model.ProductCategory.Name</a>
+										</li>
+									}
+									else
+									{
+										<li>
+											<a>@Model.ProductCategory.Name</a>
+										</li>
+									}
+								</ul>
+							</div>
+						</div>
+					</div>
+					@if (User.Identity.IsAuthenticated == true)
+					{
+						<div class="comments">
+							<h5>Toplamda Bu Ürüne <span> @Model.Comments.Count() </span> yorum yapılmış.</h5>
+							<div class="separator left-align">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<div class="clearfix"></div>
+							<ol class="comments-list">
+								@await Component.InvokeAsync("ProductComment", new { id = Model.Id })
+							</ol>
+						</div>
+					}
+					else
+					{
+						<div class="comments">
+							<h5>Ürün İçin Yapılan Yorumları Okumak İçin Lütfen Üye Olunuz Eğer Üye İseniz Lütfen Giriş Yapınız.</h5>							
+						</div>
+					}
+				</div>
+				<aside class="col-lg-3 col-md-12 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımız</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAdForVisitor")
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+</section>

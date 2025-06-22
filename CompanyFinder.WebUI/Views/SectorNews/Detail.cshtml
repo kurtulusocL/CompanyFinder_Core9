@@ -1,0 +1,115 @@
+﻿@model SectorNews
+@{
+	ViewData["Title"] = "Sektör Haberi";
+	ViewData["Subtitle"] = "Sektör Haber Detayı";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="portfolio_detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<div class="project_screen">
+				<img src="~/img/us/sectorNews/@Model.ImageUrl" style="max-height:512px;max-width:1110px;" asp-append-version="true" />
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 about_project">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="icon">
+							<i class="flat flaticon-avatar"></i>
+						</div>
+						<div class="content">
+							<h6>Beğeni / Görüntülenme</h6>
+							<div class="value">
+								@Model.Hits.Count() görüntülenme, @Model.Likes.Count() beğeni
+							</div>
+						</div>
+					</div>
+					@if (Model.RedirectUrl != null)
+					{
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i>
+							</div>
+							<div class="content">
+								<h6>Kaynağından Oku</h6>
+								<div class="value">
+									<a href="@Model.RedirectUrl" class="btn btn-info" target="_blank">Kaynağından Oku</a>
+								</div>
+							</div>
+						</div>
+					}
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="icon">
+							<i class="flat flaticon-calendar"></i>
+						</div>
+						<div class="content">
+							<h6>Tarih</h6>
+							<div class="value">@Model.CreatedDate.ToLongDateString()</div>
+						</div>
+					</div>
+					@if (Model.Source != null)
+					{
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-folder"></i>
+							</div>
+							<div class="content">
+								<h6>Kaynak</h6>
+								<div class="value">@Model.Source</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 project_description">
+				<h4>@Model.Title</h4>
+				<div class="blockquote" style="color:black">
+					@Model.Subtitle
+				</div>
+				<p>
+					@Html.Raw(Model.Desc)
+				</p>
+				@if (Model.Detail != null)
+				{
+					<p>@Model.Detail</p>
+				}
+			</div>
+			<br />
+			<a asp-controller="SectorNews" asp-action="Like" asp-route-id="@Model.Id" class="btn btn-danger">Haberi Beğen (@Model.Likes.Count())</a>
+		</div>
+		@await Component.InvokeAsync("HitSectorNews", new { id = Model.Id })
+	</div>
+</section>
+<section id="portfolio" class="gray-bg">
+	<div class="container">
+		<div class="section_heading">
+			<h2><span>Bunları Okudunuz Mu?</span></h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+			<div class="row">
+				@await Component.InvokeAsync("ExplorerRandomSectorNews")
+			</div>
+		</div>
+	</div>
+</section>

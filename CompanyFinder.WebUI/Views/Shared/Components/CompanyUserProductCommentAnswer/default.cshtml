@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CommentAnswer>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li class="comment-item">
+		<div class="comment">
+			<div class="visitor_pic">
+				@if (item.UserId != null)
+				{
+					@await Component.InvokeAsync("CompanyUserProfileLogo", new { id = item.UserId })
+				}
+			</div>
+			<div class="visitor_description">
+				<div class="name_date">
+					@if (item.UserId != null)
+					{
+						<h6>@item.User.NameSurname</h6>
+						<h8>@await Component.InvokeAsync("GetCompanyInformation", new { id = item.UserId })</h8>
+					}
+					<div class="date">@item.CreatedDate.ToShortDateString()</div>
+				</div>
+				@if (item.Title != null)
+				{
+					<p>Cevap Başlığı: @item.Title</p>
+				}
+				<p>Yorum Cevabı: @item.Text</p>
+			</div>
+		</div>
+	</li>
+}

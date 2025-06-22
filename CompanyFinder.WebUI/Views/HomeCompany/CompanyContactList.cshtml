@@ -1,0 +1,110 @@
+﻿@model IEnumerable<CompanyContact>
+@{
+	ViewData["Title"] = "İletişim Bilgileri";
+	ViewData["Subtitle"] = "Firmalarınızın İletişim Bilgileri ve Onların Yönetimi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="contact-us">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contact-detail">
+			<div class="row">
+				<div class="contact-card">
+					<div class="icon"><i class="flat flaticon-phone-receiver"></i><i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i><i class="flat flaticon-mail-black-envelope-symbol"></i></div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						@foreach (var item in Model)
+						{
+							@if (item.CompanyId != null)
+							{
+								<strong style="color:darkblue">Firma Adı: @item.Company.Name</strong>
+							}
+							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+								@if (item.PhoneNumber != null)
+								{
+									<div class="heading">
+										<h5>Telefon No.</h5>
+									</div>
+									<div class="description">
+										<p>@item.PhoneNumber</p>
+									</div>
+								}
+								else
+								{
+									<div class="heading">
+										<h5>Telefon No.</h5>
+									</div>
+									<div class="description">
+										<p>Bilgi Yok</p>
+									</div>
+								}
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+								@if (item.Address != null)
+								{
+									<div class="heading">
+										<h5>Adres</h5>
+									</div>
+									<div class="description">
+										<p>@item.Address </p>
+									</div>
+								}
+								else
+								{
+									<div class="heading">
+										<h5>Adres</h5>
+									</div>
+									<div class="description">
+										<p>Bilgi Girilmemiş </p>
+									</div>
+								}
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+								@if (item.EmailAddress != null)
+								{
+									<div class="heading">
+										<h5>Mail Adresi</h5>
+									</div>
+									<div class="description">
+										<p>@item.EmailAddress </p>
+									</div>
+								}
+								else
+								{
+									<div class="heading">
+										<h5>Mail Adresi</h5>
+									</div>
+									<div class="description">
+										<p>Bilgi Girilmemiş </p>
+									</div>
+								}
+							</div>
+							@if (item.IsHide == true)
+							{
+								<a asp-controller="CompanyOperation" asp-action="SetHideContactInfo" asp-route-id="@item.Id" class="btn btn-warning btn-sm">İletişim Bilgisini Gizle</a>
+							}
+							else
+							{
+								<a asp-controller="CompanyOperation" asp-action="SetNotHideContactInfo" asp-route-id="@item.Id" class="btn btn-warning btn-sm">İletişim Bilgisini Göster</a>
+							}
+							<a asp-controller="CompanyOperation" asp-action="CompanyContactUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Bilgileri Güncelle</a> <a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteCompanyContact', @item.Id); return false;" class="btn btn-danger btn-sm">İletişim Bilgisini Sil</a>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

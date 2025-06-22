@@ -1,0 +1,144 @@
+﻿@model IEnumerable<CompanyCategory>
+@{
+	ViewData["Title"] = "All Company Category List";
+	ViewData["Subtitle"] = "Company Category Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyCategory" asp-action="kurtulusocL">Company Category Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyCategory" asp-action="CompanyCategoryOps">Company Category Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<a asp-controller="CompanyCategory" asp-action="Create" class="btn btn-custon-rounded-two btn-primary">+ Add New One</a>
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="categoryName">Category Name</th>
+											<th data-field="companies">Companies</th>
+											<th data-field="subcategories">Subcategories</th>
+											<th>Status</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>@item.Name</td>
+												<td>@item.Companies.Count()</td>
+												<td>@item.CompanySubcategories.Count()</td>
+												<td>
+													@if (item.IsActive == true)
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/cancelled.jpg" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													@if (item.IsDeleted == true)
+													{
+														<img src="~/img/statics/delete.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+												</td>
+												<td>
+													<a asp-controller="CompanyCategory" asp-action="CompanyCategoryDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+													<a asp-controller="CompanyCategory" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-success btn-sm">Edit</a>
+													<a asp-controller="CompanyCategory" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-danger btn-sm">Delete</a>
+													@if (item.IsActive == true)
+													{
+														<a asp-controller="CompanyCategory" asp-action="SetDeActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeActive</a>
+													}
+													else
+													{
+														<a asp-controller="CompanyCategory" asp-action="SetActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetActive</a>
+													}
+													@if (item.IsDeleted == true)
+													{
+														<a asp-controller="CompanyCategory" asp-action="SetNotDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetNotDeleted</a>
+													}
+													else
+													{
+														<a asp-controller="CompanyCategory" asp-action="SetDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeleted</a>
+													}
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,131 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Report>
+@{
+	ViewData["Title"] = "Şikayet / Bildirim Listesi";
+	ViewData["Subtitle"] = "Şikayet / Bildirim Yaptığınız İçeriklerin Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="portfolio_detail">
+	<div class="container">
+		<h3 class="d-none">heading</h3>
+		@foreach (var item in Model)
+		{
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 about_project">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-avatar"></i>
+							</div>
+							@if (item.UserId != null)
+							{
+								<div class="content">
+									<h6>Bildiren</h6>
+									<div class="value">@item.User.NameSurname, @item.User.Email</div>
+								</div>
+							}
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i>
+							</div>
+							@if (item.BlogId != null || item.CommentId != null || item.CommentAnswerId != null || item.CompanyId != null || item.ProductId != null)
+							{
+								if (item.BlogId != null)
+								{
+									<div class="content">
+										<h6>İçerik</h6>
+										<div class="value">Blog Makale Bildirimi</div>
+									</div>
+								}
+								if (item.CommentId != null)
+								{
+									<div class="content">
+										<h6>İçerik</h6>
+										<div class="value">Yorum Bildirimi</div>
+									</div>
+								}
+								if (item.CommentAnswerId != null)
+								{
+									<div class="content">
+										<h6>İçerik</h6>
+										<div class="value">Yorum Cevabı Bildirimi</div>
+									</div>
+								}
+								if (item.CompanyId != null)
+								{
+									<div class="content">
+										<h6>İçerik</h6>
+										<div class="value">Firma Bildirimi</div>
+									</div>
+								}
+								if (item.ProductId != null)
+								{
+									<div class="content">
+										<h6>İçerik</h6>
+										<div class="value">Ürün Bildirimi</div>
+									</div>
+								}
+							}
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-calendar"></i>
+							</div>
+							<div class="content">
+								<h6>Tarih</h6>
+								<div class="value">@item.CreatedDate.ToShortDateString()</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="icon">
+								<i class="flat flaticon-folder"></i>
+							</div>
+							<div class="content">
+								<h6>Kategori</h6>
+								<div class="value">@item.ReportCategory.Name</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<div>
+						<h4>@item.Title</h4>
+						<p>@item.ReportCategory.Name</p>
+						<p>@item.Desc</p>
+						@if (item.Hit != null)
+						{
+							<p style="color:black">
+								<i class="fa fa-eye"></i> @item.Hit.Value.ToString() görüntülenme
+							</p>
+						}
+					</div>
+				</div>				
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				@await Component.InvokeAsync("CompanyUserReportAnswer", new { id = item.Id })
+			</div>
+		}
+		<div class="pagination">
+			<div class="pagination-info">
+				@Html.PagedListPager(Model, page => Url.Action("ReportList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+			</div>
+		</div>
+	</div>
+</section>

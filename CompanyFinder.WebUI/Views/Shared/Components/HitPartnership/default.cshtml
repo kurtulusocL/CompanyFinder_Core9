@@ -1,0 +1,18 @@
+﻿@model Hit
+@{
+	Layout = null;
+}
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	   $.ajax({
+			url: '/CompanyPartnership/HitRead/',
+			data:
+			{
+				id=@Model.Id,
+				userId=Model.UserId
+			},
+			type: 'POST',
+		});
+	})
+</script>

@@ -1,0 +1,58 @@
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+<meta name="csrf-token" content="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
+@model User
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Model.NameSurname</a>
+		<ul class="dropdown-menu">
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="AnnouncementList">Genel Duyurular</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MyProfile" asp-route-id="@Model.Id">Üyelik Profilim</a></li>
+			<li class="dropdown-item"><a asp-controller="AccountCompany" asp-action="UpdateProfile" asp-route-id="@Model.Id">Profili Güncelle</a></li>
+			<li class="dropdown-item"><a asp-controller="AccountCompany" asp-action="ChangePassword" asp-route-id="@Model.Id">Şifreyi Değiştir</a></li>
+            <li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="FeedbackList" asp-route-id="@Model.Id">Gönderilen Geri Bildirimler</a></li>
+			<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="SendFeedback" asp-route-id="@Model.Id">Geri Bildirim Gönder</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CancelRequestList" asp-route-id="@Model.Id">Hesap İptal Talebi Listesi</a></li>
+			<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="SendCancelRequest" asp-route-id="@Model.Id">Üyelik Durumu</a></li>
+            <li class="dropdown-item"><a id="logoutLink" asp-controller="AccountCompany" asp-action="Logout">Çıkış Yap</a></li>
+		</ul>
+	</li>
+}
+else
+{
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">!!!</a>
+	</li>
+}
+
+<script type="text/javascript">
+            document.getElementById('logoutLink').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/AccountCompany/Logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/AccountCompany/Login';
+            } else {
+                console.error('Logout başarısız');
+                alert('Çıkış işlemi başarısız oldu.');
+            }
+        })
+        .catch(error => {
+            console.error('Hata:', error);
+            alert('Bir hata oluştu.');
+        });
+    });
+</script>

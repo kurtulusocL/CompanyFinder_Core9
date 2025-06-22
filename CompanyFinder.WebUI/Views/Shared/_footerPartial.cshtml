@@ -1,0 +1,62 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="container">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="row row-safari">
+			@await Component.InvokeAsync("HomeFooterAbout")
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 latest-news">
+				<div class="section_heading">Son <span>Haberler</span></div>
+				@await Component.InvokeAsync("HomeFooterNews")
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="contact_info">
+			<div class="row row-safari">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
+					<div class="icon"> <i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i> </div>
+					@await Component.InvokeAsync("HomeFooterLocation")
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 column">
+					<div class="icon"> <i class="flat flaticon-mail-black-envelope-symbol"></i> </div>
+					@await Component.InvokeAsync("HomeFooterEmail")
+				</div>
+				<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 column social">
+					<div class="icon"> <i class="flat flaticon-share"></i> </div>
+					<div class="detail">
+						<h5>Sosyalde bi2bi.com</h5>
+						<div class="content">
+							@await Component.InvokeAsync("HomeFooterSocialMedia")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom">
+	<div class="container">
+		<partial name="_footerNavigator" />
+	</div>
+	<hr />
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 copyright">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					2025 - @DateTime.Now.Year
+					<span class="separator-pipesign white"></span>
+					<a href="https://www.bi2bi.com">bi2bi.com</a>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-right">
+					<a asp-controller="DataPolicy" asp-action="Index">Kullanıcı Aydınlatma Metni & KVK Bilgilendirme</a>
+					<span class="separator-pipesign white"></span>
+					<a asp-controller="UserAgreement" asp-action="Index">Kullanıcı Sözleşmesi ve Hizmet Şartları</a>
+					<span class="separator-pipesign white"></span>
+					<a asp-controller="Frequently" asp-action="Index">Sıkça Sorulan Sorular</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

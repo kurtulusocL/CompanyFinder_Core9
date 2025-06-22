@@ -1,0 +1,95 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Question>
+@{
+	ViewData["Title"] = "Sorularınız";
+	ViewData["Subtitle"] = "Firmalara ya da Ürünlere Sorduğunuz Soruların Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="comments">
+						<h5>Sorduğunuz <span> Ürün - Firma </span> Soruları</h5>
+						<div class="separator left-align">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+						<ol class="comments-list">
+							@foreach (var item in Model)
+							{
+								<li class="comment-item">
+									<div class="comment">
+										<div class="visitor_description">
+											<div class="name_date">
+												@if (item.UserId != null)
+												{
+													<h6>Soran Kişi: @item.User.NameSurname</h6>
+												}
+												<div class="date">@item.CreatedDate.ToShortDateString()</div>
+											</div>
+											<p>
+												@if (item.CompanyId != null || item.ProductId != null)
+												{
+													if (item.CompanyId != null)
+													{
+														<span class="badge badge-info">
+															Firmaya Sorulan Soru
+														</span> <span>Firma: @item.Company.Name</span>
+													}
+													@if (item.ProductId != null)
+													{
+														<span class="badge badge-info">
+															Ürüne Sorulan Soru
+														</span> <span>Ürün: @item.Product.Name</span>
+													}
+												}
+											</p>
+											<p>@item.Text </p>
+											<p>
+												@item.Hit.ToString() kez görüldü. - @item.QuestionAnswers.Count() cevap
+											</p>
+											<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteQuestion', @item.Id); return false;" class="btn btn-danger btn-sm" style="color:black">Sil</a>
+										</div>
+									</div>
+									<ol class="comments-list reply">
+										@await Component.InvokeAsync("CompanyUserQuestionListQuestionAnswer", new { id = item.Id })
+									</ol>
+								</li>
+							}
+						</ol>
+					</div>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item">
+								@Html.PagedListPager(Model, page => Url.Action("QuestionList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

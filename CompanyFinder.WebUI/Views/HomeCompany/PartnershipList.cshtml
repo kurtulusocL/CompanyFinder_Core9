@@ -1,0 +1,125 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<CompanyPartnership>
+@{
+	ViewData["Title"] = "Teklif / Talep Listesi";
+	ViewData["Subtitle"] = "Yayınlanan Teklif / Talep Listesi ve Onların Yönetimi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-with-sidebar">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<h3 class="d-none">heading</h3>
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 posts">
+						<div class="item blog_card card_mr_bt d-flex">
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="HomeCompany" asp-action="PartnershipDetail" asp-route-id="@item.Id">
+										@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 60) + " ...")
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li><i class="fa fa-eye"></i> <span>@item.Hits.Count() görüntülenme</span></li>
+										<li><i class="fa fa-heart"></i> <span>@item.Likes.Count() beğeni</span></li>
+										<li><i class="fa fa-adjust"></i> <span>@item.SavedContents.Count() kayıt</span></li>
+										<li><i class="flat flaticon-calendar"></i> <span>@item.CreatedDate.ToShortDateString() yayınlandı</span></li>
+									</ul>
+								</div>
+								<div class="description" style="color:black">
+									@if (item.IsAvailable == true || item.ExpiryDate < DateTime.Now)
+									{
+										<p>Teklif Yayında</p>
+									}
+									else
+									{
+										<p>Teklif Yayından Kaldırıldı.</p>
+									}
+									@if (item.Price != null)
+									{
+										<p>Fiyat: @item.Price.Value.ToString("C2")</p>
+									}
+									else
+									{
+										<p>Fiyat Belirtilmemiş.</p>
+									}
+									<p>
+										Kategorisi: @item.ProductCategory.Name
+									</p>
+									<p>
+										Teklif Başlangıcı: @item.StartDate.ToLongDateString(), Teklif Bitişi: @item.ExpiryDate.ToLongDateString()
+									</p>
+									@if (item.Detail != null)
+									{
+										<p>Detay: @item.Detail</p>
+									}
+									@if (item.Desc.Length > 250)
+									{
+										<p>
+											Açıklaması: @Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 250) + " ..."))
+										</p>
+									}
+									else
+									{
+										<p>
+											@Html.Raw(item.Desc)
+										</p>
+									}
+									@if (item.Hits.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="HitPartnershipUserList" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Görüntüleyenler</a>
+									}
+									@if (item.Likes.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="LikedPartnershipUserList" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Beğenenler</a>
+									}
+									@if (item.SavedContents.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="SavedPartnershipUserList" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Kaydedenler</a>
+									}
+									<a asp-controller="CompanyOperation" asp-action="CompanyPartnershipUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Güncelle</a>
+									<a asp-controller="HomeCompany" asp-action="PartnershipDetail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detaya Bak</a>
+									@if (item.IsAvailable == true)
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetCompanyPartnershipNotAvailable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Teklif / Talep Uygun Değil</a>
+									}
+									else
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetCompanyPartnershipAvailable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Teklif / Talep Uygun</a>
+									}
+									<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteCompanyPartnership', @item.Id); return false;" class="btn btn-danger btn-sm">Teklif / Talep Sil</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-end">
+					@Html.PagedListPager(Model, page => Url.Action("PartnershipList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</ul>
+			</nav>
+		</div>
+	</div>
+</section>

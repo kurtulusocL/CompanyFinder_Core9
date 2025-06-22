@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ProductCategory>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li>
+		<span class="message-info">@item.Name</span> <span class="message-serial message-cl-one">@item.Products.Count()</span>
+	</li>
+}

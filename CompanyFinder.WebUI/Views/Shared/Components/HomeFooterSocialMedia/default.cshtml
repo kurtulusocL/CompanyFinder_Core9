@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SocialMedia>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<a href="@item.Url" title="@item.Name" target="_blank">
+		<img src="~/img/us/socialMedia/@item.ImageUrl" class="img-circle img-responsive" style="max-height:40px;max-width:40px;min-height:40px;min-width:40px;" asp-append-version="true" />
+	</a>
+}

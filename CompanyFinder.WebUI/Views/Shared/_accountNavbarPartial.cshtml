@@ -1,0 +1,25 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="follow_us_on">
+	<ul>
+		@if (User.Identity != null)
+		{
+			if (User.Identity.IsAuthenticated == false)
+			{
+				<li>
+					<a asp-controller="AccountCompany" asp-action="Login" class="btn btn-dark btn-rounded btn-sm">Firma Girişi</a>
+				</li>
+				<li><span class="separator-pipesign white"></span></li>
+				<li>
+					<a asp-controller="AccountCompany" asp-action="Register" class="btn btn-dark btn-rounded btn-sm">Firma Kaydı</a>
+				</li>
+			}
+			if (User.Identity.IsAuthenticated == true)
+			{
+				@await Component.InvokeAsync("NavbarHomeAccount")
+			}
+		}
+	</ul>
+</div>

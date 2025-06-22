@@ -1,0 +1,41 @@
+﻿@using System.Web
+@model IEnumerable<OurServices>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="item">
+		<div class="service_icon">
+			@if (item.IconUrl != null)
+			{
+				<img src="~/img/us/ourService/@item.IconUrl" style="max-height:70px;max-width:70px;" asp-append-version=true />
+			}
+			else
+			{
+				<img src="~/img/statics/verification.png" style="max-height:70px;max-width:70px;" asp-append-version=true />
+			}
+			</div>
+		<div class="connector"> <span></span> </div>
+		<div class="service-card">
+			<div class="service_detail">
+				<h5>
+					<a asp-controller="OurServices" asp-action="Index">
+						@item.Title
+					</a>
+				</h5>
+				@if (item.Desc.Length > 300)
+				{
+					<p>
+						@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 300) + " ..."))
+					</p>
+				}
+				else
+				{
+					<p>@item.Desc</p>
+				}
+			</div>
+		</div>
+	</div>
+}

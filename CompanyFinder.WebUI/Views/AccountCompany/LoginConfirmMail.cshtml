@@ -1,0 +1,52 @@
+﻿@model UserLoginConfirmCodeDto
+@{
+	ViewData["Title"] = "Giriş Onay";
+	ViewData["Subtitle"] = "Mail Adresinize Gelen 6 Haneli Kodu Bu Alana Giriniz.";
+	ViewData["Desc"] = "Eğer mail adresinizde kod göremiyorsanız lütfen spam ya da gereksiz klasörünü kontrol edin. Mail onay kodunuz orada :)";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+					<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+						<div class="form-header text-center">
+							<h4>@ViewData["Title"]</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<p>@ViewData["Subtitle"]</p>
+							<p>@ViewData["Desc"]</p>
+						</div>
+						<div class="contact-form">
+							<form asp-controller="AccountCompany" asp-action="LoginConfirmMail" method="post">
+								@Html.AntiForgeryToken()
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+										<div class="form-group">
+											<input type="text" asp-for="LoginConfirmCode" name="LoginConfirmCode" placeholder="Mail Onay Kodu" required />
+										</div>
+									</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center mar-none">
+										<button type="submit">Kodu Onayla ve Giriş Yap</button>
+										<input type="hidden" asp-for="Email" value="@ViewData["loginEmail"]" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<partial name="_frontEndAlertPartial" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

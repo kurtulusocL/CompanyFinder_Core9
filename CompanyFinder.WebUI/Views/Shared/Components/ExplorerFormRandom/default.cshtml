@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CompanyForm>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img">
+			<img src="~/img/company/formImage/@item.ImageUrl" style="max-width:66px;max-height:66px;" asp-append-version="true" />
+		</div>
+		<div class="post-content">
+			<a asp-controller="CompanyForm" asp-action="Detail" asp-route-id="@item.Id">
+				@item.Title
+			</a>
+			<div class="post-status"> <i class="flat flaticon-calendar"></i> <span>@item.CreatedDate.ToShortDateString()</span> </div>
+		</div>
+	</div>
+}

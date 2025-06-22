@@ -1,0 +1,327 @@
+﻿@{
+	ViewData["Title"] = "Keşfet Anasayfası";
+	ViewData["Subtitle"] = "Firma ya da Ürünleri Buradan Keşfedebilirsiniz.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner" class="index-2">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator left-align">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="inner index-2">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+		<div class="row">
+			<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 blog-detail">
+				<div id="web-developer" class="gray-bg index-2">
+					<div class="container">
+						<div class="section_heading">
+							<h2>En Son Firmalar</h2>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerLastCompany")
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="web-developer" class="gray-bg index-2">
+					<div class="container">
+						<div class="section_heading">
+							<h2>En Son Ürünler</h2>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerLastProduct")
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="web-developer" class="gray-bg index-2">
+					<div class="container">
+						<div class="section_heading">
+							<h2>Firma Listesi</h2>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerCompany")
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="web-developer" class="gray-bg index-2">
+					<div class="container">
+						<div class="section_heading">
+							<h2>Ürün Listesi</h2>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerProduct")
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div id="web-developer" class="gray-bg index-2">
+					<div class="container">
+						<div class="section_heading">
+							<h2>Firma Forum Listesi</h2>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+							<div class="row">
+								@await Component.InvokeAsync("ExplorerCompanyForm")
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<aside class="col-lg-3 col-md-12 col-sm-12 col-xs-12 sidebar right gray-bg index-2">
+				<br /><br /><br />
+				<div class="section_heading">
+					<div class="separator"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Firma Ülkeleri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerCompanyCountryList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Firma Şehirleri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerCompanyCityList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Firma Kategorileri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerCompanyCategoryList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Firma Altkategorileri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerCompanySubcategoryList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>İş Ortaklarımız</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						@await Component.InvokeAsync("RandomAd")
+					</div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Ürün Kategorileri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerProductCategoryList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Ürün Altkategorileri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerProductSubcategoryList")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>Forum Kategorileri</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						<div class="tags">
+							<ul>
+								@await Component.InvokeAsync("ExplorerCompanyFormSidebarCategories")
+							</ul>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="widget">
+					<div class="sidebar_heading">
+						<h5>İş Ortaklarımız</h5>
+						<div class="separator left-align ">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-content">
+						@await Component.InvokeAsync("RandomAd")
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+</section>
+<section id="member" class="index-2">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 heading">
+					<h3>Aradığınız Bulamadınız Mı<span>Detaylı Bir Arama İster Misiniz</span></h3>
+					<div class="q-mark">?</div>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 meeting">
+					<div class="meeting_icon">
+						<i class="flat flaticon-group-meeting"></i>
+					</div>
+					<div class="meeting_content">
+						Detaylı Bir Firma ya da Ürün Araması Yapmak İsterseniz => <a asp-controller="Explorer" asp-action="AdvancedSearch">Detaylı Arama Yapın</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay"></div>
+</section>

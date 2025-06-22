@@ -1,0 +1,9 @@
+﻿@model IEnumerable<FormCategory>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li><a asp-controller="CompanyForm" asp-action="Category" asp-route-id="@item.Id">@item.Name</a></li>
+}

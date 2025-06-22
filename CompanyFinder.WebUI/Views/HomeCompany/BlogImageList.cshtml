@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Picture>
+@{
+	ViewData["Title"] = "Blog Makalesi Resimleri Listesi";
+	ViewData["Subtitle"] = "Eklenilen Tüm Blog Makalesi Resimleri ve Onların Yönetimi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="portfolio">
+	<div class="container">
+		<h3 class="d-none">heading</h3>
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row portfolio-gallary">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 port-item design development">
+						<a asp-controller="CompanyOperation" asp-action="BlogImageUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Resmi Güncelle</a>
+						<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteBlogImage', @item.Id); return false;" class="btn btn-danger btn-sm">Resmi Sil</a>
+						<div class="project portfolio-inner">
+							<img src="~/img/company/blog/multiImage/@item.ImageUrl" style="max-height:264px;max-width:350px;" asp-append-version="true">
+							<div class="label">
+								@if (item.BlogId != null)
+								{
+									<div class="label-text">@item.Blog.Title</div>
+								}
+								<div class="label-bg"></div>
+							</div>
+							<div class="zoom">
+								@if (item.BlogId != null)
+								{
+									<a href="/img/company/blog/multiImage/@item.ImageUrl" style="max-height:556px;max-width:582px;" class="popup-box" data-lightbox="image" data-title="@item.Blog.Title"> <i class="flat flaticon-magnifying-glass"></i> </a>
+								}
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</section>

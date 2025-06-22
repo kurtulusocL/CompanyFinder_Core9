@@ -1,0 +1,30 @@
+﻿@using System.Web
+@model IEnumerable<About>
+@{
+	Layout = null;
+}
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 about">
+	<div class="logo">
+		@await Component.InvokeAsync("HomeHeaderLogo")
+	</div>
+	@foreach (var item in Model)
+	{
+		<div class="detail">
+			<p>@item.Title</p>
+			@if (item.Subtitle.Length > 60)
+			{
+				<p>
+					@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Subtitle, 60) + " ....")
+				</p>
+			}
+			else
+			{
+				<p>
+					@item.Subtitle
+				</p>
+			}
+		</div>
+		<a asp-controller="About" asp-action="Index" class="view_more">Devamını Oku</a>
+	}
+</div>

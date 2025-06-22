@@ -1,0 +1,280 @@
+﻿@model IEnumerable<Like>
+@{
+	ViewData["Title"] = "All Like List";
+	ViewData["Subtitle"] = "Like Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Like" asp-action="kurtulusocL">Like Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="ByValueLessToMore">Like Value LessToMore</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="ByValueMoreToLess">Like Value MoreToLess</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="LikeOps">Like Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="userInfo">User Info</th>
+											<th data-field="likeFor">Like For</th>
+											<th data-field="likeValue">Like Value</th>
+											<th>Status</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.UserId != null)
+													{
+														<ul>
+															<li>User Id: @item.UserId</li>
+															<li>Name Surname: @item.User.NameSurname</li>
+															<li>Email: @item.User.Email</li>
+														</ul>
+														<a asp-controller="Like" asp-action="UserrLike" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Likes
+														</a>
+														<a asp-controller="Like" asp-action="UserLikeForAdmin" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Likes for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">Not User Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.BlogId != null || item.CompanyId != null || item.ProductId != null || item.CompanyPartnershipId != null || item.CompanyFormId != null || item.SectorNewsId != null)
+													{
+														if (item.BlogId != null)
+														{
+															<ul>
+																<li>Blog Like</li>
+																<li>Blog Id :@item.BlogId</li>
+																<li>Title: @item.Blog.Title</li>
+															</ul>
+															<a asp-controller="Like" asp-action="BlogLike" asp-route-id="@item.BlogId" class="btn btn-custon-rounded-two btn-info">
+																See All Blog Likes
+															</a>
+															<a asp-controller="Like" asp-action="BlogLikeForAdmin" asp-route-id="@item.BlogId" class="btn btn-custon-rounded-two btn-info">
+																See All Blog Likes for Admin
+															</a>
+														}
+														if (item.CompanyId != null)
+														{
+															<ul>
+																<li>Company Like</li>
+																<li>CompanyId: @item.CompanyId</li>
+																<li>Name: @item.Company.Name</li>
+															</ul>
+															<a asp-controller="Like" asp-action="CompanyLike" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+																See All Company Likes
+															</a>
+															<a asp-controller="Like" asp-action="CompanyLikeForAdmin" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+																See All Company Likes for Admin
+															</a>
+														}
+														if (item.ProductId != null)
+														{
+															<ul>
+																<li>Product Like</li>
+																<li>ProductId: @item.ProductId</li>
+																<li>Name: @item.Product.Name</li>
+															</ul>
+															<a asp-controller="Like" asp-action="ProductLike" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-info">
+																See All Product Likes
+															</a>
+															<a asp-controller="Like" asp-action="ProductLikeForAdmin" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-info">
+																See All Product Likes for Admin
+															</a>
+														}
+														@if (item.CompanyPartnershipId != null)
+														{
+															<ul>
+																<li>Company Partnership Like</li>
+																<li>Company PartnershipId: @item.CompanyPartnershipId</li>
+																@if (item.CompanyPartnership.CompanyId != null)
+																{
+																	<li>CompanyId: @item.CompanyPartnership.CompanyId</li>
+																	<li>Company: @item.CompanyPartnership.Company.Name</li>
+																}
+																else
+																{
+																	<li>
+																		<strong style="color:maroon">No Company Info</strong>
+																	</li>
+																}
+															</ul>
+															<a asp-controller="Like" asp-action="PartnershipLike" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+																See All Partnership Likes
+															</a>
+														}
+														if (item.CompanyFormId != null)
+														{
+															<ul>
+																<li>Company Form Like</li>
+																<li>Company FormId: @item.CompanyFormId</li>
+																<li>Title: @item.CompanyForm.Title</li>
+																@if (item.CompanyId != null)
+																{
+																	<li>CompanyId: @item.CompanyForm.CompanyId</li>
+																	<li>Company: @item.CompanyForm.Company.Name</li>
+																}
+																else
+																{
+																	<li>
+																		<strong style="color:maroon">No Company Info</strong>
+																	</li>
+																}
+															</ul>
+															<a asp-controller="Like" asp-action="CompanyFormLike" asp-route-id="@item.CompanyFormId" class="btn btn-custon-rounded-two btn-info">
+																See All Company Form Likes
+															</a>
+														}
+														if (item.SectorNewsId != null)
+														{
+															<ul>
+																<li>Sector News Like</li>
+																<li>Sector NewsId: @item.SectorNewsId</li>
+																<li>Title: @item.SectorNews.Title</li>
+															</ul>
+															<a asp-controller="Like" asp-action="SectorNewsLike" asp-route-id="@item.SectorNewsId" class="btn btn-custon-rounded-two btn-info">
+																See All SectorNews Likes
+															</a>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Error - Issue</strong>
+													}
+												</td>
+												<td>
+													@if (item.Value != null)
+													{
+														@item.Value.Value.ToString()
+													}
+													else
+													{
+														<strong style="color:darkblue">0</strong>
+													}
+												</td>
+												<td>
+													@if (item.IsActive == true)
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/cancelled.jpg" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													@if (item.IsDeleted == true)
+													{
+														<img src="~/img/statics/delete.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+												</td>
+												<td>
+													<a asp-controller="Like" asp-action="LikeDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+													<a asp-controller="Like" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-danger btn-sm">Delete</a>
+													@if (item.IsActive == true)
+													{
+														<a asp-controller="Like" asp-action="SetDeActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeActive</a>
+													}
+													else
+													{
+														<a asp-controller="Like" asp-action="SetActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetActive</a>
+													}
+													@if (item.IsDeleted == true)
+													{
+														<a asp-controller="Like" asp-action="SetNotDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetNotDeleted</a>
+													}
+													else
+													{
+														<a asp-controller="Like" asp-action="SetDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeleted</a>
+													}
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

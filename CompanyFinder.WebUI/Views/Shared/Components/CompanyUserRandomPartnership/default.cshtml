@@ -1,0 +1,22 @@
+﻿@model IEnumerable<CompanyPartnership>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img">
+			@if (item.CompanyId != null)
+			{
+				<img src="~/img/company/logo/@item.Company.Logo" asp-append-version="true" />
+			}
+		</div>
+		<div class="post-content">
+			<a asp-controller="CompanyPartnership" asp-action="Detail" asp-route-id="@item.Id">
+				@item.Title
+			</a>
+			<div class="post-status"> <i class="flat flaticon-calendar"></i> <span>Bitiş: @item.ExpiryDate.ToShortDateString()</span> </div>
+		</div>
+	</div>
+}

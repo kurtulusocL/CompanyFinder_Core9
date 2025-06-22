@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Ad>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		@if (item.RedirectWebUrl != null)
+		{
+			<a href="@item.RedirectWebUrl" target="_blank">
+				@if (item.ImageUrl != null)
+				{
+					<div class="post-img"> <img src="~/img/us/ad/@item.ImageUrl" style="max-height:76px;max-width:86px;min-height:76px;min-width:86px;" asp-append-version="true" /> </div>
+				}
+				<div class="post-content">
+					<a>@item.Text </a>
+					@if (item.Subtext != null)
+					{
+						<a>@item.Subtext</a>
+					}
+					<div class="post-status"> <span>@item.AdCompany.Name</span> </div>
+				</div>
+			</a>
+		}
+		else
+		{
+			@if (item.ImageUrl != null)
+			{
+				<div class="post-img"> <img src="~/img/us/ad/@item.ImageUrl" style="max-height:76px;max-width:86px;min-height:76px;min-width:86px;" asp-append-version="true" /> </div>
+			}
+			<div class="post-content">
+				<a>@item.Text </a>
+				@if (item.Subtext != null)
+				{
+					<a>@item.Subtext</a>
+				}
+				<div class="post-status"> <span>@item.AdCompany.Name</span> </div>
+			</div>
+		}
+		@await Component.InvokeAsync("SimilarAdHitForVisitor", new { id = item.Id })
+	</div>
+}

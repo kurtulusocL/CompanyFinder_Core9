@@ -1,0 +1,30 @@
+﻿@model Stock
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<p>
+		<ul style="color:black">
+			<li>
+				<span>Stok Kodu: @Model.Code</span>
+			</li>
+			<li>
+				<span>Stok Miktarı: @Model.Quantity</span>
+			</li>
+			@if (Model.Warehouse != null)
+			{
+				<li>
+					<span>Depo: @Model.Warehouse</span>
+				</li>
+			}
+			else
+			{
+				<li>
+					<span>Depo Bilgisi Girilmemiş.</span>
+				</li>
+			}
+		</ul>
+	</p>
+}

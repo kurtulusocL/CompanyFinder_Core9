@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CompanyMessage>
+@{
+	ViewData["Title"] = "Sistem Mesaj Listesi";
+	ViewData["Subtitle"] = "bi2bi.com Tarafından Size Gönderilen Mesajlar Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator left-align">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h2><span>@ViewData["Title"]</span></h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="heading_content">@ViewData["Subtitle"]</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="item col-lg-12 col-md-12 col-md-12 col-xs-12">
+						<div class="team-card">
+							<div class="name_designation">
+								@if (item.Title != null)
+								{
+									<h5><a>@item.Title</a></h5>
+								}
+								<span>Tarih: @item.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="description">
+								<p>
+									<div class="blockquote">
+										Mesaj Konusu: @item.Subject
+									</div>
+								</p>
+								<p>
+									Mesaj İçeriği: @item.Desc
+								</p>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</section>

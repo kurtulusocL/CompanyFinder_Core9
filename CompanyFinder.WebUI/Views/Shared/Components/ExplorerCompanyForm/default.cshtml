@@ -1,0 +1,46 @@
+﻿@using System.Web
+@model IEnumerable<CompanyForm>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<div class="item">
+			<div class="client_dp">
+				<img src="~/img/company/formImage/@item.ImageUrl" style="max-height:120px;max-width:120px;" asp-append-version="true" />
+			</div>
+			<div class="team-card">
+				<div class="name_designation">
+					<h5>
+						<a asp-controller="CompanyForm" asp-action="Detail" asp-route-id="@item.Id">
+							@if (item.Title.Length > 55)
+							{
+								@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 55) + "...")
+							}
+							else
+							{
+								@item.Title
+							}
+						</a>
+					</h5>
+					@if (item.CompanyId != null)
+					{
+						<span>Firma: @item.Company.Name</span>
+					}
+				</div>
+				<div class="description">
+					<p>Kategori: @item.FormCategory.Name</p>
+				</div>
+				<div style="color:black">
+					<ul>
+						<li>Yayın Tarihi: @item.CreatedDate.ToShortDateString()</li>
+						<li>@item.Hits.Count() görüntülenme</li>
+						<li>@item.Likes.Count() beğeni</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+}

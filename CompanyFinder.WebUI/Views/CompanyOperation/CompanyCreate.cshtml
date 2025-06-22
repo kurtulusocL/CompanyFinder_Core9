@@ -1,0 +1,113 @@
+﻿@model Company
+@{
+	ViewData["Title"] = "Firma Kayıt Sayfası";
+	ViewData["Subtitle"] = "Firmanızı ya da Yeni Bir Firmayı Burada Ekleyebilirsiniz";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="CompanyCreate" method="post" enctype="multipart/form-data">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Ülke Listesi *</strong>
+									<select class="form-control" asp-for="CountryId" name="CountryId" id="companyCountry" required>
+										<option>-- Firmanızın Bulunduğu Ülkeyi Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Şehir Listesi *</strong>
+									<select class="form-control" asp-for="CityId" name="CityId" required>
+										@foreach (var item in ViewBag.Cities)
+										{
+											<option value="@item.Id">@item.Name (Ülke: @item.Country.Name)</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Kategori Listesi *</strong>
+									<select class="form-control" asp-for="CompanyCategoryId" name="CompanyCategoryId" id="companyCategory" required>
+										<option value="">-- Firmanız İçin Bir Kategori Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Altkategori Listesi</strong>
+									<select class="form-control" asp-for="CompanySubcategoryId" name="CompanySubcategoryId">
+										@foreach (var item in ViewBag.Subcategories)
+										{
+											<option value="@item.Id">@item.Name (Kategori: @item.CompanyCategory.Name)</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Firmanızın İsmi *</strong>
+								<input type="text" asp-for="Name" name="Name" placeholder="Firmanızın İsmi *" required />
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+								<strong style="color:blue">Firma Kuruluş Yılı *</strong>
+								<input type="date" asp-for="FoundationDate" name="FoundationDate" required />
+							</div>
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 form-group">
+								<strong style="color:blue">Firma Sloganı</strong>
+								<input type="text" asp-for="Slogan" name="Slogan" placeholder="Firmanızın Bir Sloganı var mı?" />
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 form-group">
+								<strong style="color:blue">Firma İnternet Sitesi</strong>
+								<input type="url" asp-for="WebsiteUrl" name="WebsiteUrl" placeholder="İnternet Siteniz" />
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 form-group">
+								<strong style="color:blue">Firma Logosu *</strong>
+								<input class="form-control btn-info" type="file" name="image" accept=".png, .jpg, .jpeg" required>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Firma Tanıtım Metni *</strong>
+								<textarea type="text" class="ckeditor" asp-for="Desc" name="Desc" placeholder="Firmanızın Tanıtım Metnini Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Firmanıza Yorum Yapılabilsin Mi? *</strong></span>
+								<input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_Yes" value="True" />
+								<input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_No" value="False" />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Firmayı Kaydet </button>
+								<input type="hidden" asp-for="UserId" />
+								<input type="hidden" asp-for="CompanyCategoryId" />
+								<input type="hidden" asp-for="CompanySubcategoryId" />
+								<input type="hidden" asp-for="CountryId" />
+								<input type="hidden" asp-for="CityId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

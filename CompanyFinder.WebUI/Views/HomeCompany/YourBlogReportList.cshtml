@@ -1,0 +1,74 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Report>
+@{
+	ViewData["Title"] = "Blog Makalesine Gelen Şikayetler";
+	ViewData["Subtitle"] = "Diğer Firmaların Blog Makaleleriniz Hakkında Bulunduğu Şikayetler";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="comments">
+						<h5><span> Firmaya Gelen Şikayetler </span></h5>
+						<div class="separator left-align">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+						<ol class="comments-list">
+							@foreach (var item in Model)
+							{
+								<li class="comment-item">
+									<div class="comment">
+										<div class="visitor_description">
+											<div class="name_date">
+												@if (item.UserId != null)
+												{
+													<h6>Bildirimde Bulunan: @item.User.NameSurname</h6>
+												}
+												<div class="date">@item.CreatedDate.ToShortDateString()</div>
+											</div>
+											@if (item.BlogId != null)
+											{
+												<p>Blog Makale Başlığı: @item.Blog.Title</p>
+											}
+											<p>@item.Title </p>
+											<p>@item.Desc</p>
+										</div>
+									</div>
+								</li>
+							}
+						</ol>
+					</div>
+				</div>
+			</div>
+			<div class="pagination">
+				<div class="pagination-info">
+					@Html.PagedListPager(Model, page => Url.Action("YourBlogReportList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,45 @@
+﻿@model CompanyContact
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<ul>
+		@if (Model.PhoneNumber != null)
+		{
+			<li> <i class="flat flaticon-phone-receiver"></i>Telefon No: @Model.PhoneNumber </li>
+		}
+		@if (Model.WhatsappNo != null)
+		{
+			<li> <i class="flat flaticon-phone-receiver"></i>Whatsapp No: @Model.WhatsappNo </li>
+		}
+		@if (Model.EmailAddress != null)
+		{
+			<li> <i class="flat flaticon-mail-black-envelope-symbol"></i>Email: @Model.EmailAddress </li>
+		}
+		@if (Model.CompanyId != null)
+		{
+			if (Model.Company.CityId != null)
+			{
+				<li> <i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i>@Model.Company.City.Name, @Model.Company.Country.Name </li>
+			}
+			else
+			{
+				<li> <i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i>@Model.Company.Country.Name </li>
+			}
+		}
+		<li></li>
+	</ul>
+	<br />
+	<hr />
+	<a asp-controller="CompanyOperation" asp-action="CompanyContactUpdate" asp-route-id="@Model.Id" class="btn btn-success btn-sm btn-rounded">İletişim Bilgilerini Güncelle</a>
+}
+else
+{
+	<ul>
+		<li> <i class="flat flaticon-phone-receiver"></i> -</li>
+		<li> <i class="flat flaticon-mail-black-envelope-symbol"></i>-</li>
+		<li> <i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i> - </li>		
+	</ul>
+}

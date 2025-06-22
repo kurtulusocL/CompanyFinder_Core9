@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img">
+			<img src="~/img/company/product/@item.ImageUrl" style="max-height:66px;max-width:69px;" asp-append-version="true" />
+		</div>
+		<div class="post-content">
+			<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
+				@item.Name
+			</a>
+			<div class="post-status">
+				@if (item.CompanyId != null)
+				{
+					<span>@item.Company.Name</span>
+					<span>
+						@await Component.InvokeAsync("ExplorerProductCompanyLocation", new { id = item.CompanyId })
+					</span>
+				}
+			</div>
+		</div>
+	</div>
+}

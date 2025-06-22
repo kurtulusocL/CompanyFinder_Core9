@@ -1,0 +1,78 @@
+﻿@model Customer
+@{
+	ViewData["Title"] = "Müşteri / Tedarikçi Ekleme";
+	ViewData["Subtitle"] = "Müşterinizi Buradan Ekleyebilirsiniz.";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="CustomerCreate" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Müşteri Kategori Listesi *</strong>
+									<select class="form-control" asp-for="CustomerStatusId" name="CustomerStatusId" required>
+										@foreach (var item in ViewBag.CustomerStatus)
+										{
+											<option value="@item.Id">@item.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<strong style="color:blue">Adı Soyadı *</strong>
+								<input type="text" asp-for="NameSurname" name="NameSurname" placeholder="Müşteri Adı-Soyadı *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<strong style="color:blue">Müşteri Firması *</strong>
+								<input type="text" asp-for="CustomerCompany" name="CustomerCompany" placeholder="Müşteri Firması *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<strong style="color:blue">Email Adresi *</strong>
+								<input type="email" asp-for="EmailAddress" name="EmailAddress" placeholder="Email Adresi *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<strong style="color:blue">Telefon Numarası</strong>
+								<input type="text" asp-for="PhoneNumber" name="PhoneNumber" placeholder="Telefon Numarası" />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Firma / Müşteri Lokasyonu *</strong>
+								<input type="text" asp-for="Location" name="Location" placeholder="Firma / Müşteri Lokasyonu *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Açıklaması</strong>
+								<textarea type="text" class="form-control" asp-for="Desc" name="Desc" placeholder="Açıklaması"></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Müşteriyi Ekle </button>
+								<input type="hidden" asp-for="CustomerStatusId" />
+								<input type="hidden" asp-for="CompanyId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

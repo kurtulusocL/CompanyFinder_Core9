@@ -1,0 +1,21 @@
+﻿@model Product
+@{
+	Layout = null;
+}
+
+@if (ViewData["productCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Product</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["productCount"]</span></h3>
+		</div>
+	</div>
+}

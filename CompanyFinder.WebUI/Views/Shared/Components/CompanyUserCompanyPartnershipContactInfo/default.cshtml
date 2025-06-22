@@ -1,0 +1,61 @@
+﻿@model CompanyContact
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.IsHide == true)
+	{
+		if (Model.EmailAddress != null)
+		{
+			<p>Email: @Model.EmailAddress</p>
+		}
+		if (Model.PhoneNumber != null)
+		{
+			<p>Telefon No: @Model.PhoneNumber</p>
+		}
+		if (Model.WhatsappNo != null)
+		{
+			var cleanedNumber = Model.WhatsappNo.Trim()
+			.Replace(" ", "")
+			.Replace("-", "")
+			.Replace("(", "")
+			.Replace(")", "");
+			if (!cleanedNumber.StartsWith("+"))
+			{
+				if (cleanedNumber.StartsWith("90"))
+				{
+					cleanedNumber = "+" + cleanedNumber;
+				}
+				else if (cleanedNumber.StartsWith("0"))
+				{
+					cleanedNumber = "+90" + cleanedNumber.Substring(1);
+				}
+				else
+				{
+					cleanedNumber = "+90" + cleanedNumber;
+				}
+			}
+			<p>
+				@Model.WhatsappNo | <a href="https://wa.me/@cleanedNumber" target="_blank">Firmaya WhatsApp'tan Mesaj Gönderin</a>
+			</p>
+		}
+		if (Model.Address != null)
+		{
+			<p>Adres: @Model.Address</p>
+		}
+	}
+	else
+	{
+		<strong style="color:darkblue">Bu firma iletişim bilgilerini paylaşmayı durdurmuş.</strong>
+	}
+}
+else
+{
+	<p>
+		<strong style="color:maroon">
+			Firma İletişim Bilgisi Alınamadı.
+		</strong>
+	</p>
+}

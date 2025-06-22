@@ -1,0 +1,71 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Customer>
+@{
+	ViewData["Title"] = "Müşteri Listesi";
+	ViewData["Subtitle"] = "Eklenilen Tüm Müşterilerin Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="services" class="index-3 inner pdb-70">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 blog-iso-item">
+						<div class="item card_mr_top">
+							<div class="service-card">
+								<div class="service_icon"><i class="flat flaticon-servers"></i></div>
+								<div class="service_detail">
+									<h5>Müşteri: @item.NameSurname</h5>
+									<p>Müşteri Firması: @item.CustomerCompany</p>
+									@if (item.PhoneNumber != null)
+									{
+										<p>Email: @item.EmailAddress, Telefon: @item.PhoneNumber</p>
+									}
+									else
+									{
+										<p>Telefon: @item.PhoneNumber</p>
+									}
+									<p>Lokasyon: @item.Location</p>
+									<p>Müşteri Durumu: @item.CustomerStatus.Name</p>
+									<p>
+										@if (item.Desc != null)
+										{
+											<span>@item.Desc</span>
+										}
+									</p>
+								</div>
+								<hr />
+								<a asp-controller="CompanyOperation" asp-action="CustomerUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Güncelle</a>
+								<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteCustomer', @item.Id); return false;" class="btn btn-danger btn-sm">Sil</a>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+			<div class="pagination">
+				<div class="pagination-info">
+					@Html.PagedListPager(Model, page => Url.Action("CustomerList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

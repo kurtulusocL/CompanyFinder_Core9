@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = null;
+}
+
+<div class="projects-settings-wrap">
+	<div class="note-heading-indicate">
+		<h2><i class="fa fa-cube"></i> Lastest Products</h2>
+		<p> Totally @Model.Count() products.</p>
+	</div>
+	<div class="notes-list-area notes-menu-scrollbar">
+		<ul class="notes-menu-list">
+			@foreach (var item in Model)
+			{
+				<li>
+					<a asp-controller="ProductManagement" asp-action="ProductDetail" asp-route-id="@item.Id">
+						<div class="notes-list-flow">
+							<div class="notes-img">
+								<img src="~/img/company/product/@item.ImageUrl" style="max-height:70px;max-width:70px;min-height:70px;min-width:70px;" asp-append-version="true" />
+							</div>
+							<div class="notes-content">
+								<p> @item.Name</p>
+								@if (item.ProductSubcategoryId != null)
+								{
+									<p>
+										@item.ProductSubcategory.Name, @item.ProductCategory.Name
+									</p>
+								}
+								else
+								{
+									<p>
+										@item.ProductCategory.Name
+									</p>
+								}
+								@if (item.CompanyId != null)
+								{
+									<p>
+										Company: @item.Company.Name
+									</p>
+								}
+								else
+								{
+									<p>
+										<strong style="color:darkred">No Company Information</strong>
+									</p>
+								}
+								<span>@item.CreatedDate.ToShortDateString()</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

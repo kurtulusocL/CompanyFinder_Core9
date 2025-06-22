@@ -1,0 +1,83 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<SectorNews>
+@{
+	ViewData["Title"] = "Sektör Haberleri";
+	ViewData["Subtitle"] = "Sektörler İçin Bilgilendirme Haberleri";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						<div class="item blog_card">
+							<div class="post-img">
+								<img src="~/img/us/sectorNews/@item.ImageUrl" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="SectorNews" asp-action="Detail" asp-route-id="@item.Id">
+										@if (item.Title.Length > 55)
+										{
+											@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 55) + " ...")
+										}
+										else
+										{
+											@item.Title
+										}
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li><span>@item.Hits.Count() görüntülenme</span></li>
+										<li><span>@item.Likes.Count() beğeni</span></li>
+										<li>Yayın: <span>@item.CreatedDate.ToShortDateString()</span></li>
+									</ul>
+								</div>
+								<div class="description">
+									@if (item.Subtitle.Length > 130)
+									{
+										<p>@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Subtitle, 130) + " ...")</p>
+									}
+									else
+									{
+										<p>@item.Subtitle</p>
+									}
+									<a asp-controller="SectorNews" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detayını Oku</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>

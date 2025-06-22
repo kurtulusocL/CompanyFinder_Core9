@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.CompanyId != null)
+	{
+		if (Model.Company.CityId != null)
+		{
+			<p>
+				Firma Lokasyon: @Model.Company.City.Name, @Model.Company.Country.Name
+				@await Component.InvokeAsync("ExplorerCompanyContact", new { id = Model.CompanyId })
+			</p>
+		}
+		else
+		{
+			<p>
+				Firma Lokasyonu: @Model.Company.Country.Name
+			</p>
+		}
+	}
+	else
+	{
+		<p>Şehir ve Ülke bilgisi girilmemiş.</p>
+	}
+}
+else
+{
+	<p>---</p>
+}

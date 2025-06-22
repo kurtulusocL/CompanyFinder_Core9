@@ -1,0 +1,164 @@
+﻿@model IEnumerable<Company>
+@{
+	ViewData["Title"] = "Firma Listesi";
+	ViewData["Subtitle"] = "Eklenilen Tüm Firmaların Listesi ve Onların Yönetimi";
+	ViewData["Warning"] = "Eğer sadece bir firma kayıtlı ise ya da diğer firmalarınızı sildikten sonra sadece bir firmanız kalırsa ve bu kalan son firmanızı da silmek siterseniz, lütfen bizimle iletişim kurun.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator left-align">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="inner index-3">
+	<div id="web-developer" class="gray-bg">
+		<div class="container">
+			<div class="section_heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+				<div class="row">
+					@foreach (var item in Model)
+					{
+						<div class="item col-lg-12 col-md-12 col-md-12 col-xs-12">
+							<div class="client_dp"> <img src="~/img/company/logo/@item.Logo" style="max-width:245px;max-height:190px;" asp-append-version="true" /> </div>
+							<div class="team-card">
+								<div class="name_designation">
+									<h5><a>@item.Name</a></h5>
+									<span>Kuruluş: @item.FoundationDate.ToShortDateString() | </span>
+									@if (item.CityId != null)
+									{
+										<span>Lokasyon: @item.City.Name, @item.Country.Name | </span>
+									}
+									else
+									{
+										<span>Lokasyon: @item.Country.Name | </span>
+									}
+									@if (item.CompanySubcategoryId != null)
+									{
+										<span>
+											Sektör: @item.CompanyCategory.Name, @item.CompanySubcategory.Name | 
+										</span>
+									}
+									else
+									{
+										<span>Sektör: @item.CompanyCategory.Name | </span>
+									}
+									@if (item.UserId != null)
+									{
+										<span>
+											Ekleyen: @item.User.NameSurname, @item.User.Email
+										</span>
+									}
+								</div>
+								<div class="description">
+									@if (item.Slogan != null)
+									{
+										<p>Slogan: @item.Slogan</p>
+									}									
+								</div>
+								<div class="description">
+									@Html.Raw(item.Desc)
+								</div>
+								<div class="description">
+									@if (item.WebsiteUrl != null)
+									{
+										<a href="@item.WebsiteUrl" class="btn btn-danger btn-sm" target="_blank">İnternet Sitesi</a>
+									}
+									@if (item.Hits.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="HitCompanyUserList" asp-route-id="@item.Id" class="btn btn-dark btn-sm">Görüntüleyenler</a>
+									}
+									@if (item.Likes.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="LikedCompanyUserList" asp-route-id="@item.Id" class="btn btn-dark btn-sm">Beğenenler</a>
+									}
+									@if (item.SaveContents.Count() > 0)
+									{
+										<a asp-controller="HomeCompany" asp-action="SavedCompanyUserList" asp-route-id="@item.Id" class="btn btn-dark btn-sm">Kaydedenler</a>
+									}
+									@if (item.IsCommentable == true)
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetCompanyNotCommentable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Yoruma Kapalı Yap</a>
+									}
+									else
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetCompanyCommentable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Yorumlara Aç</a>
+									}
+									<a asp-controller="CompanyOperation" asp-action="CompanyUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Bilgileri Güncelle</a>
+									<br />
+									<a asp-controller="HomeCompany" asp-action="CompanyContactList" asp-route-id="@item.Id" class="btn btn-info btn-sm">İletişim Adresleri</a>
+									<a asp-controller="HomeCompany" asp-action="CompanyImageList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Firma Resimleri</a>
+									<a asp-controller="HomeCompany" asp-action="CustomerList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Müşteri Listesi</a>
+									<a asp-controller="HomeCompany" asp-action="YourCompanyForumList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Forum Konusu Listesi</a>
+									<a asp-controller="HomeCompany" asp-action="PartnershipList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Teklif / Talep Listesi</a>
+									<a asp-controller="HomeCompany" asp-action="ProductList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Firma Ürün Listesi</a>
+									<a asp-controller="HomeCompany" asp-action="BlogList" asp-route-id="@item.Id" class="btn btn-info btn-sm">Firma Blog Listesi</a>
+									<a asp-controller="HomeCompany" asp-action="YourCompanyAppointmentList" asp-route-id="@item.UserId" class="btn btn-dark btn-sm">Gelen Randevu Talepleri</a>
+									<a asp-controller="HomeCompany" asp-action="AppointmentList" asp-route-id="@item.UserId" class="btn btn-dark btn-sm">Giden Randevu Talebi</a>
+									<a asp-controller="HomeCompany" asp-action="YourCompanyQuestionList" asp-route-id="@item.UserId" class="btn btn-dark btn-sm">Gelen Sorular</a>
+									<a asp-controller="HomeCompany" asp-action="YourCompanyReportList" asp-route-id="@item.UserId" class="btn btn-dark btn-sm">Gelen Şikayetler</a>
+									<a asp-controller="HomeCompany" asp-action="YourCompanyCommentList" asp-route-id="@item.UserId" class="btn btn-dark btn-sm">Gelen Yorumlar</a>
+									<br />
+									<a asp-controller="CompanyOperation" asp-action="CompanyContactCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">İletişim Adresi Ekle</a>
+									<a asp-controller="CompanyOperation" asp-action="CompanyImageCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Firmanın Resimlerini Ekle</a>
+									<a asp-controller="CompanyOperation" asp-action="CompanyPartnershipCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Telkif / Talep Yayınla</a>
+									<a asp-controller="CompanyForm" asp-action="TopicCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Foruma Konu Aç</a>
+									<a asp-controller="CompanyOperation" asp-action="CustomerCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Müşteri Ekle</a>
+									<a asp-controller="CompanyOperation" asp-action="ProductCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Ürün Ekle</a>
+									<a asp-controller="CompanyOperation" asp-action="BlogCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Blog Makalesi Ekle</a>
+									@if (Model.Count() > 1)
+									{
+										<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteCompany', @item.Id); return false;" class="btn btn-danger btn-sm">Firmayı Sil</a>
+									}
+								</div>
+								<hr />
+								<div class="social_links">
+									<ul style="color:black">
+										<li><a>@item.Blogs.Count() blog</a></li>
+										<li><a>@item.CompanyContacts.Count() iletişim bilgisi</a></li>
+										<li><a>@item.Comments.Count() yorum</a></li>
+										<li><a>@item.Hits.Count() görüntülenme</a></li>
+										<li><a>@item.Likes.Count() beğeni</a></li>
+										<li><a>@item.Pictures.Count() resim</a></li>
+										<li><a>@item.Products.Count() ürün</a></li>
+										<li><a>@item.Reports.Count() şikayet</a></li>
+										<li><a>@item.SaveContents.Count() kaydedilme</a></li>
+									</ul>
+								</div>
+								<hr />
+								<div class="description">
+									<span style="color:black">@ViewData["Warning"]</span>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

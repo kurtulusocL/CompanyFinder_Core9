@@ -1,0 +1,313 @@
+﻿@model Company
+@{
+	ViewData["Title"] = "Firma Detayı";
+	ViewData["Subtitle"] = "Firma Detay Bilgisi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="single-post-detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 blog-detail">
+					<div class="post-img">
+						<img src="~/img/company/logo/@Model.Logo" style="max-height:528px;max-width:828px;" asp-append-version="true" />
+					</div>
+					<div class="post-detail">
+						<div class="about-post">
+							<h4>@Model.Name</h4>
+							<div class="post-status">
+								<ul>
+									@if (Model.CityId != null)
+									{
+										<li>
+											<span>
+												<a asp-controller="Company" asp-action="City" asp-route-id="@Model.CityId">@Model.City.Name</a>
+											</span>
+											<span>
+												<a asp-controller="Company" asp-action="Country" asp-route-id="@Model.CountryId">, @Model.Country.Name</a>
+											</span>
+										</li>
+									}
+									else
+									{
+										<li>
+											<span>
+												<a asp-controller="Company" asp-action="Country" asp-route-id="@Model.CountryId">@Model.Country.Name</a>
+											</span>
+										</li>
+									}
+									<li>@Model.Hits.Count() görüntülenme</li>
+									<li>@Model.Likes.Count() beğeni</li>
+									<li>@Model.SaveContents.Count() kaydedilme</li>
+									<li>Kuruluş: @Model.FoundationDate.Year</li>
+								</ul>
+							</div>
+							<div class="description">
+								@if (Model.Slogan != null)
+								{
+									<div class="special-quote">
+										@Model.Slogan
+									</div>
+								}
+								<p>@Html.Raw(Model.Desc)</p>
+							</div>
+							@await Component.InvokeAsync("HitCompany", new { id = Model.Id })
+							<div class="clearfix"></div>
+						</div>
+						@if (Model.Pictures.Count() > 0)
+						{
+							<div class="col-lg-12 col-md-12 col-sm-12 home-demos">
+								<div class="heading text-center">
+									<h6>Firmanın Diğer Resimleri</h6>
+								</div>
+								<hr />
+								<div class="row">
+									@await Component.InvokeAsync("ExplorerCompanyDetaillmage", new { id = Model.Id })
+								</div>
+							</div>
+						}
+						<div class="tags_share">
+							<div class="tags">
+								<ul>
+									@if (Model.CompanySubcategoryId != null)
+									{
+										<li>
+											<a asp-controller="Company" asp-action="Category" asp-route-id="@Model.CompanyCategoryId" class="btn btn-info btn-sm">Kategorisi: @Model.CompanyCategory.Name</a>
+										</li>
+										<li>
+											<a asp-controller="Company" asp-action="Subcategory" asp-route-id="@Model.CompanySubcategoryId" class="btn btn-info btn-sm">Altkategorisi: @Model.CompanySubcategory.Name</a>
+										</li>
+									}
+									else
+									{
+										<li>
+											<a asp-controller="Company" asp-action="Category" asp-route-id="@Model.CompanyCategoryId" class="btn btn-info btn-sm">Kategorisi: @Model.CompanyCategory.Name</a>
+										</li>
+									}
+									<li>
+										<a asp-controller="Company" asp-action="Like" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Like (@Model.Likes.Count())</a>
+									</li>
+									<li><a asp-controller="Company" asp-action="SaveCompany" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Kaydet (@Model.SaveContents.Count())</a></li>
+								</ul>
+							</div>
+							<div class="share_on">
+								<div class="icons">
+									@if (Model.WebsiteUrl != null)
+									{
+										<a href="@Model.WebsiteUrl" class="btn btn-primary btn-sm" target="_blank" style="color:black">Ziyaret Et</a>
+									}
+									<a asp-controller="Company" asp-action="Report" asp-route-id="@Model.Id" class="btn btn-danger btn-sm" target="_blank" style="color:black">Bildir</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					@if (Model.CompanyContacts.Count() > 0)
+					{
+						<div class="author_sec">
+							@await Component.InvokeAsync("ExplorerCompanyDetailContact", new { id = Model.Id })
+							<div class="clearfix"></div>
+						</div>
+					}
+					@if (Model.IsCommentable == true)
+					{
+						<div class="comments">
+							<h5>Toplamda <span> @Model.Comments.Count() yorum </span> yapılmış.</h5>
+							<div class="separator left-align">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<div class="clearfix"></div>
+							<ol class="comments-list">
+								@await Component.InvokeAsync("ExplorerCompanyDetailComment", new { id = Model.Id })
+							</ol>
+						</div>
+						<div class="reply_form">
+							<h5>Buradan Yorum Yapabilirsiniz</h5>
+							<h5>
+								<span class="badge badge-info">* ile gösterilen alanlar zorunludur.</span>
+							</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							@await Component.InvokeAsync("ExplorerCompanyCommentForm", new { id = Model.Id })
+						</div>
+					}
+				</div>
+				<aside class="col-lg-3 col-md-12 col-sm-12 col-xs-12 sidebar right">
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firmaya Soru Sor</h5>
+							<h5>
+								<span class="badge badge-info">* ile gösterilen alanlar zorunludur.</span>
+							</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="quick-connect-form">
+								@await Component.InvokeAsync("ExplorerCompanyDetailQuestion", new { id = Model.Id })
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Randevu Talep Et</h5>
+							<h5>
+								<span class="badge badge-info">* ile gösterilen alanlar zorunludur.</span>
+							</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="quick-connect-form">
+								@await Component.InvokeAsync("ExplorerCompanyDetailAppointment", new { id = Model.Id })
+							</div>
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Bu Firmaları Gördünüz Mü?</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("ExplorerCompanyRandomCompany")
+						</div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Kategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Altkategorileri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanySubcategoryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Şehirleri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCityList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>Firma Ülkeleri</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							<div class="tags">
+								<ul>
+									@await Component.InvokeAsync("ExplorerCompanyCountryList")
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="widget">
+						<div class="sidebar_heading">
+							<h5>İş Ortaklarımız</h5>
+							<div class="separator left-align ">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="widget-content">
+							@await Component.InvokeAsync("RandomAd")
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+</section>

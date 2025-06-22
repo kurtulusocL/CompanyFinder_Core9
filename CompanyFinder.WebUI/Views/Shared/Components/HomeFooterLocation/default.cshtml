@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Contact>
+@{
+	Layout = null;
+}
+
+@foreach(var item in Model)
+{
+	<div class="detail">
+		<h5>Adres</h5>
+		<div class="content"> Ofice :<span class="value"> @item.City, @item.Country </span> </div>
+	</div>
+}

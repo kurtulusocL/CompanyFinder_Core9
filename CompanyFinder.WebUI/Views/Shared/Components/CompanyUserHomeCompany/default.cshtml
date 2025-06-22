@@ -1,0 +1,100 @@
+﻿@model Company
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div class="member-pic">
+					<img src="~/img/company/logo/@Model.Logo" asp-append-version="true" />
+				</div>
+				<hr />
+				@if (Model.WebsiteUrl != null)
+				{
+					<a href="@Model.WebsiteUrl" class="btn btn-info btn-sm" style="color:black" target="_blank">@Model.Name Website</a>
+				}
+				<a asp-controller="HomeCompany" asp-action="CompanyList" asp-route-id="@Model.UserId" class="btn btn-primary btn-sm" style="color:black"> Tüm Firmalarınız</a>
+				<br /><br />
+				<a asp-controller="CompanyOperation" asp-action="CompanyUpdate" asp-route-id="@Model.Id" class="btn btn-success btn-sm" style="color:black"> Bilgileri Güncelle</a>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+				<div class="about_member">
+					<div class="name_designation">
+						<h3>@Model.Name</h3>
+						@if (Model.CompanySubcategoryId != null)
+						{
+							<h6>Kategori: @Model.CompanyCategory.Name, @Model.CompanySubcategory.Name</h6>
+						}
+						else
+						{
+							<h6>Kategori: @Model.CompanyCategory.Name</h6>
+						}
+						<h6>Kuruluş: @Model.FoundationDate.ToShortDateString()</h6>
+					</div>
+					<div class="social_media">
+						<ul>
+							@if (Model.IsCommentable == true)
+							{
+								<li>
+									<span class="btn btn-info">Firmaya Yorum Yapılabilir</span>
+								</li>
+							}
+							else
+							{
+								<li>
+									<span class="btn btn-warning">Firmaya Yorumlara Kapalı</span>
+								</li>
+							}
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+					<div class="description">
+						@if (Model.Slogan != null)
+						{
+							<p>
+								@Model.Slogan
+							</p>
+						}
+						<p>
+							@Html.Raw(Model.Desc)
+						</p>
+					</div>
+				</div>
+				<div class="contact-detail">
+					@await Component.InvokeAsync("CompanyUserHomeCompanyContact", new { id = Model.Id })
+					<a asp-controller="CompanyOperation" asp-action="CompanyContactCreate" asp-route-id="@Model.Id" class="btn btn-primary btn-sm btn-rounded">Yeni İletişim Bilgisi Ekle</a>	<a asp-controller="HomeCompany" asp-action="CompanyContactList" asp-route-id="@Model.Id" class="btn btn-info btn-sm btn-rounded">İletişim Bilgileri</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 work-status">
+			@await Component.InvokeAsync("CompanyUserHomeCompanyCounter", new { id = Model.UserId })
+		</div>
+	</div>
+}
+else
+{
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div class="member-pic"> <img src="~/img/statics/emptyCompany.jpg" alt="Member" /> </div>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+				<div class="about_member">
+					<div class="name_designation">
+						<h3>
+							Henüz Firmanız Eklemediniz. <br />
+							İlk Firmanızı Eklemek İster Misiniz?
+						</h3>
+						<h6>
+							<a asp-controller="CompanyOperation" asp-action="CompanyCreate" asp-route-id="@ViewData["userId"]" class="btn btn-primary" style="color:black"> Firma Ekle</a>
+						</h6>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

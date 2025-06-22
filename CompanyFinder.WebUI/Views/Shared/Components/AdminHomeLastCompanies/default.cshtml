@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Company>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="author-permissio-wrap shadow-reset">
+		<div class="author-per-img">
+			<a asp-controller="CompanyManagement" asp-action="CompanyDetail" asp-route-id="@item.Id">
+				<img src="~/img/company/logo/@item.Logo" style="max-height:75px;max-width:75px;min-height:75px;min-width:75px;" asp-append-version="true">
+			</a>
+			<div class="author-per-content">
+				<h2>@item.Name</h2>
+				@if (item.CompanySubcategoryId != null)
+				{
+					<p>@item.CompanyCategory.Name, @item.CompanySubcategory.Name</p>
+				}
+				else
+				{
+					<p>@item.CompanyCategory.Name</p>
+				}
+				@if (item.CityId != null)
+				{
+					<p>@item.City.Name, @item.Country.Name</p>
+				}
+				else
+				{
+					<p>@item.Country.Name</p>
+				}
+				@if (item.UserId != null)
+				{
+					<a>@item.User.NameSurname, @item.User.Email</a>
+				}
+				else
+				{
+					<a>No User Information</a>
+				}
+			</div>
+		</div>
+	</div>
+	<br />
+}

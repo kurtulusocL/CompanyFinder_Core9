@@ -1,0 +1,167 @@
+﻿@using System.Web
+@model IEnumerable<Stock>
+@{
+	ViewData["Title"] = "Active Stock List";
+	ViewData["Subtitle"] = "Stock Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Stock" asp-action="kurtulusocL">Stock Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Stock" asp-action="ByQuantity">Stock Quantities</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Stock" asp-action="StockOps">Stock Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+								data-toggle="table"
+								data-pagination="true"
+								data-resizable="true"
+								data-search="true"
+								data-show-columns="true"
+								data-show-pagination-switch="true"
+								data-show-refresh="true"
+								data-key-events="true"
+								data-show-toggle="true"
+								data-cookie="true"
+								data-cookie-id-table="saveId"
+								data-show-export="true"
+								data-click-to-select="true"
+								data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="userInfo">Company Info</th>
+											<th data-field="savedContent">Product Info</th>
+											<th data-field="savedContent">Stock Code</th>
+											<th data-field="savedContent">Quantity</th>
+											<th data-field="savedContent">Warehouse</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.ProductId != null)
+													{
+														if (item.Product.CompanyId != null)
+														{
+															<ul>
+																<li>CompanyId: @item.Product.CompanyId</li>
+																<li>Company Name: @item.Product.Company.Name</li>
+															</ul>
+															<a asp-controller="Stock" asp-action="ByCompany" asp-route-id="@item.Product.CompanyId" class="btn btn-custon-rounded-two btn-info">
+																See All Company Stocks
+															</a>
+														}
+														else
+														{
+															<strong style="color:darkred">No Company Info</strong>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">No Product Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.ProductId != null)
+													{
+														<ul>
+															<li>ProductId: @item.ProductId</li>
+															<li>Product Name: @item.Product.Name</li>
+														</ul>
+														<a asp-controller="Stock" asp-action="ByProduct" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-info">
+															See All Product Stocks
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Product Info</strong>
+													}
+												</td>
+												<td>@item.Code</td>
+												<td>@item.Quantity</td>
+												<td>
+													@if (item.Warehouse != null)
+													{
+														if (item.Warehouse.Length > 65)
+														{
+															@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Warehouse, 65) + " ...")
+														}
+														else
+														{
+															@item.Warehouse
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">No Warehouse Info</strong>
+													}
+												</td>
+												<td>
+													<a asp-controller="Stock" asp-action="StockDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

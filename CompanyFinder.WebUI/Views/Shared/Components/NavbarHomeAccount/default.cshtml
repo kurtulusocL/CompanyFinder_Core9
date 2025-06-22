@@ -1,0 +1,28 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="follow_us_on">
+	<ul>
+		@if (User.IsInRole("Companies"))
+		{
+			<li>
+				<a asp-controller="HomeCompany" asp-action="Index" asp-route-id="@ViewData["userId"]" class="btn btn-dark btn-rounded btn-sm">Firma Yönetim Paneli</a>
+			</li>
+			<li><span class="separator-pipesign white"></span></li>
+			<li>
+				<a asp-controller="AccountCompany" asp-action="Logout" class="btn btn-dark btn-rounded btn-sm">Çıkış Yap</a>
+			</li>
+		}
+		@if (!User.IsInRole("Companies"))
+		{
+			<li>
+				<a asp-controller="HomeAdmin" asp-action="Index" asp-route-id="@ViewData["adminId"]" class="btn btn-primary btn-rounded btn-sm">Dashboard</a>
+			</li>
+			<li><span class="separator-pipesign white"></span></li>
+			<li>
+				<a asp-controller="AccountAdmin" asp-action="Logout" class="btn btn-dark btn-rounded btn-sm">Logout</a>
+			</li>
+		}
+	</ul>
+</div>

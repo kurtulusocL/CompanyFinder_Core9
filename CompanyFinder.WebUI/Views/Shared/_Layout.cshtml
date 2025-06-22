@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>btub.online | @ViewData["Title"]</title>
+	@await Component.InvokeAsync("LayoutInfo")
+	@await Component.InvokeAsync("IconLogo")
+	<link rel="stylesheet" href="~/temp/web/css/animate.css" />
+	<link rel="stylesheet" href="~/temp/web/css/flaticon.css" />
+	<link rel="stylesheet" href="~/temp/web/css/bootstrap.min.css" />
+	<link href="~/css/pagedlist.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/temp/web/css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="~/temp/web/css/owl.theme.default.min.css" />
+	<link rel="stylesheet" href="~/temp/web/css/lightbox.css" />
+	<link rel="stylesheet" href="~/temp/web/css/skin-blue.css" />
+	<link rel="stylesheet" href="~/temp/web/css/header.css" />
+	<link rel="stylesheet" href="~/temp/web/css/style.css" />
+	<link rel="stylesheet" href="~/temp/web/css/responsive.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="preloader js-preloader flex-center">
+		<div class="dots">
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+	</div>
+	<div class="wraper">
+		<div class="header-top contact_info">
+			<div class="container">
+				<div class="col-lg-12 col-md-12">
+					<div class="row">						
+						<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mail-call text-left">
+							@await Component.InvokeAsync("HomeHeaderContact")
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
+						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+							<partial name="_accountNavbarPartial" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<header class="header index-2">
+			<div class="container">
+				<nav class="navbar navbar-expand-lg">
+					<h2 class="nav-brand">
+						@await Component.InvokeAsync("HomeHeaderLogo")
+					</h2>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content"
+							aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+						<span class="navbar-toggler-icon"></span>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<partial name="_navbarPartial" />
+				</nav>
+			</div>
+		</header>
+
+		@RenderBody()
+
+		<section id="quick-connect" class="index-3">
+			<partial name="_layoutDropInformationPartial" />
+		</section>
+	</div>
+	<footer class="home index-3">
+		<partial name="_footerPartial" />
+	</footer>
+	<script src="~/download.js"></script>
+	<script src="~/sw.js"></script>
+	<a href="~/manifest.json"></a>
+	<script src="~/temp/web/js/jquery.min.js"></script>
+	<script src="~/temp/web/js/popper.min.js"></script>
+	<script src="~/temp/web/js/bootstrap.min.js"></script>
+	<script src="~/temp/web/js/waypoints.min.js"></script>
+	<script src="~/temp/web/js/jquery.counterup.min.js"></script>
+	<script src="~/temp/web/js/jquery.preloadinator.min.js"></script>
+	<script>
+		$('.js-preloader').preloadinator({
+		  minTime: 2000
+		});
+	</script>
+	<script src="~/temp/web/js/lightbox.js"></script>
+	<script src="~/temp/web/js/imagesloaded.js"></script>
+	<script src="~/temp/web/js/isotope.min.js"></script>
+	<script src="~/temp/web/js/owl.carousel.js"></script>
+	<script src="~/temp/web/js/owl.custom.js"></script>
+	<script src="~/temp/web/js/jquery.parallax-1.1.3.js"></script>
+	<script src="~/temp/web/js/jquery.localscroll-1.2.7-min.js"></script>
+	<script src="~/temp/web/js/jquery.smartmenus.min.js"></script>
+	<script src="~/temp/web/js/custom.js"></script>
+</body>
+</html>

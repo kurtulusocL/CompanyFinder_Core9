@@ -1,0 +1,95 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<ToDo>
+@{
+	ViewData["Title"] = "Open Task List";
+	ViewData["Subtitle"] = "Task Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="contact-clients-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="contact-client-single shadow-reset ct-client-b-mg-30 ct-client-b-mg-30-n contact-client-v2">
+							@if (item.UserId != null)
+							{
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="contact-client-img contact-img-v2">
+											@await Component.InvokeAsync("TaskProfileImage", new { id = item.UserId })
+											<h2><a class="contact-client-name">@item.User.NameSurname</a></h2>
+											@if (item.IsFinished == true)
+											{
+												<h1><a>Closed Task</a></h1>
+											}
+											else
+											{
+												<h1><a>Open Task</a></h1>
+											}
+										</div>
+										<div class="contact-client-address">
+											<h3>@item.Title</h3>
+											<p class="address-client-ct client-addres-v2">
+												@if (item.Desc.Length > 75)
+												{
+													@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 75) + " ..."))
+												}
+												else
+												{
+													@Html.Raw(item.Desc)
+												}
+											</p>
+											<p>
+												Started at: @item.StartDate.ToShortDateString() - End Date: @item.EndDate.ToShortDateString()
+											</p>
+										</div>
+										<div class="contact-client-footer">
+											<div class="btn-group">
+												@if (item.IsActive == true)
+												{
+													<a asp-controller="ToDo" asp-action="SetFinished" asp-route-id="@item.Id" class="btn btn-xs btn-white"> Set Closed Task </a>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							else
+							{
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="contact-client-img contact-img-v2">
+											<a>
+												<img src="~/img/statics/user.png" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px;" />
+											</a>
+											<h2><a class="contact-client-name">No Authenticated Admin</a></h2>
+											<h1></h1>
+										</div>
+										<div class="contact-client-address">
+											<h3>No Task Title.</h3>
+											<p class="address-client-ct client-addres-v2">No Task Information</p>
+											<p></p>
+										</div>
+										<div class="contact-client-footer"></div>
+									</div>
+								</div>
+							}
+						</div>
+						<hr />
+					</div>
+				}
+			</div>
+			<div class="pagination">
+				<div class="pagination-info">
+					@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

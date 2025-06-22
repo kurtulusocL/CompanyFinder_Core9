@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Logo>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<link rel="shortcut icon" type="image/x-icon" href="~/img/us/logo/@item.ImageUrl">
+}

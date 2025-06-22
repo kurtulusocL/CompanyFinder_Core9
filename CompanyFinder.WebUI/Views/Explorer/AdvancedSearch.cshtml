@@ -1,0 +1,104 @@
+﻿@{
+	ViewData["Title"] = "Detaylı Arama Yapabilirsiniz";
+	ViewData["Subtitle"] = "Filtreleyerek Firma ya da Ürün Arama Yapabilirsiniz.";
+	ViewData["CompanySearch"] = "Filtreleyerek Firma Arayabilirsiniz.";
+	ViewData["productSearch"] = "Filtreleyerek Ürün Arayabilirsiniz.";
+	ViewData["partnershipSearch"] = "Filtreleyerek Teklif / Talep Arayabilirsiniz.";
+	ViewData["CompanyMatch"] = "İlgili Alanları İsteyerek Firmanız İçin En İyi Eşleşmeyi Bulablirsiniz.";
+	ViewData["markup"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["markup"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="form-header text-center">
+							<h4>@ViewData["CompanySearch"]</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<p>@ViewData["Title"]</p>	
+							<p>@ViewData["markup"]</p>
+						</div>
+						<div class="contact-form">
+							@await Component.InvokeAsync("AdvancedCompanySearch")
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="form-header text-center">
+							<h4>@ViewData["ProductSearch"]</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<p>@ViewData["Title"]</p>
+							<p>@ViewData["markup"]</p>
+						</div>
+						<div class="contact-form">
+							@await Component.InvokeAsync("AdvancedProductSearch")
+						</div>
+					</div>	
+					<div class="col-gl-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-header text-center">
+							<h4>@ViewData["partnershipSearch"]</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<p>@ViewData["Title"]</p>
+							<p>@ViewData["markup"]</p>
+						</div>
+						<div class="contact-form">
+							@await Component.InvokeAsync("AdvancedPartnershipSearch")
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-header text-center">
+							<h4>@ViewData["ProductSearch"]</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<p>@ViewData["CompanyMatch"]</p>
+							<p>@ViewData["markup"]</p>
+						</div>
+						<div class="contact-form">
+							@await Component.InvokeAsync("ExplorerCompanyMatch")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

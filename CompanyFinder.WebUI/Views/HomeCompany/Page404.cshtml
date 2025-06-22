@@ -1,0 +1,32 @@
+﻿@{
+	ViewData["Title"] = "Hata 404";
+	ViewData["Subtitle"] = "Aradığınız Sayfa ya da Yapmak İstediğiniz İşlem Bulunamadı.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="page-not-found" class="gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-4 col-sm-12 col-xs-12 text-center img_sec">
+				<img src="~/temp/web/img/error_404.png" alt="Errow 404" />
+			</div>
+			<div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 text-center content_sec">
+				<div class="errow-heading">
+					<img src="~/temp/web/img/oops.png" alt="oops" />
+				</div>
+				<div class="error-content">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<a asp-controller="HomeCompany" asp-action="Index" asp-route-id="@ViewData["userId"]">Anasayfaya Dön</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+﻿@model Question
+@{
+	Layout = null;
+}
+
+@if (ViewData["questionCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Question</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["questionCount"]</span></h3>
+		</div>
+	</div>
+}

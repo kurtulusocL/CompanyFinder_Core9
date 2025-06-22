@@ -1,0 +1,55 @@
+﻿@model User
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.Id!=null)
+	{
+		<li class="nav-item">
+			<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+				<span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+				<span class="admin-name">@Model.UserName</span>
+				<span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+			</a>
+			<ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
+				<li>
+					<a asp-controller="HomeAdmin" asp-action="MyProfile" asp-route-id="@Model.Id"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Profile</a>
+				</li>
+				<li>
+					<a asp-controller="HomeAdmin" asp-action="CreateProfileImage" asp-route-id="@Model.Id"><span class="adminpro-icon adminpro-user-rounded author-log-ic"></span>Add Profile Image</a>
+				</li>
+				<li>
+					<a asp-controller="AccountAdmin" asp-action="ChangePassword" asp-route-id="@Model.Id"><span class="adminpro-icon adminpro-money author-log-ic"></span>Change Password</a>
+				</li>
+				<li>
+					<a asp-controller="AccountAdmin" asp-action="UpdateProfile" asp-route-id="@Model.Id"><span class="adminpro-icon adminpro-settings author-log-ic"></span>Update Password</a>
+				</li>
+				<li>
+					<a asp-controller="AccountAdmin" asp-action="Logout"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
+				</li>
+			</ul>
+		</li>
+	}
+	else
+	{
+		<li class="nav-item">
+			<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+				<span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+				<span class="admin-name">!!!</span>
+				<span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+			</a>			
+		</li>
+	}
+}
+else
+{
+	<li class="nav-item">
+		<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+			<span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+			<span class="admin-name">???</span>
+			<span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+		</a>		
+	</li>
+}

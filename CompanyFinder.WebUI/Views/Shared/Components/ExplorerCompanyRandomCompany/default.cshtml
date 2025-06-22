@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Company>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img">
+			<img src="~/img/company/logo/@item.Logo" style="max-height:66px;max-width:69px;" asp-append-version="true" />
+		</div>
+		<div class="post-content">
+			<a asp-controller="Company" asp-action="Detail" asp-route-id="@item.Id">
+				@item.Name
+			</a>
+			@if (item.CityId != null)
+			{
+				<div class="post-status"> <span>@item.City.Name, @item.Country.Name</span> </div>
+			}
+			@if (item.CompanySubcategoryId != null)
+			{
+				<div class="post-status"> <span>@item.CompanySubcategory.Name, @item.CompanyCategory.Name</span> </div>
+			}
+			else
+			{
+				<div class="post-status"> <span>@item.CompanyCategory.Name</span> </div>
+			}
+		</div>
+	</div>
+}

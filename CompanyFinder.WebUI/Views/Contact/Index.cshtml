@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "İletişim Sayfası";
+    ViewData["Subtitle"] = "Bizimle İletişim Bilgilimiz Aracılığıyla İletişime Geçebilirsiniz.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+    <div class="container">
+        <div class="row">
+            <div class="inner-heading">
+                <h2>@ViewData["Title"]</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact-us">
+    <div class="container">
+        @foreach(var item in Model)
+        {
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contact-detail">
+                <div class="row">                    
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="contact-card">
+                            <div class="icon"><i class="flat flaticon-facebook-placeholder-for-locate-places-on-maps"></i></div>
+                            <div class="heading">
+                                <h5>Lokasyon</h5>
+                            </div>
+                            <div class="description">
+                                <p>@item.City, @item.Country </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="contact-card">
+                            <div class="icon"><i class="flat flaticon-mail-black-envelope-symbol"></i></div>
+                            <div class="heading">
+                                <h5>Email Address</h5>
+                            </div>
+                            <div class="description">
+                                <p>İletişim: @item.PrincipalEmail</p>
+                                <p>İş: @item.BusinessEmail</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mid-content">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            @if (item.Mernis != null)
+                            {
+                                <div class="description">
+                                    MERNIS: <span> @item.Mernis</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

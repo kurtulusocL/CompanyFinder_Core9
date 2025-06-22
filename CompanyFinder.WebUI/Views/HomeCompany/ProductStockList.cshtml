@@ -1,0 +1,92 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Stock>
+@{
+	ViewData["Title"] = "Ürün Stok Listesi";
+	ViewData["Subtitle"] = "Ürünlerinizin Stok Durumları";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator left-align">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="inner index-3">
+	<div id="web-developer" class="gray-bg">
+		<div class="container">
+			<div class="section_heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+				<div class="row">
+					@foreach (var item in Model)
+					{
+						<div class="item col-lg-12 col-md-12 col-md-12 col-xs-12">
+							<div class="team-card">
+								<div class="name_designation">
+									@if (item.ProductId != null)
+									{
+										<h5>Ürün: @item.Product.Name</h5>
+									}
+									<span>Stok Kodu: @item.Code</span>
+								</div>
+								<div class="description">
+									@if (item.Quantity < 5)
+									{
+										<strong style="color:maroon">Stok: @item.Quantity</strong>
+									}
+									@if (item.Warehouse != null)
+									{
+										<p>Depo: @item.Warehouse</p>
+									}
+									else
+									{
+										<p>Depo Bilgisi Girilmemiş</p>
+									}
+								</div>
+								<div class="social_links">
+									<ul>
+										<li><a asp-controller="CompanyOperation" asp-action="StockUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Stoğu Güncelle</a></li>
+										<li>
+											<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteStokList', @item.Id); return false;" class="btn btn-danger btn-sm">Stoğu Sil</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+				<div class="pagination">
+					<div class="pagination-info">
+						@Html.PagedListPager(Model, page => Url.Action("ProductStockList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

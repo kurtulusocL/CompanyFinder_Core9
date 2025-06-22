@@ -1,0 +1,22 @@
+﻿@model Comment
+@{
+	Layout = null;
+}
+
+<form asp-controller="Blog" asp-action="CommentCreate" method="post">
+	@Html.AntiForgeryToken()
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-sm-12 col-xs-12 form-group">
+			<input type="text" asp-for="Subject" name="Subject" placeholder="Yorum Konusu" />
+		</div>		
+		<div class="col-md-12 col-sm-12 col-sm-12 col-xs-12 form-group">
+			<textarea asp-for="Text" name="Text" placeholder="Yorumunuzu Bu Alana Yazabilirsiniz." required></textarea>
+		</div>
+		<div class="col-md-3 col-sm-3 col-sm-5 col-xs-12 form-group mar-none">
+			<button type="submit">Yorum Yap <i class="flat flaticon-plane"></i></button>
+			<input type="hidden" asp-for="BlogId" />
+			<input type="hidden" asp-for="UserId" />
+		</div>
+	</div>
+</form>
+<partial name="_explorerAlertPartial" />

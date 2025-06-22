@@ -1,0 +1,39 @@
+﻿@model Product
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<li class="megamenu-column">
+		<ul>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="UserProductList" asp-route-id="@Model.UserId">Eklediğiniz Tüm Ürünler</a></li>
+			<li class="dropdown-item"><a> --> Ürüne Gelenler --></a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourSavedProductList" asp-route-id="@Model.UserId">Kaydedilen Ürünleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourProductLikeList" asp-route-id="@Model.UserId">Beğenilen Ürünleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourProductHitList" asp-route-id="@Model.UserId">Görüntülenen Ürünleriniz</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourProductQuestionList" asp-route-id="@Model.UserId">Ürünlere Gelen Sorular</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourProductReportList" asp-route-id="@Model.UserId">Ürünlere Gelen Şikayetler</a></li>
+			<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourProductCommentList" asp-route-id="@Model.UserId">Ürüne Gelen Yorumlar</a></li>
+		</ul>
+	</li>
+	@await Component.InvokeAsync("CompanyUserHeaderForBlog", new { id = Model.CompanyId })
+}
+else
+{
+	<li class="nav-item dropdown megamenu">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown">Firma & Ürün</a>
+		<ul class="dropdown-menu megamenu">
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+}

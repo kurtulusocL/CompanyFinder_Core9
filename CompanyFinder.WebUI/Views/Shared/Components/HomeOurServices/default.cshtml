@@ -1,0 +1,26 @@
+﻿@model IEnumerable<OurServices>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 column">
+		<div class="icon">
+			@if (item.IconUrl != null)
+			{
+				<img src="~/img/us/ourService/@item.IconUrl" style="max-height:70px;max-width:70px;" asp-append-version=true />
+			}
+			else
+			{
+				<img src="~/img/statics/verification.png" style="max-height:70px;max-width:70px;" asp-append-version=true />
+			}
+		</div>
+		<div class="heading">
+			<h5>@item.Title</h5>
+		</div>
+		<div class="description">
+			<p>@Html.Raw(item.Desc) </p>
+		</div>
+	</div>
+}

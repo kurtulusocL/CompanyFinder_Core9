@@ -1,0 +1,33 @@
+﻿@using System.Web
+@model IEnumerable<News>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img">
+			<img src="~/img/us/news/@item.ImageUrl" asp-append-version="true" />
+		</div>
+		<div class="post-content">
+			@if (item.Title.Length > 60)
+			{
+				<p>
+					<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">
+						@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 60) + " ....")
+					</a>
+				</p>
+			}
+			else
+			{
+				<p>
+					<a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">
+						@item.Title
+					</a>
+				</p>
+			}
+			<div class="post-status"> @item.CreatedDate.ToShortDateString() </div>
+		</div>
+	</div>
+}

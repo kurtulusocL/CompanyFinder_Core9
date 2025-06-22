@@ -1,0 +1,26 @@
+﻿@model User
+@{
+	ViewData["Title"] = "Firma Yönetim Paneli";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="team_member_detail">
+	<div class="container">
+		@await Component.InvokeAsync("CompanyUserHomeCompany", new { id = Model.Id })
+	</div>
+</section>
+@await Component.InvokeAsync("CompanyUserHomeProductBlog", new { id = Model.Id })

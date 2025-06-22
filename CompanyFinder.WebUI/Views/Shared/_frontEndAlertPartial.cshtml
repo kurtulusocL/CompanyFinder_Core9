@@ -1,0 +1,380 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="row">
+	@if (TempData["reportSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["reportSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reportSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["reportSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["productReportSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["productReportSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["productReportSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["productReportSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["productQuestionCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["productQuestionCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["productCommentCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["productCommentCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["blogCommentCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["blogCommentCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyCommentCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyCommentCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyReportSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyReportSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["dropInformationSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["dropInformationSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["dropInformationError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["dropInformationError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyLoginError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyLoginError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyRegisterError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyRegisterError"]</p>
+		</div>
+	}
+
+	@if (TempData["confirmMailError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["confirmMailError"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingContactSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["pricingContactSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingContactSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["pricingContactSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyResetPasswordError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyResetPasswordError"]</p>
+		</div>
+	}
+
+	@if (TempData["successResetPasswordCodeSent"] != null)
+	{
+		<div class="alert alert-success alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["successResetPasswordCodeSent"]</p>
+		</div>
+	}
+
+	@if (TempData["errorResetPasswordCodeSent"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["errorResetPasswordCodeSent"]</p>
+		</div>
+	}
+	
+	@if (TempData["sendCommentReportSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["sendCommentReportSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sendCommentReportError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["sendCommentReportError"]</p>
+		</div>
+	}
+
+	@if (TempData["sendCommentAnswerReportSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["sendCommentAnswerReportSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sendCommentAnswerReportError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["sendCommentAnswerReportError"]</p>
+		</div>
+	}
+
+	@if (TempData["partnershipReportSentSuccessfull"] != null)
+	{
+	<div class="alert alert-success alert-success-style1">
+		<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+			<span class="icon-sc-cl" aria-hidden="true">×</span>
+		</button>
+		<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["partnershipReportSentSuccessfull"]</p>
+	</div>
+	}
+
+	@if (TempData["partnershipReportSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["partnershipReportSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["formTopicCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["formTopicCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["formTopicCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["formTopicCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["formTopicUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["formTopicUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["formTopicUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["formTopicUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["formTopicAnswerCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["formTopicAnswerCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyFormReportSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["companyFormReportSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyFormReportSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["companyFormReportSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["sendCompanyFormAnswerReportSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Başarılı!</strong> @TempData["sendCompanyFormAnswerReportSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sendCompanyFormAnswerReportError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Hata!</strong> @TempData["sendCompanyFormAnswerReportError"]</p>
+		</div>
+	}
+
+</div>

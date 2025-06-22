@@ -1,0 +1,431 @@
+﻿@model Company
+@{
+	ViewData["Title"] = "Company Detail";
+	ViewData["Subtitle"] = "Company Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="kurtulusocL">Company Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="CommentableCompanies">Commentable Companies</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="NotCommentableCompanies">Not Commentable Companies</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="MessageAcceptedCompanies">Message Accepted Companies</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="MessageNotAcceptedCompanies">Message Not Accepted Companies</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="CompanyByFoundationDate">Company Foundation Dates</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyManagement" asp-action="CategoryOps">Company Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="project-details-area mg-b-40">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="project-details-wrap shadow-reset">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Active Status:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="btn-group project-list-ad">
+												@if (Model.IsActive == true)
+												{
+													<button class="btn btn-white btn-xs">Active</button>
+												}
+												else
+												{
+													<button class="btn btn-white btn-xs">DeActive</button>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Deleted Status:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="btn-group project-list-ad">
+												@if (Model.IsDeleted == true)
+												{
+													<button class="btn btn-white btn-xs">Deleted</button>
+												}
+												else
+												{
+													<button class="btn btn-white btn-xs">Not Deleted</button>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Created Date:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.CreatedDate.ToLongDateString()</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Updated Date:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.UpdatedDate != null)
+												{
+													<span>@Model.UpdatedDate.Value.ToLongDateString()</span>
+												}
+												else
+												{
+													<span>---</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>ID No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.Id</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>CategoryId No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.CompanyCategoryId</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>SubcategoryId No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.CompanySubcategoryId != null)
+												{
+													<span>@Model.CompanySubcategoryId</span>
+												}
+												else
+												{
+													<span class="badge badge-warning">No Subcategory</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>CountryId No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.CountryId</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>CityId No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.CityId != null)
+												{
+													<span>@Model.CityId</span>
+												}
+												else
+												{
+													<span class="badge badge-warning">No City</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>User ID No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.UserId != null)
+												{
+													<span>@Model.UserId</span>
+												}
+												else
+												{
+													<span class="badge badge-warning">No UserId</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="project-details-tab">
+									<ul class="nav nav-tabs res-pd-less-sm">
+										<li class="active">
+											<a data-toggle="tab" href="#menu1">@ViewData["Title"]</a>
+										</li>
+									</ul>
+									<div class="tab-content res-tab-content-project">
+										<div id="menu1" class="tab-pane fade in active animated zoomInLeft">
+											<div class="project-details-completeness">
+												<dl class="table table-striped">
+													<dt class="col-sm-4">
+														Company Name
+													</dt>
+													<dd class="col-sm-8">
+														@Model.Name
+													</dd>
+													<dt class="col-sm-4">
+														Company Slogan
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.Slogan != null)
+														{
+															@Model.Slogan
+														}
+														else
+														{
+															<strong style="color:darkred">No Slogan</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Company Description
+													</dt>
+													<dd class="col-sm-8">
+														@Html.Raw(Model.Desc)
+													</dd>
+													<dt class="col-sm-4">
+														Company Foundation Date
+													</dt>
+													<dd class="col-sm-8">
+														@Model.FoundationDate.ToShortDateString()
+													</dd>
+													<dt class="col-sm-4">
+														Company Website
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.WebsiteUrl != null)
+														{
+															<span>
+																Website Url: @Model.WebsiteUrl
+															</span>
+															<br />
+															<a href="@Model.WebsiteUrl" class="btn btn-custon-rounded-two btn-primary btn-sm" target="_blank">Go to Website</a>
+														}
+														else
+														{
+															<strong style="color:darkred">No Web Url</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Is Commentable Company
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.IsCommentable == true)
+														{
+															<strong style="color:darkblue">Commentable Company</strong>
+														}
+														else
+														{
+															<strong style="color:maroon">Not Commentable Company</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Location
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.CityId != null)
+														{
+															<span>
+																@Model.City.Name, @Model.Country.Name
+															</span>
+														}
+														else
+														{
+															<span>
+																@Model.Country.Name - <strong style="color:maroon">No City</strong>
+															</span>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Category - Subcategory
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.CompanySubcategoryId != null)
+														{
+															<span>
+																Category: @Model.CompanyCategory.Name - Subcategory: @Model.CompanySubcategory.Name
+															</span>
+														}
+														else
+														{
+															<span>
+																Category: @Model.CompanyCategory.Name - <strong style="color:maroon">No Subcategory</strong>
+															</span>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														User Info
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.UserId != null)
+														{
+															<ul>
+																<li>Name Surname: @Model.User.NameSurname</li>
+																<li>Username: @Model.User.UserName</li>
+																<li>Email: @Model.User.Email</li>
+																<li>Location: @Model.User.City, @Model.User.Country</li>
+															</ul>
+														}
+														else
+														{
+															<strong style="color:darkred">No User Information</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														User Status
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.UserId != null)
+														{
+															<ul>
+																@if (Model.User.IsActive == true)
+																{
+																	<li>Active User</li>
+																}
+																else
+																{
+																	<li>De Active User</li>
+																}
+																@if (Model.User.IsDeleted == true)
+																{
+																	<li>Deleted User</li>
+																}
+																else
+																{
+																	<li>Not Deleted User</li>
+																}
+															</ul>
+														}
+														else
+														{
+															<strong style="color:darkred">No User Information</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Counts
+													</dt>
+													<dd class="col-sm-8">
+														<ul>
+															<li>Appointments: @Model.Appointments.Count()</li>
+															<li>Blogs: @Model.Blogs.Count()</li>
+															<li>Company Partnership: @Model.CompanyPartnerships.Count()</li>
+															<li>Company Contacts: @Model.CompanyContacts.Count()</li>
+															<li>Comments: @Model.Comments.Count()</li>
+															<li>Company Messages: @Model.CompanyMessages.Count()</li>
+															<li>Hits: @Model.Hits.Count()</li>
+															<li>Likes: @Model.Likes.Count()</li>
+															<li>Pictures: @Model.Pictures.Count()</li>
+															<li>Products: @Model.Products.Count()</li>
+															<li>Questions: @Model.Questions.Count()</li>
+															<li>Reports: @Model.Reports.Count()</li>
+															<li>Saved: @Model.SaveContents.Count()</li>
+														</ul>
+													</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

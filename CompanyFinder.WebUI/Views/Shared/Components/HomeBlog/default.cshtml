@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Blog>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="item blog_card">
+		<div class="post-img">
+			<img src="~/img/company/blog/@item.ImageUrl" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+			<div class="posted_on"> <span class="date">@item.CreatedDate.Day</span> <span class="month">@item.CreatedDate.Month.</span> </div>
+		</div>
+		<div class="post-detail">
+			<h5>
+				<a asp-controller="Blog" asp-action="Detail" asp-route-id="@item.Id">
+					@item.Title
+				</a>
+			</h5>
+			<div class="post-status">
+				<ul>
+					<li><i class="flat flaticon-folder"></i> <span>@item.BlogCategory.Name</span></li>
+					<li><span>@item.Hits.Count() görüntülenme</span></li>
+					<li><span>@item.Likes.Count() beğeni</span></li>
+					<li><span>@item.SaveContents.Count() kaydedilme</span></li>
+					<li><span>@item.Comments.Count() yorum</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+}

@@ -1,0 +1,128 @@
+﻿@model Audit
+@{
+	ViewData["Title"] = "Delete Audit";
+	ViewData["Subtitle"] = "Audit Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Audit" asp-action="kurtulusocL">Audit Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Audit" asp-action="VisitorAudit">Visitor Audit</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Audit" asp-action="UserAudit">User Audit</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Audit" asp-action="AuditOps">Audit Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							@if (Model.UserId != null)
+							{
+								<h2>
+									UserId: @Model.UserId
+								</h2>
+							}
+							else
+							{
+								<strong style="color:darkred">No UserId</strong>
+							}
+							@if (Model.UserName != null)
+							{
+								<h2>
+									Username: @Model.UserName
+								</h2>
+							}
+							else
+							{
+								<strong style="color:darkred">No UserName</strong>
+							}
+							<p>
+								Ip Address: @Model.IpAddress
+							</p>
+							<p>Local Ip: @Model.LocalIpAddress</p>
+							<p>Remote Ip: @Model.RemoteIpAddress</p>
+							<p>Vpn Ip: @Model.IpAddressVPN</p>
+							<p>Mac Address: @Model.MacAddress</p>
+							<p>Manufacturer: @Model.Manufacturer</p>
+							<p>Area Acccessed: @Model.AreaAccessed</p>
+							<p>Browser: @Model.Browser</p>
+							<p>Browser Version: @Model.BrowserVersion</p>
+							<p>Device: @Model.Device</p>
+							<p>Device Model: @Model.DeviceModel</p>
+							<p>Language: @Model.Language</p>
+							<p>Platform: @Model.Platform</p>
+							<p>Host: @Model.Host</p>
+							<p>Proxy Connection: @Model.ProxyConnection</p>
+							@if (Model.IsMobile == true)
+							{
+								<p>Mobile Device</p>
+							}
+							else
+							{
+								<p>Normal Device</p>
+							}
+							<div class="social-widget-result social-widget1-result">
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="widget-text-box">
+								<h4></h4>
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+								}
+								@if (Model.IsActive == true)
+								{
+									<p>Active</p>
+								}
+								else
+								{
+									<p>DeActive</p>
+								}
+								@if (Model.IsDeleted == true)
+								{
+									<p>Deleted</p>
+								}
+								else
+								{
+									<p>Not Deleted</p>
+								}
+								<div class="text-right like-love-list">
+									<a href="#" onclick="confirmDelete('Audit', 'DeleteAudit', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

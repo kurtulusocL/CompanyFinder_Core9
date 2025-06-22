@@ -1,0 +1,93 @@
+﻿@model CompanyContact
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.IsHide == true)
+	{
+		<div class="about-author">
+			@if (Model.CompanyId != null)
+			{
+				<div class="name_designation">
+					<h6>@Model.Company.Name</h6>
+				</div>
+			}
+			<div class="clearfix"></div>
+			<div class="description">
+				@if (Model.EmailAddress != null)
+				{
+					<p>Email Adresi: @Model.EmailAddress</p>
+				}
+				@if (Model.PhoneNumber != null)
+				{
+					<p>Telefon Numarası: @Model.PhoneNumber</p>
+				}
+				@if (Model.WhatsappNo != null)
+				{
+					var cleanedNumber = Model.WhatsappNo.Trim()
+					.Replace(" ", "")
+					.Replace("-", "")
+					.Replace("(", "")
+					.Replace(")", "");
+					if (!cleanedNumber.StartsWith("+"))
+					{
+						if (cleanedNumber.StartsWith("90"))
+						{
+							cleanedNumber = "+" + cleanedNumber;
+						}
+						else if (cleanedNumber.StartsWith("0"))
+						{
+							cleanedNumber = "+90" + cleanedNumber.Substring(1);
+						}
+						else
+						{
+							cleanedNumber = "+90" + cleanedNumber;
+						}
+					}
+					<p>
+						@Model.WhatsappNo | <a href="https://wa.me/@cleanedNumber" target="_blank">Firmaya WhatsApp'tan Mesaj Gönderin</a>
+					</p>
+				}
+				@if (Model.CompanyId != null)
+				{
+					if (Model.Company.CityId != null)
+					{
+						if (Model.Address != null)
+						{
+							<p>@Model.Address, @Model.Company.City.Name, @Model.Company.Country.Name</p>
+						}
+						else
+						{
+							<p>@Model.Company.City.Name, @Model.Company.Country.Name</p>
+						}
+					}
+					else
+					{
+						if (Model.Address != null)
+						{
+							<p>@Model.Address, @Model.Company.Country.Name</p>
+						}
+					}
+				}
+			</div>
+		</div>
+	}
+	else
+	{
+		<strong style="color:darkblue">Bu firma iletişim bilgilerini göstermeyi durdurmuş.</strong>
+	}
+}
+else
+{
+	<div class="about-author">
+		<div class="name_designation">
+			<h6>---</h6>
+		</div>
+		<div class="clearfix"></div>
+		<div class="description">
+			<p></p>
+		</div>
+	</div>
+}

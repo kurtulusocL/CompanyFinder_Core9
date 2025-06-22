@@ -1,0 +1,96 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-1 col-md-6 col-sm-6 col-xs-12">
+			<button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+				<i class="fa fa-bars"></i>
+			</button>
+		</div>
+		<div class="col-lg-6 col-md-1 col-sm-1 col-xs-12">
+			<div class="header-top-menu tabl-d-n">
+				<ul class="nav navbar-nav mai-top-nav">
+					<li class="nav-item">
+						<a asp-controller="HomeAdmin" asp-action="Index" asp-route-id="@ViewData["adminId"]" class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a asp-controller="PricingContact" asp-action="kurtulusocL" class="nav-link">Asked Price</a>
+					</li>
+					<li class="nav-item">
+						<a asp-controller="ToDo" asp-action="Index" class="nav-link">Open Tasks</a>
+					</li>
+					<li class="nav-item">
+						<a asp-controller="CompanyManagement" asp-action="kurtulusocL" class="nav-link">Companies</a>
+					</li>					
+					<li class="nav-item">
+						<a asp-controller="PricingCategory" asp-action="kurtulusocL" class="nav-link">Pricing Categories</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+			<div class="header-right-info">
+				<ul class="nav navbar-nav mai-top-nav header-right-menu">
+					<li class="nav-item dropdown">
+						<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="adminpro-icon adminpro-chat-pro"></span><span class="indicator-ms"></span></a>
+						<div role="menu" class="author-message-top dropdown-menu animated flipInX">
+							<div class="message-single-top">
+								<h1>Last Reports</h1>
+							</div>
+							<ul class="message-menu">
+								@await Component.InvokeAsync("AdminHomeHeaderLastReports")
+							</ul>
+							<div class="message-view">
+								<a asp-controller="Report" asp-action="kurtulusocL">View All Reports</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="adminpro-icon adminpro-chat-pro"></span><span class="indicator-ms"></span></a>
+						<div role="menu" class="author-message-top dropdown-menu animated flipInX">
+							<div class="message-single-top">
+								<h1>Last Companies</h1>
+							</div>
+							<ul class="message-menu">
+								@await Component.InvokeAsync("AdminHomeHeaderLastCompanies")
+							</ul>
+							<div class="message-view">
+								<a asp-controller="CompanyManagement" asp-action="kurtulusocL">View All Companies</a>
+							</div>
+						</div>
+					</li>
+					@await Component.InvokeAsync("AdminHomeHeaderUser")
+					<li class="nav-item nav-setting-open">
+						<a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-tasks"></i></a>
+						<div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated flipInX">
+							<ul class="nav nav-tabs custon-set-tab">
+								<li class="active">
+									<a data-toggle="tab" href="#cancelRequests">Cancel Requests</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#dropInformations">Drop Informations</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#lastProducts">Last Products</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="cancelRequests" class="tab-pane fade in active">
+									@await Component.InvokeAsync("AdminHomeHeaderLastCancelRequests")
+								</div>
+								<div id="dropInformations" class="tab-pane fade">
+									@await Component.InvokeAsync("AdminHomeHeaderLastDropInformations")
+								</div>
+								<div id="lastProducts" class="tab-pane fade">
+									@await Component.InvokeAsync("AdminHomeHeaderLastDropInformations")
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

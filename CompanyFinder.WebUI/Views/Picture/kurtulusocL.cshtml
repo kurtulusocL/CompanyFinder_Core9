@@ -1,0 +1,192 @@
+﻿@model IEnumerable<Picture>
+@{
+	ViewData["Title"] = "Active Picture List";
+	ViewData["Subtitle"] = "Picture Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Picture" asp-action="kurtulusocL">Picture Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Picture" asp-action="PictureOps">Picture Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+								data-toggle="table"
+								data-pagination="true"
+								data-resizable="true"
+								data-search="true"
+								data-show-columns="true"
+								data-show-pagination-switch="true"
+								data-show-refresh="true"
+								data-key-events="true"
+								data-show-toggle="true"
+								data-cookie="true"
+								data-cookie-id-table="saveId"
+								data-show-export="true"
+								data-click-to-select="true"
+								data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="image">Image</th>
+											<th data-field="imageFrom">Image From</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.BlogId != null || item.CompanyId != null || item.ProductId != null)
+													{
+														if (item.BlogId != null)
+														{
+															<img src="~/img/company/blog/multiImage/@item.ImageUrl" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" class="img-responsive" asp-append-version="true" />
+														}
+														if (item.CompanyId != null)
+														{
+															<img src="~/img/company/images/@item.ImageUrl" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" class="img-responsive" asp-append-version="true" />
+														}
+														if (item.ProductId != null)
+														{
+															<img src="~/img/company/product/multiImage/@item.ImageUrl" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" class="img-responsive" asp-append-version="true" />
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">No Any Image</strong>
+													}
+												</td>
+												<td>
+													@if (item.BlogId != null || item.CompanyId != null || item.ProductId != null)
+													{
+														if (item.BlogId != null)
+														{
+															<ul>
+																<li>Blog Image</li>
+																<li>BlogId: @item.BlogId</li>
+																<li>Blog Title: @item.Blog.Title</li>
+																@if (item.Blog.Company != null)
+																{
+																	<li>Blog CompanyId: @item.Blog.CompanyId</li>
+																	<li>Blog Company: @item.Blog.Company.Name</li>
+																}
+																else
+																{
+																	<li><strong style="color:darkred">No Blog Company</strong></li>
+																}
+															</ul>
+															<a asp-controller="Picture" asp-action="BlogImage" asp-route-id="@item.BlogId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images
+															</a>
+															<a asp-controller="Picture" asp-action="BlogImageForAdmin" asp-route-id="@item.BlogId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images for Admin
+															</a>
+														}
+														if (item.CompanyId != null)
+														{
+															<ul>
+																<li>Company Image</li>
+																<li>Company Id: @item.CompanyId</li>
+																<li>Company: @item.Company.Name</li>
+															</ul>
+															<a asp-controller="Picture" asp-action="CompanyImage" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images
+															</a>
+															<a asp-controller="Picture" asp-action="CompanyImageForAdmin" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images for Admin
+															</a>
+														}
+														if (item.ProductId != null)
+														{
+															<ul>
+																<li>Procuct Image</li>
+																<li>ProductId: @item.ProductId</li>
+																<li>Product: @item.Product.Name</li>
+																@if (item.Product.CompanyId != null)
+																{
+																	<li>Product CompanyId: @item.Product.CompanyId</li>
+																	<li>Product Company: @item.Product.Company.Name</li>
+																}
+																else
+																{
+																	<li><strong style="color:darkred">No Product Company</strong></li>
+																}
+															</ul>
+															<a asp-controller="Picture" asp-action="ProductImage" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images
+															</a>
+															<a asp-controller="Picture" asp-action="ProductImageForAdmin" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-primary">
+																See All Images for Admin
+															</a>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Not Information</strong>
+													}
+												</td>												
+												<td>
+													<a asp-controller="Picture" asp-action="PictureDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

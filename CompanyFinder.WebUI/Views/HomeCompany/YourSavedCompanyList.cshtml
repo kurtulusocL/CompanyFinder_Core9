@@ -1,0 +1,63 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Company>
+@{
+	ViewData["Title"] = "Kayıt Edilen Firmalar";
+	ViewData["Subtitle"] = "Diğer Firmaların Kaydettiği Firmalarınız";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-post-list">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 card_mr_bt blog-iso-item">
+						<div class="item blog_card">
+							<div class="post-img">
+								<img src="~/img/company/logo/@item.Logo" style="max-height:224px;max-width:350px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>@item.Name</h5>
+								<div class="post-status">
+									<ul>
+										<li><i class="flat flaticon-calender"></i> <span>Firma Eklenme Tarihi: @item.CreatedDate.ToShortDateString()</span></li>
+										<li><i class="flat flaticon-chat"></i> <span>@item.SaveContents.Count() kez kaydedildi.</span></li>
+										<li> <span>@item.Hits.Count() görüntülenme</span></li>
+										<li> <span>@item.Likes.Count() beğenme</span></li>
+									</ul>
+									<hr />
+									<a asp-controller="HomeCompany" asp-action="SavedCompanyUserList" asp-route-id="@item.Id" class="btn btn-info btn-sm" target="_blank">Kaydedenler</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					@Html.PagedListPager(Model, page => Url.Action("YourSavedCompanyList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</li>
+			</ul>
+		</nav>
+	</div>
+</section>

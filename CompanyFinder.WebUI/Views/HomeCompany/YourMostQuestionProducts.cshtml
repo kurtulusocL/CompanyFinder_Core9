@@ -1,0 +1,147 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+@{
+	ViewData["Title"] = "Hakkında En Fazla Soru Sorulan Ürünlerinizin Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<div class="contact-form">
+					<table class="table table-hover display" id="table_id">
+						<thead>
+							<tr style="color:black">
+								<th>Soru</th>
+								<th>Ürün Resmi</th>
+								<th data-class-name="productName">Ürün Adı</th>
+								<th>Fiyatı</th>
+								<th data-class-name="companyName">Firma</th>
+								<th data-class-name="productStatus">Ürün Durumu</th>
+								<th data-class-name="category">Kategori</th>
+								<th>Diğer İstatistikler</th>
+								<th>Eklenme Tarihi</th>
+								<th>İncele</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr style="color:black">
+									<td>@item.Questions.Count()</td>
+									<td>
+										<img src="~/img/company/product/@item.ImageUrl" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px;" asp-append-version="true" />
+									</td>
+									<td>@item.Name</td>
+									<td>
+										@if (item.Price != null)
+										{
+											<span>@item.Price.Value.ToString("C2")</span>
+										}
+										else
+										{
+											<span class="badge badge-info">Fiyat Blgisi Girilmemiş.</span>
+										}
+									</td>
+									<td>
+										@if (item.CompanyId != null)
+										{
+											<span>
+												@item.Company.Name
+											</span>
+										}
+										else
+										{
+											<span>
+												<span class="badge badge-warning">Firma Blgisi Girilmemiş.</span>
+											</span>
+										}
+									</td>
+									<td>
+										@if (item.IsAvailable == true)
+										{
+											<span class="badge badge-info">
+												STOKTA
+											</span>
+										}
+										else
+										{
+											if (item.AvailableDate != null)
+											{
+												<span>
+													Ürün @item.AvailableDate.Value.ToShortDateString() tarihinde stokta olacak.
+												</span>
+											}
+											else
+											{
+												<span class="badge badge-info">
+													STOKTA YOK
+												</span>
+											}
+										}
+									</td>
+									<td>
+										@if (item.ProductSubcategoryId != null)
+										{
+											<span>
+												@item.ProductSubcategory.Name, @item.ProductCategory.Name
+											</span>
+										}
+										else
+										{
+											<span>@item.ProductCategory.Name</span>
+										}
+									</td>
+									<td>
+										<ul>
+											<li>@item.Hits.Count() görüntülenme</li>
+											<li>@item.SaveContents.Count() kaydedilme</li>
+											<li>@item.Likes.Count() beğeni</li>
+											<li>@item.Comments.Count() yorum</li>
+										</ul>
+									</td>
+									<td>@item.CreatedDate.ToShortDateString()</td>
+									<td>
+										<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary btn-sm" target="_blank">İncele</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="pagination">
+				<div class="pagination-info">
+					@Html.PagedListPager(Model, page => Url.Action("YourMostQuestionProducts", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

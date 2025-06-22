@@ -1,0 +1,143 @@
+﻿@{
+	ViewData["Title"] = "Anasayfa";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="slider index-3">
+	<div class="owl-main owl-carousel owl-theme">
+		@await Component.InvokeAsync("HomeSlider")		
+	</div>
+</div>
+<section id="qualities" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="content">
+				@await Component.InvokeAsync("HomeOurServices")
+			</div>
+		</div>
+	</div>
+</section>
+<section id="about-us" class="index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h1><span>Hakkımızda</span></h1>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		@await Component.InvokeAsync("HomeAbout")
+	</div>
+</section>
+<section id="services" class="gray-bg index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h2>Hizmetlerimiz</h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+			<div class="service-slider owl-one owl-carousel owl-theme">
+				@await Component.InvokeAsync("HomeAllOurServices")
+			</div>
+			<div class="h-border"><span></span></div>
+		</div>
+	</div>
+	<div class="overlay"></div>
+</section>
+<section id="our_team" class="index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h2>İlgilenebileceğiniz <span>Ürünler</span></h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>			
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+			<div class="row">
+				@await Component.InvokeAsync("HomeProduct")
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</section>
+<section id="counter" class="index-3 gray_bg">
+	<div class="container">
+		<div class="col-lg-12">
+			<div class="row row-safari">
+				<div class="counter-column col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("HomeUserCounter")
+				</div>
+				<div class="counter-column col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("HomeCompanyCounter")
+				</div>
+				<div class="counter-column col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("HomeProductCounter")
+				</div>
+				<div class="counter-column col-lg-3 col-md-6 col-sm-6 col-xs-12">
+					<div class="count_icon"> <i class="flat flaticon-like"></i> </div>
+					@await Component.InvokeAsync("HomeQuestionCounter")
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="client" class="index-2">
+	<div class="container">
+		<div class="section_heading">
+			<h2>İş Ortaklarımızdan</h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="team-slider owl-six owl-carousel owl-theme">
+				@await Component.InvokeAsync("HomeAd")
+			</div>
+			<div class="left-tri"></div>
+			<div class="right-tri"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="overlay"></div>
+</section>
+<section id="blog_post" class="index-3"></section>
+<section id="blog_post" class="index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h2>Firmalardan <span>Blog Makaleleri</span></h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+			<div class="blog-slider owl-five owl-carousel owl-theme">
+				@await Component.InvokeAsync("HomeBlog")
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</section>

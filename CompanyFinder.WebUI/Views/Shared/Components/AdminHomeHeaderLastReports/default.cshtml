@@ -1,0 +1,59 @@
+﻿@using System.Web
+@model IEnumerable<Report>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li>
+		<a asp-controller="Report" asp-action="ReportDetail" asp-route-id="@item.Id">
+			<div class="message-content">
+				<h2>Category: @item.ReportCategory.Name</h2>
+				@if (item.Title.Length > 55)
+				{
+					<p>
+						@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 55) + " ....")
+					</p>
+				}
+				else
+				{
+					<p>@item.Title</p>
+				}
+				@if (item.BlogId != null || item.CommentId != null || item.CommentAnswerId != null || item.CompanyId != null || item.ProductId != null || item.CompanyPartnershipId != null)
+				{
+					if (item.BlogId != null)
+					{
+						<p>Blog Report. BlogId: @item.BlogId</p>
+					}
+					if (item.CommentId != null)
+					{
+						<p>Comment Report. CommentId: @item.CommentId</p>
+					}
+					if (item.CommentAnswerId != null)
+					{
+						<p>Comment Answer Report. CommentAnswerId: @item.CommentAnswerId</p>
+					}
+					if (item.CompanyId != null)
+					{
+						<p>Company Report. CompanyId: @item.CompanyId</p>
+					}
+					if (item.ProductId != null)
+					{
+						<p>Product Report. ProductId: @item.ProductId</p>
+					}
+					if (item.CompanyPartnershipId != null)
+					{
+						<p>Company Partnership Report. Company PartnershipId: @item.CompanyPartnershipId</p>
+					}
+				}
+				else
+				{
+					<p>
+						<strong style="color:darkred">Not Information</strong>
+					</p>
+				}
+			</div>
+		</a>
+	</li>
+}

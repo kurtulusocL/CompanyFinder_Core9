@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Company>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<div class="item">
+			<div class="client_dp">
+				<img src="~/img/company/logo/@item.Logo" style="max-height:120px;max-width:120px;" asp-append-version="true" />
+			</div>
+			<div class="team-card">
+				<div class="name_designation">
+					<h5>
+						<a asp-controller="Company" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+					</h5>
+					@if (item.CityId != null)
+					{
+						<span>@item.City.Name, @item.Country.Name</span>
+					}
+					else
+					{
+						<span>@item.Country.Name</span>
+					}
+					<span>Kuruluş: @item.FoundationDate.Year</span>
+				</div>
+				<div class="description">
+					@if (item.CompanySubcategoryId != null)
+					{
+						<p>@item.CompanySubcategory.Name, @item.CompanyCategory.Name</p>
+					}
+					else
+					{
+						<p>@item.CompanyCategory.Name</p>
+					}
+				</div>
+				<div style="color:black">
+					<ul>
+						<li>Kayıt Tarihi: @item.CreatedDate.ToShortDateString()</li>	
+						<li>@item.Products.Count() ürün</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ProfileImage>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	if (item.UserId != null && item.ImageUrl != null)
+	{
+		<div class="mutual-friend-list">
+			<img src="~/img/us/profileImage/@item.ImageUrl" asp-append-version="true" />
+			<br />			
+			<a asp-controller="HomAdmin" asp-action="DeleteProfileImage" asp-route-id="@item.Id" class="btn btn-custon-three btn-danger btn-xs">Delete</a>			
+		</div>
+	}
+}

@@ -1,0 +1,22 @@
+﻿@model CompanyFormAnswer
+@{
+	Layout = null;
+}
+
+<form asp-controller="CompanyForm" asp-action="TopicAnswerCreate" method="post">
+	@Html.AntiForgeryToken()
+	<div class="row">		
+		<div class="col-md-12 col-sm-12 col-sm-12 col-xs-12 form-group">
+			<input type="text" asp-for="Title" name="Title" placeholder="Cevap Başlığınız" />
+		</div>
+		<div class="col-md-12 col-sm-12 col-sm-12 col-xs-12 form-group">
+			<textarea asp-for="Desc" name="Desc" placeholder="Cevabınızı Bu Alana Yapabilirsiniz *" required></textarea>
+		</div>
+		<div class="col-md-3 col-sm-3 col-sm-5 col-xs-12 form-group mar-none">
+			<button type="submit">Cevapla <i class="flat flaticon-plane"></i></button>
+			<input type="hidden" asp-for="CompanyFormId" />
+			<input type="hidden" asp-for="UserId" />
+		</div>
+	</div>
+</form>
+<partial name="_explorerAlertPartial" />

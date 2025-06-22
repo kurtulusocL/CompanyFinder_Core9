@@ -1,0 +1,278 @@
+﻿@{
+	ViewData["Title"] = "Admin Home";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="income-order-visit-user-area">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Companies</h2>
+							<div class="main-income-phara">
+								<a asp-controller="CompanyManagement" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeCompanyCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Products</h2>
+							<div class="main-income-phara order-cl">
+								<a asp-controller="ProductManagement" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeProductCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Appointments</h2>
+							<div class="main-income-phara visitor-cl">
+								<a asp-controller="Appointment" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeAppointmentCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Blog</h2>
+							<div class="main-income-phara low-value-cl">
+								<a asp-controller="BlogManagement" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">						
+						@await Component.InvokeAsync("AdminHomeBlogCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="welcome-adminpro-area">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
+					<div class="welcome-adminpro-title">
+						<h1>Company Categories</h1>
+						<p>Online Company Categories</p>
+					</div>
+					<div class="adminpro-message-list">
+						<ul class="message-list-menu">
+							@await Component.InvokeAsync("AdminHomeCompanyCategory")
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
+					<div class="welcome-adminpro-title">
+						<h1>Product Categories</h1>
+						<p>Online Product Categories.</p>
+					</div>
+					<div class="adminpro-message-list">
+						<ul class="message-list-menu">
+							@await Component.InvokeAsync("AdminHomeProductCategory")
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
+					<div class="welcome-adminpro-title">
+						<h1>Company Subcategories</h1>
+						<p>Online Company Subcategories.</p>
+					</div>
+					<div class="adminpro-message-list">
+						<ul class="message-list-menu">
+							@await Component.InvokeAsync("AdminHomeCompanySubcategory")
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="welcome-wrapper shadow-reset res-mg-t mg-b-30">
+					<div class="welcome-adminpro-title">
+						<h1>Product Subcategories</h1>
+						<p>Online Product Subcategories.</p>
+					</div>
+					<div class="adminpro-message-list">
+						<ul class="message-list-menu">
+							@await Component.InvokeAsync("AdminHomeProductSubcategory")
+						</ul>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="stockprice-feed-project-area">
+	<div class="container-fluid">
+		<div class="row">			
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="sparkline11-hd">
+					<div class="main-sparkline11-hd">
+						<h1>Last Companies</h1>
+					</div>
+				</div>
+				@await Component.InvokeAsync("AdminHomeLastCompanies")
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30 res-mg-t-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Ad</h2>
+							<div class="main-income-phara">
+								<a asp-controller="Ad" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeAdCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Comment</h2>
+							<div class="main-income-phara order-cl">
+								<a asp-controller="Comment" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeCommentCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Comment Answer</h2>
+							<div class="main-income-phara visitor-cl">
+								<a asp-controller="CommentAnswer" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeCommentAnswerCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Question</h2>
+							<div class="main-income-phara low-value-cl">
+								<a asp-controller="Question" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeQuestionCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+				<div class="income-dashone-total shadow-reset nt-mg-b-30 res-mg-t-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Report</h2>
+							<div class="main-income-phara">
+								<a asp-controller="Report" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeReportCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Report Answer</h2>
+							<div class="main-income-phara order-cl">
+								<a asp-controller="ReportAnswer" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeReportAnswerCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Picture</h2>
+							<div class="main-income-phara visitor-cl">
+								<a asp-controller="Picture" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomePictureCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="income-dashone-total shadow-reset nt-mg-b-30">
+					<div class="income-title">
+						<div class="main-income-head">
+							<h2>Total Question Answer</h2>
+							<div class="main-income-phara low-value-cl">
+								<a asp-controller="QuestionAnswer" asp-action="kurtulusocL"><p>See All</p></a>
+							</div>
+						</div>
+					</div>
+					<div class="income-dashone-pro">
+						@await Component.InvokeAsync("AdminHomeQuestionAnswerCounter")
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="sparkline11-hd">
+					<div class="main-sparkline11-hd">
+						<h1>Locations</h1>
+					</div>
+				</div>
+				@await Component.InvokeAsync("AdminHomeLocation")				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="admin-dashone-data-table-area">
+    <div class="container-fluid">
+        <div class="row">
+			@await Component.InvokeAsync("AdminHomeUserSession")
+        </div>
+    </div>
+</div>

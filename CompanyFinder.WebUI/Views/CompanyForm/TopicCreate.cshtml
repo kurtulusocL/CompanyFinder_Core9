@@ -1,0 +1,74 @@
+﻿@model CompanyForm
+@{
+	ViewData["Title"] = "Yeni Form Konusu Ekle";
+	ViewData["Subtitle"] = "Firma Formuna Yeni Bir Başlık Aç ve Yayınla";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyForm" asp-action="TopicCreate" method="post" enctype="multipart/form-data">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Forum Kategori Listesi</strong>
+									<select class="form-control" asp-for="FormCategoryId" name="FormCategoryId" required>
+										@foreach (var item in ViewBag.FormCategories)
+										{
+											<option value="@item.Id">@item.Name</option>
+										}
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+								<strong style="color:blue">Forum Konusu Resmi *</strong>
+								<input class="form-control btn-danger" type="file" name="image" accept=".png, .jpg, .jpeg" required>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Forum Başlığı *</strong>
+								<input type="text" asp-for="Title" name="Title" placeholder="Forum Başlığı *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Forum Altbaşlığı</strong>
+								<input type="text" asp-for="Subtitle" name="Subtitle" placeholder="Forum Altbaşlığı" />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Forum Metni *</strong>
+								<textarea type="text" class="ckeditor" asp-for="Desc" name="Desc" placeholder="Forum Metnini Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Konuya Yorum Yapılsın Mı? *</strong></span>
+								<input type="radio" asp-for="IsAnswerable" name="IsAnswerable" id="IsAnswerable_Yes" value="True" /> <span style="color:black">Evet</span>
+								<input type="radio" asp-for="IsAnswerable" name="IsAnswerable" id="IsAnswerable_No" value="False" /> <span style="color:black">Hayır</span>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Konuyu Yayınla </button>
+								<input type="hidden" asp-for="FormCategoryId" />
+								<input type="hidden" asp-for="CompanyId" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_frontEndAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

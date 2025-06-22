@@ -1,0 +1,209 @@
+﻿@model Like
+@{
+	ViewData["Title"] = "Delete Detail";
+	ViewData["Subtitle"] = "Like Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Like" asp-action="kurtulusocL">Like Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="ByValueLessToMore">Like Value LessToMore</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="ByValueMoreToLess">Like Value MoreToLess</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Like" asp-action="LikeOps">Like Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							@if (Model.Value != null)
+							{
+								<h2>
+									Like Value: @Model.Value.Value.ToString()
+								</h2>
+							}
+							else
+							{
+								<strong style="color:darkblue">0</strong>
+							}
+
+							<p>
+								User Information
+								<br />
+								@if (Model.UserId != null)
+								{
+									<ul>
+										<li>Name Surname: @Model.User.NameSurname</li>
+										<li>Username: @Model.User.UserName</li>
+										<li>Email: @Model.User.Email</li>
+										<li>Location: @Model.User.City, @Model.User.Country</li>
+									</ul>
+								}
+								else
+								{
+									<strong style="color:darkred">No User Information</strong>
+								}
+							</p>
+
+							@if (Model.UserId != null)
+							{
+								<p>
+									<ul>
+										<li>UserId: @Model.UserId</li>
+										<li>User: @Model.User.NameSurname</li>
+										<li>Email: @Model.User.Email</li>
+										<li>Location: @Model.User.City, @Model.User.Country</li>
+									</ul>
+								</p>
+							}
+							else
+							{
+								<p>No User Info</p>
+							}
+							<div class="social-widget-result social-widget1-result">
+								<p>
+									Like For
+									<br />
+									@if (Model.BlogId != null || Model.CompanyId != null || Model.ProductId != null || Model.CompanyPartnershipId != null || Model.CompanyFormId != null)
+									{
+										if (Model.BlogId != null)
+										{
+											<ul>
+												<li>Blog Like</li>
+												<li>Blog Id :@Model.BlogId</li>
+												<li>Title: @Model.Blog.Title</li>
+											</ul>
+										}
+										if (Model.CompanyId != null)
+										{
+											<ul>
+												<li>Company Like</li>
+												<li>CompanyId: @Model.CompanyId</li>
+												<li>Name: @Model.Company.Name</li>
+											</ul>
+										}
+										if (Model.ProductId != null)
+										{
+											<ul>
+												<li>Product Like</li>
+												<li>ProductId: @Model.ProductId</li>
+												<li>Name: @Model.Product.Name</li>
+											</ul>
+										}
+										@if (Model.CompanyPartnershipId != null)
+										{
+											<ul>
+												<li>Company Partnership Like</li>
+												<li>Company PartnershipId: @Model.CompanyPartnershipId</li>
+												@if (Model.CompanyPartnership.CompanyId != null)
+												{
+													<li>CompanyId: @Model.CompanyPartnership.CompanyId</li>
+													<li>Company: @Model.CompanyPartnership.Company.Name</li>
+												}
+												else
+												{
+													<li>
+														<strong style="color:maroon">No Company Info</strong>
+													</li>
+												}
+											</ul>
+										}
+										if (Model.CompanyFormId != null)
+										{
+											<ul>
+												<li>Company Form Like</li>
+												<li>Company FormId: @Model.CompanyFormId</li>
+												<li>Title: @Model.CompanyForm.Title</li>
+												@if (Model.CompanyId != null)
+												{
+													<li>CompanyId: @Model.CompanyForm.CompanyId</li>
+													<li>Company: @Model.CompanyForm.Company.Name</li>
+												}
+												else
+												{
+													<li>
+														<strong style="color:maroon">No Company Info</strong>
+													</li>
+												}
+											</ul>
+										}
+										if (Model.SectorNewsId != null)
+										{
+											<ul>
+												<li>Sector News Like</li>
+												<li>Sector NewsId: @Model.SectorNewsId</li>
+												<li>Title: @Model.SectorNews.Title</li>
+											</ul>
+										}
+									}
+									else
+									{
+										<strong style="color:darkred">Error - Issue</strong>
+									}
+								</p>
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="widget-text-box">
+								<h4></h4>
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+								}
+								@if (Model.IsActive == true)
+								{
+									<p>Active</p>
+								}
+								else
+								{
+									<p>DeActive</p>
+								}
+								@if (Model.IsDeleted == true)
+								{
+									<p>Deleted</p>
+								}
+								else
+								{
+									<p>Not Deleted</p>
+								}
+								<div class="text-right like-love-list">
+									<a href="#" onclick="confirmDelete('Like', 'DeleteLike', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

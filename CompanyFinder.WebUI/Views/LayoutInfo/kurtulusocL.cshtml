@@ -1,0 +1,121 @@
+﻿@using System.Web
+@model IEnumerable<LayoutInfo>
+@{
+	ViewData["Title"] = "Active Layout Info List";
+	ViewData["Subtitle"] = "Layout Info Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="LayoutInfo" asp-action="kurtulusocL">Layout Info Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="LayoutInfo" asp-action="LayoutInfoOps">Layout Info Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="static-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline12-list shadow-reset mg-t-30">
+						<div class="sparkline12-hd">
+							<div class="main-sparkline12-hd">
+								<h1>@ViewData["Title"]</h1>
+								<div class="sparkline12-outline-icon">
+									<span>
+										<a asp-controller="LayoutInfo" asp-action="Create" class="btn btn-custon-rounded-two btn-primary">+ Add New One</a>
+									</span>
+									<span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline12-graph">
+							<div class="static-table-list">
+								<table class="table hover-table">
+									<thead>
+										<tr>
+											<th>Icon</th>
+											<th>Title</th>
+											<th>Author</th>
+											<th>Keywords</th>
+											<th>Content</th>
+											<th>Language</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td>
+													<img src="~/img/us/layoutInfo/@item.Icon" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px;" class="img-responsive" asp-append-version="true" />
+												</td>
+												<td>
+													@if (item.Title.Length > 55)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 55) + " ...")
+													}
+													else
+													{
+														@item.Title
+													}
+												</td>
+												<td>@item.Author</td>
+												<td>
+													@if (item.Keyword.Length > 65)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Keyword, 65) + " ...")
+													}
+													else
+													{
+														@item.Keyword
+													}
+												</td>
+												<td>
+													@if (item.Content.Length > 65)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Content, 65) + " ...")
+													}
+													else
+													{
+														@item.Content
+													}
+												</td>
+												<td>@item.Language</td>
+												<td>
+													<a asp-controller="LayoutInfo" asp-action="LayoutInfoDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-info btn-sm">Detail</a>
+													<a asp-controller="LayoutInfo" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-success btn-sm">Edit</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

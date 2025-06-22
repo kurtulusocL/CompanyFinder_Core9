@@ -1,0 +1,51 @@
+﻿@model CommentAnswer
+@{
+	ViewData["Title"] = "Yoruma Cevap Yazın";
+	ViewData["Subtitle"] = "Yapılan Yorum İçin Buradan Cevap Yazabilirsiniz.";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="CommentAnswerCreate" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="row">
+								<div class="col-lg-12 col-lg-12 col-lg-12 col-lg-12 form-group">
+									<input type="text" asp-for="Title" name="Title" placeholder="Cevap Başlığı" />
+								</div>
+								<div class="col-md-12 col-sm-12 col-sm-12 col-xs-12 form-group">
+									<textarea asp-for="Text" name="Text" placeholder="Cevap Metnini Buraya Yazabilirsiniz *" required></textarea>
+								</div>
+								<div class="col-md-6 col-sm-6 col-sm-6 col-xs-12 form-group mar-none">
+									<button type="submit">Cevabı Gönder <i class="flat flaticon-plane"></i></button>
+									<input type="hidden" asp-for="CommentId" />
+									<input type="hidden" asp-for="UserId" />
+								</div>
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,150 @@
+﻿@using System.Web
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+@{
+	ViewData["Title"] = "Ürün Listesi";
+	ViewData["Subtitle"] = "Eklenilen Tüm Ürünler ve Onların Yönetimi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog-with-sidebar">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<h3 class="d-none">heading</h3>
+			<div class="row">
+
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 posts">
+						<div class="item blog_card card_mr_bt d-flex">
+							<div class="post-img">
+								<img src="~/img/company/product/@item.ImageUrl" style="max-height:237px;max-width:371px;" asp-append-version="true" />
+							</div>
+							<div class="post-detail">
+								<h5>
+									<a asp-controller="HomeCompany" asp-action="ProductDetail" asp-route-id="@item.Id">
+										@item.Name
+									</a>
+								</h5>
+								<div class="post-status">
+									<ul>
+										<li><i class="fa fa-eye"></i> <span>@item.Hits.Count() görüntülenme</span></li>
+										<li><i class="fa fa-heart"></i> <span>@item.Likes.Count() beğeni</span></li>
+										<li><i class="fa fa-adjust"></i> <span>@item.SaveContents.Count() kayıt</span></li>
+										<li><i class="flat flaticon-chat"></i> <span>@item.Comments.Count() yorum</span></li>
+										<li><i class="flat flaticon-calendar"></i> <span>@item.CreatedDate.ToShortDateString()</span></li>
+									</ul>
+								</div>
+								<div class="description" style="color:black">
+									@if (item.IsAvailable == true)
+									{
+										<p>Ürün Stokta Var</p>
+										@await Component.InvokeAsync("CompanyUserProductStock", new { id = item.Id })
+									}
+									else
+									{
+										if (item.AvailableDate != null)
+										{
+											<p>Ürün @item.AvailableDate.Value.ToShortDateString() tarihinde uygun olacak.</p>
+										}
+										else
+										{
+											<p>Ürün Stokta Yok.</p>
+										}
+									}
+									@if (item.ProductSubcategoryId != null)
+									{
+										<p>
+											Kategorisi: @item.ProductCategory.Name, Altkategorisi: @item.ProductSubcategory.Name
+										</p>
+									}
+									else
+									{
+										<p>
+											Kategorisi: @item.ProductCategory.Name
+										</p>
+									}
+									@if (item.OtherText != null)
+									{
+										<p>@item.OtherText</p>
+									}
+									@if (item.Desc.Length > 250)
+									{
+										<p>
+											@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 250) + " ..."))
+										</p>
+									}
+									else
+									{
+										<p>
+											@Html.Raw(item.Desc)
+										</p>
+									}
+									<a asp-controller="CompanyOperation" asp-action="StockCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Stok Ekle</a>
+									<a asp-controller="CompanyOperation" asp-action="ProductUpdate" asp-route-id="@item.Id" class="btn btn-success btn-sm">Güncelle</a>
+									<a asp-controller="CompanyOperation" asp-action="ProductImageCreate" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Resim Ekle</a>
+									<a asp-controller="HomeCompany" asp-action="ProductStock" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Ürün Stoğu</a>
+									<a asp-controller="HomeCompany" asp-action="ProductImageList" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Ürün Resimleri</a>
+									<a asp-controller="HomeCompany" asp-action="ProductDetail" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detaya Bak</a>
+									<a asp-controller="HomeCompany" asp-action="ProductQuestionList" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Ürünlere Gelen Sorular</a>
+									<a asp-controller="HomeCompany" asp-action="ProductReportList" asp-route-id="@item.Id" style="color:white" class="btn btn-dark btn-sm">Ürünlere Gelen Şikayetler</a>
+									<a asp-controller="HomeCompany" asp-action="YourProductCommentList" asp-route-id="@item.UserId" style="color:white" class="btn btn-dark btn-sm">Ürüne Gelen Yorumlar</a>
+									@if (item.IsCommentable == true)
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductNotCommentable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Yoruma Kapat</a>
+									}
+									else
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductCommentable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Yoruma Aç</a>
+									}
+									
+									@if (item.IsQuestionable == true)
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductNotQuestionable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Soruya Kapat</a>
+									}
+									else
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductQuestionable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Sorulara Aç</a>
+									}
+									
+									@if (item.IsAvailable == true)
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductNotAvailable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Stokta Yok</a>
+									}
+									else
+									{
+										<a asp-controller="CompanyOperation" asp-action="SetProductAvailable" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Stokta Var</a>
+									}
+									
+									<a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteProduct', @item.Id); return false;" class="btn btn-danger btn-sm">Ürünü Sil</a>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				}
+			</div>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-end">
+					@Html.PagedListPager(Model, page => Url.Action("UserProductList", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</ul>
+			</nav>
+		</div>
+	</div>
+</section>

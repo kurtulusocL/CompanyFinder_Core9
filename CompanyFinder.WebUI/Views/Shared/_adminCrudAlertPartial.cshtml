@@ -1,0 +1,1844 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="row">
+	@if (TempData["aboutCreateSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["aboutCreateSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["aboutCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["aboutCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["aboutUpdateSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["aboutUpdateSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["aboutUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["aboutUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["adCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["adUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["adTargetCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adTargetCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adTargetCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adTargetCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["adTargetUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adTargetUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adTargetUpdatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adTargetUpdatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["targetGenderCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["targetGenderCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["targetGenderCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["targetGenderCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["targetGenderUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["targetGenderUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["targetGenderUpdatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["targetGenderUpdatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["announcementCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["announcementCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["announcementCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["announcementCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["announcementUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["announcementUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["announcementUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["announcementUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["blogCategoryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blogCategoryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["blogCategoryCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blogCategoryCreatedError"]</p>
+		</div>
+	}
+	
+	@if (TempData["blogCategoryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blogCategoryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["blogCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blogCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["blogSubcategoryCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blogSubcategoryCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["blogSubcategoryCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blogSubcategoryCreateError"]</p>
+		</div>
+	}
+	
+	@if (TempData["blogSubcategoryUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blogSubcategoryUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["blogSubcategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blogSubcategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyCategoryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyCategoryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyCategoryCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyCategoryCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyCategoryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyCategoryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companySubcategoryCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companySubcategoryCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["companySubcategoryCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companySubcategoryCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companySubcategoryUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companySubcategoryUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["companySubcategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companySubcategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["productCategoryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["productCategoryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["productCategoryCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["productCategoryCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["productCategoryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["productCategoryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["productCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["productCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["productSubcategoryCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["productSubcategoryCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["productSubcategoryCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["productSubcategoryCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["productSubcategoryUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["productSubcategoryUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["productSubcategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["productSubcategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["reportCategoryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reportCategoryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reportCategoryCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reportCategoryCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["reportCategoryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reportCategoryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reportCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reportCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["adCompanyCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adCompanyCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adCompanyCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adCompanyCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["adCompanyUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adCompanyUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adCompanyUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adCompanyUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["countryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["countryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["countryCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["countryCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["countryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["countryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["countryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["countryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["cityCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["cityCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["cityCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["cityCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["cityUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["cityUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["cityUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["cityUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["reasonCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reasonCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reasonCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reasonCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["reasonUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reasonUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reasonUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reasonUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyReportSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyReportSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyMessageSendSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyMessageSendSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyMessageSendError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyMessageSendError"]</p>
+		</div>
+	}
+
+	@if (TempData["successCompanyMessageEdit"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["successCompanyMessageEdit"]</p>
+		</div>
+	}
+
+	@if (TempData["errorCompanyMessageEdit"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["errorCompanyMessageEdit"]</p>
+		</div>
+	}
+
+	@if (TempData["contactCreateSuccess"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["contactCreateSuccess"]</p>
+		</div>
+	}
+
+	@if (TempData["errorCreateSuccess"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["errorCreateSuccess"]</p>
+		</div>
+	}
+
+	@if (TempData["contactUpdateSuccess"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["contactUpdateSuccess"]</p>
+		</div>
+	}
+
+	@if (TempData["errorUpdateSuccess"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["errorUpdateSuccess"]</p>
+		</div>
+	}
+
+	@if (TempData["dataPolicyCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["dataPolicyCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["dataPolicyCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["dataPolicyCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["dataPolicyUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["dataPolicyUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["dataPolicyUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["dataPolicyUpdateError"]</p>
+		</div>
+	}
+	
+	@if (TempData["footerInfoCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["footerInfoCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["footerInfoCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["footerInfoCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["footerInfoUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["footerInfoUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["footerInfoUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["footerInfoUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["frequentlyCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["frequentlyCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["frequentlyCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["frequentlyCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["frequentlyUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["frequentlyUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["frequentlyUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["frequentlyUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["layoutInfoCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["layoutInfoCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["layoutInfoCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["layoutInfoCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["layoutInfoUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["layoutInfoUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["layoutInfoUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["layoutInfoUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["newsCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["newsCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["newsCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["newsCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["newsUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["newsUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["newsUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["newsUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["logoCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["logoCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["logoCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["logoCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["logoUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["logoUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["logoUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["logoUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["reportAnswerUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reportAnswerUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reportAnswerUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reportAnswerUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["sliderCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["sliderCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sliderCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["sliderCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["sliderUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["sliderUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sliderUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["sliderUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["socialMediaCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["socialMediaCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["socialMediaCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["socialMediaCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["socialMediaUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["socialMediaUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["socialMediaUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["socialMediaUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["userAgreementCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["userAgreementCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["userAgreementCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["userAgreementCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["userAgreementUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["userAgreementUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["userAgreementUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["userAgreementUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["userRoleCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["userRoleCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["userRoleCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["userRoleCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["userRoleUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["userRoleUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["userRoleUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["userRoleUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["taskCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["taskCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["taskCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["taskCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["taskUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["taskUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["taskUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["taskUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["adminCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["adminCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["adminCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["adminCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["roleSetSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["roleSetSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["roleSetError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["roleSetError"]</p>
+		</div>
+	}
+
+	@if (TempData["changePasswordSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["changePasswordSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["changePasswordError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["changePasswordError"]</p>
+		</div>
+	}
+
+	@if (TempData["profileUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["profileUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["profileUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["profileUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["emailSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["emailSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["emailSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["emailSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["ourServicesCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["ourServicesCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["ourServicesCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["ourServicesCreateError"]</p>
+		</div>
+	}
+	
+	@if (TempData["ourServicesUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["ourServicesUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["ourServicesUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["ourServicesUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["profileImageCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["profileImageCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["profileImageCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["profileImageCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["reportAnswerSentSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["reportAnswerSentSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["reportAnswerSentError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["reportAnswerSentError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyRegisteredSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyRegisteredSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyRegisterError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyRegisterError"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCategoryCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["pricingCategoryCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCategoryCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["pricingCategoryCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCategoryUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["pricingCategoryUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["pricingCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCreate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["pricingCreate"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["pricingCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingUpdate"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["pricingUpdate"]</p>
+		</div>
+	}
+
+	@if (TempData["pricingUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["pricingUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["customerStatusCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["customerStatusCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["customerStatusCreatedError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["customerStatusCreatedError"]</p>
+		</div>
+	}
+
+	@if (TempData["customerStatusUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["customerStatusUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["customerStatusUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["customerStatusUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["successBlackListCreated"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["successBlackListCreated"]</p>
+		</div>
+	}
+
+	@if (TempData["errorBlackListCreated"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["errorBlackListCreated"]</p>
+		</div>
+	}
+
+	@if (TempData["successBlackListUpdated"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["successBlackListUpdated"]</p>
+		</div>
+	}
+
+	@if (TempData["errorBlackListUpdated"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["errorBlackListUpdated"]</p>
+		</div>
+	}
+
+	@if (TempData["blockedUserCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blockedUserCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["blockedUserCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blockedUserCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["blockedUserUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["blockedUserUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["blockedUserUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["blockedUserUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["formCategoryCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["formCategoryCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["formCategoryCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["formCategoryCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["formCategoryUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["formCategoryUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["formCategoryUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["formCategoryUpdateError"]</p>
+		</div>
+	}
+
+	@if (TempData["sectorNewsCreatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["sectorNewsCreatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sectorNewsCreateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["sectorNewsCreateError"]</p>
+		</div>
+	}
+
+	@if (TempData["sectorNewsUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["sectorNewsUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["sectorNewsUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["sectorNewsUpdateError"]</p>
+		</div>
+	}
+
+
+</div>

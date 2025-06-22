@@ -1,0 +1,15 @@
+﻿@model IEnumerable<News>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="post-item">
+		<div class="post-img"> <img src="~/img/us/news/@item.ImageUrl" style="max-height:66px;max-width:66px;" asp-append-version="true" /> </div>
+		<div class="post-content">
+			<a asp-controller="Explorer" asp-action="NewsDetail" asp-route-id="@item.Id">@item.Title </a>
+			<div class="post-status"> <i class="flat flaticon-calendar"></i> <span>@item.CreatedDate.ToShortDateString()</span> </div>
+		</div>
+	</div>
+}

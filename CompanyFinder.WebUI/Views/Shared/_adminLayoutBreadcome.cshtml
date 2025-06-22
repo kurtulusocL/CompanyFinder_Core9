@@ -1,0 +1,33 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="breadcome-area mg-b-30 small-dn">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<ul class="breadcome-menu">
+								<li>
+									<span class="bread-blod"> @ViewData["Title"]</span>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<ul class="breadcome-menu">
+								<li>
+									<a asp-controller="CompanyManagement" asp-action="WeeklyMostPopularCompanies" style="color:white" class="btn btn-info btn-rounded btn-sm">Weekly Popular Companies</a>
+								</li>
+								<li>
+									<a asp-controller="ProductManagement" asp-action="WeeklyMostPopularProducts" style="color:white" class="btn btn-info btn-rounded btn-sm">Weekly Popular Products</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

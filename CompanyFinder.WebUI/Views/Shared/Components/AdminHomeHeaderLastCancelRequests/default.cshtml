@@ -1,0 +1,39 @@
+﻿@using System.Web
+@model IEnumerable<CancelMembership>
+@{
+	Layout = null;
+}
+
+<div class="notes-area-wrap">
+	<div class="note-heading-indicate">
+		<h2><i class="fa fa-comments-o"></i> Latest Cancel Membership Requests</h2>
+		<p>Totally @Model.Count() reqests</p>
+	</div>
+	<div class="notes-list-area notes-menu-scrollbar">
+		<ul class="notes-menu-list">
+			@foreach (var item in Model)
+			{
+				<li>
+					<a asp-controller="CancelMembership" asp-action="CancelMembershipDetail" asp-route-id="@item.Id">
+						<div class="notes-list-flow">
+							<div class="notes-content">
+								@if (item.Title.Length > 55)
+								{
+									<p>
+										@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 55) + " ....")
+									</p>
+								}
+								else
+								{
+									<p>@item.Title</p>
+								}
+								<p>Category: @item.CancelMembershipReason.Name</p>
+								<span>Created @item.CreatedDate.ToShortDateString(), Expected: @item.ExpectedCancelDate.ToShortDateString()</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+</div>

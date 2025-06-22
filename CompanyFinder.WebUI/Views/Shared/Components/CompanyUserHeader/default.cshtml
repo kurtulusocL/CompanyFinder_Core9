@@ -1,0 +1,140 @@
+﻿@model User
+@{
+	Layout = null;
+}
+
+<div class="container">
+	<nav class="navbar navbar-expand-lg">
+		<h2 class="nav-brand">
+			<a class="navbar-brand" asp-controller="HomeCompany" asp-action="Index" asp-route-id="@Model.Id" title="bi2bi.com">
+				@await Component.InvokeAsync("HomeCompanyLogo")
+			</a>
+		</h2>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content"
+		aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Links -->
+		<div class="main-menu collapse navbar-collapse" id="nav-content">
+			<ul class="navbar-nav">
+				<a class="nav-link active" asp-controller="HomeCompany" asp-action="Index" asp-route-id="@Model.Id">Anasayfa</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:black">Keşfet</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-item"><a asp-controller="Explorer" asp-action="Index">Keşfet Anasayfa</a></li>
+						<li class="dropdown-item"><a asp-controller="Company" asp-action="Index">Firma</a></li>
+						<li class="dropdown-item"><a asp-controller="CompanyPartnership" asp-action="Index">Firma Talep / Teklif</a></li>
+						<li class="dropdown-item"><a asp-controller="Product" asp-action="Index">Ürün</a></li>
+						<li class="dropdown-item"><a asp-controller="CompanyForm" asp-action="Index">Forumlar</a></li>
+						<li class="dropdown-item"><a asp-controller="Explorer" asp-action="WeeklyMostPopulerCompanies">Haftanın En Popüler Firmaları</a></li>
+						<li class="dropdown-item"><a asp-controller="Explorer" asp-action="WeeklyMostPopulerProducts">Haftanın En Popüler Ürünleri</a></li>
+						<li class="dropdown-item"><a asp-controller="Explorer" asp-action="AdvancedSearch">Detaylı Arama Yap</a></li>
+						<li class="dropdown-item"><a asp-controller="Blog" asp-action="Index">Blog Oku</a></li>			
+						<li class="dropdown-item"><a asp-controller="SectorNews" asp-action="Index">Sektörel Haberler</a></li>
+						<li class="dropdown-item"><a asp-controller="Explorer" asp-action="NewsList">Bizden Haberler</a></li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:black">Kaydettikleriniz</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="SavedCompanyList" asp-route-id="@Model.Id">Firmalar</a></li>
+						<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="SavedProductList" asp-route-id="@Model.Id">Ürünler</a></li>
+						<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="SavedBlogList" asp-route-id="@Model.Id">Blog Makaleleri</a></li>
+					</ul>
+				</li>
+				@await Component.InvokeAsync("CompanyUserCompanyHeaderOps", new { id = Model.Id })
+				<li class="nav-item dropdown megamenu">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:black">Genel İstatistikler</a>
+					<ul class="dropdown-menu megamenu">
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Firma İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostLikedCompanies">En Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostHitCompanies">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostSavedCompanies">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostAppointmentCompanies">En Fazla Randevu Talep Edilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostCommentCompanies">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Ürün İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostLikedProducts">En Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostHitProducts">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostSavedProducts">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostQuestionProducts">En Fazla Araştırılanlar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostCommentProducts">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Ürün-Teklif/Talep Fiyat İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostExpensiveProducts">En Pahalılar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostCheapperProducts">En Ucuzlar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostLikedPartnership">En Beğenilen Teklif / Talep</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostHitPartnership">En Fazla Görüntülenen Teklif / Talep</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostSavedPartnership">En Fazla Kaydedilen Teklif / Talep</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Blog Makalesi İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostLikedBlogs">En Fazla Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostHitBlogs">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostSavedBlogs">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostCommentBlogs">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown megamenu">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:black">İstatistikleriniz</a>
+					<ul class="dropdown-menu megamenu">
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Firma(lar)ınızın İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostLikedCompanies" asp-route-id="@Model.Id">En Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostHitCompanies" asp-route-id="@Model.Id">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostSavedCompanies" asp-route-id="@Model.Id">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostAppointmentCompanies" asp-route-id="@Model.Id">En Fazla Randevu Talep Edilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostCommentCompanies" asp-route-id="@Model.Id">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Ürünlerinizin İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostLikedProducts" asp-route-id="@Model.Id">En Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostHitProducts" asp-route-id="@Model.Id">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostSavedProducts" asp-route-id="@Model.Id">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostQuestionProducts" asp-route-id="@Model.Id">En Fazla Araştırılanlar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostCommentProducts" asp-route-id="@Model.Id">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Ürünlerinizin Fiyat - Teklif / Talep İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostExpensiveProducts" asp-route-id="@Model.Id">En Pahalılaar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostCheapperProducts" asp-route-id="@Model.Id">En Ucuzlar</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostLikedPartnership" asp-route-id="@Model.Id">En Beğenilen Teklif / Talep</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostHitPartnership" asp-route-id="@Model.Id">En Fazla Görüntülenen Teklif / Talep</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostSavedPartnership" asp-route-id="@Model.Id">En Fazla Kaydedilen Teklif / Talep</a></li>
+							</ul>
+						</li>
+						<li class="megamenu-column">
+							<ul>
+								<li class="dropdown-item"><a> Blog Makalelerinizin İstatistikleri</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostLikedBlogs" asp-route-id="@Model.Id">En Fazla Beğenilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostHitBlogs" asp-route-id="@Model.Id">En Fazla Görüntülenenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostSavedBlogs" asp-route-id="@Model.Id">En Fazla Kaydedilenler</a></li>
+								<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostCommentBlogs" asp-route-id="@Model.Id">En Fazla Yorumlananlar</a></li>
+							</ul>
+						</li>
+                    </ul>
+                </li>				
+				@await Component.InvokeAsync("CompanyUserHeaderUser", new { id = Model.Id })
+			</ul>
+		</div>
+	</nav>
+</div>

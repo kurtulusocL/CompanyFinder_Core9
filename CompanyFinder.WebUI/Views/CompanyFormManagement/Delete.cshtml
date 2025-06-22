@@ -1,0 +1,132 @@
+﻿@model CompanyForm
+@{
+	ViewData["Title"] = "Delete Company Form";
+	ViewData["Subtitle"] = "Company Form Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="kurtulusocL">Company Form Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="Answerable">Answerable Company Forms</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="NotAnswerable">NotAnswerable Company Forms</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyFormManagement" asp-action="CompanyFormOps">Company Form Answer Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							<div class="perso-img">
+								<img src="~/img/company/formImage/@Model.ImageUrl" class="img-circle circle-border m-b-md" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" asp-append-version="true">
+							</div>
+							<h2>
+								Title: @Model.Title
+							</h2>
+							<p>
+								@if (Model.CompanyId != null)
+								{
+									<ul>
+										<li>CompanyId: @Model.CompanyId</li>
+										<li>Company: @Model.Company.Name</li>
+									</ul>
+								}
+								else
+								{
+									<strong style="color:darkred">No Company Form Info</strong>
+								}
+							</p>
+							<p>
+								Category: @Model.FormCategory.Name
+							</p>
+							<p>
+								@if (Model.IsAnswerable == true)
+								{
+									<span class="badge badge-info">Answerable</span>
+								}
+								else
+								{
+									<span class="badge badge-warning">Not Answerable</span>
+								}
+							</p>
+
+							<div class="social-widget-result social-widget1-result">
+								<ul>
+									<li>
+										<span>Answers: @Model.CompanyFormAnswers.Count()</span>
+									</li>
+									<li>
+										<span>Hits: @Model.Hits.Count()</span>
+									</li>
+									<li>
+										<span>Likes: @Model.Likes.Count()</span>
+									</li>
+									<li>
+										<span>Reports: @Model.Reports.Count()</span>
+									</li>
+								</ul>
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="widget-text-box">
+								<h4>
+									Form Topic: @Html.Raw(Model.Desc)
+								</h4>
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+								}
+								@if (Model.IsActive == true)
+								{
+									<p>Active</p>
+								}
+								else
+								{
+									<p>DeActive</p>
+								}
+								@if (Model.IsDeleted == true)
+								{
+									<p>Deleted</p>
+								}
+								else
+								{
+									<p>Not Deleted</p>
+								}
+								<div class="text-right like-love-list">
+									<a href="#" onclick="confirmDelete('CompanyFormManagement', 'DeleteCompanyFormManagement', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

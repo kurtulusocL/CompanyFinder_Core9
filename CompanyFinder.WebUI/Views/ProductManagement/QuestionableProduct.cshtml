@@ -1,0 +1,241 @@
+﻿@model IEnumerable<Product>
+@{
+	ViewData["Title"] = "Active Questionable Product List";
+	ViewData["Subtitle"] = "Product Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="ProductManagement" asp-action="kurtulusocL">Product Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="AvailableProduct">Availables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotAvailableProduct">Not Availables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="CommentableProduct">Commentables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotCommentableProduct">Not Commentables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="QuestionableProduct">Questionables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="NotQuestionableProduct">Not Questionables</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="ProductManagement" asp-action="ProductOps">Product Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="image">Image</th>
+											<th data-field="userInfo">User Info</th>
+											<th data-field="companyInfo">Company Info</th>
+											<th data-field="productName">Product Name</th>
+											<th data-field="comment / question">Comment / Question</th>
+											<th data-field="category">Category</th>
+											<th data-field="subcategory">Subcategory</th>
+											<th data-field="available">Available</th>
+											<th>Counts</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													<img src="~/img/company/product/@item.ImageUrl" style="max-height:100px;max-width:90px;min-height:100px;min-width:90px;" class="img-responsive" asp-append-version="true" />
+												</td>
+												<td>
+													@if (item.UserId != null)
+													{
+														<ul>
+															<li>UserId: @item.UserId</li>
+															<li>Name-Surname: @item.User.NameSurname</li>
+															<li>Email: @item.User.Email</li>
+															<li>Location: @item.User.City, @item.User.Country</li>
+														</ul>
+														<a asp-controller="ProductManagement" asp-action="UserProduct" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Products
+														</a>
+														<a asp-controller="ProductManagement" asp-action="UserProductForAdmin" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Products for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No User Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.CompanyId != null)
+													{
+														<ul>
+															<li>CompanyId: @item.CompanyId</li>
+															<li>Company Name: @item.Company.Name</li>
+														</ul>
+														<a asp-controller="ProductManagement" asp-action="ProductCompany" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+															See All Products
+														</a>
+														<a asp-controller="ProductManagement" asp-action="ProductCompanyForAdmin" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+															See All Products for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Company Info</strong>
+													}
+												</td>
+												<td>@item.Name</td>
+												<td>
+													@if (item.IsQuestionable == true)
+													{
+														<span class="badge badge-info">Questionable Product</span>
+													}
+													else
+													{
+														<span class="badge badge-info">Not Questionable Product</span>
+													}
+													@if (item.IsCommentable == true)
+													{
+														<span class="badge badge-primary">Commentable Product</span>
+													}
+													else
+													{
+														<span class="badge badge-primary">Not Commentable Product</span>
+													}
+												</td>
+												<td>
+													<span>
+														Category: @item.ProductCategory.Name
+													</span>
+													<a asp-controller="ProductManagement" asp-action="ProductCategory" asp-route-id="@item.ProductCategoryId" class="btn btn-custon-rounded-two btn-info">
+														See All Products
+													</a>
+												</td>
+												<td>
+													@if (item.ProductSubcategoryId != null)
+													{
+														<span>
+															Subcategory: @item.ProductSubcategory.Name
+														</span>
+														<a asp-controller="ProductManagement" asp-action="ProductSubcategory" asp-route-id="@item.ProductSubcategoryId" class="btn btn-custon-rounded-two btn-info">
+															See All Products
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Subcategory</strong>
+													}
+												</td>
+												<td>
+													@if (item.IsAvailable == true)
+													{
+														<span class="badge badge-success">Available Product</span>
+													}
+													else
+													{
+														if (item.AvailableDate != null)
+														{
+															<span>
+																Not Available Product <strong style="color:darkblue">at @item.AvailableDate.Value.ToShortDateString() gonna be available</strong>
+															</span>
+														}
+														else
+														{
+															<span class="badge badge-danger">Not Available Product</span>
+														}
+													}
+												</td>
+												<td>
+													<ul>
+														<li>Comments: @item.Comments.Count()</li>
+														<li>Hits: @item.Hits.Count()</li>
+														<li>Likes: @item.Likes.Count()</li>
+														<li>Questions: @item.Questions.Count()</li>
+														<li>Reports: @item.Reports.Count()</li>
+														<li>Saved: @item.SaveContents.Count()</li>
+													</ul>
+												</td>
+												<td>
+													<a asp-controller="ProductManagement" asp-action="ProductDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-success btn-sm">Edit</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

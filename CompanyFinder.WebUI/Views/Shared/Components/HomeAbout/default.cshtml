@@ -1,0 +1,30 @@
+﻿@using System.Web
+@model IEnumerable<About>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+		<div class="row row-safari">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 img-area">
+				<img class="img_sec" src="~/img/us/about/@item.ImageUrl" style="max-height:332px;max-width:500px;" asp-append-version="true" />
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 content-area">
+				<h5>@item.Title</h5>
+				<p>@item.Subtitle</p>
+				@if (item.Desc.Length > 250)
+				{
+					@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 250) + " ..."))
+				}
+				else
+				{
+					@Html.Raw(item.Desc)
+				}
+				<br />
+				<a class="defualt-button view_more" asp-controller="About" asp-action="Index">Devamını Oku</a>
+			</div>
+		</div>
+	</div>
+}

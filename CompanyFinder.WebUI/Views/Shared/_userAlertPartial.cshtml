@@ -1,0 +1,53 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="row">
+	@if (TempData["companyChangePasswordSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyChangePasswordSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyChangePasswordError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyChangePasswordError"]</p>
+		</div>
+	}
+
+	@if (TempData["companyProfileUpdatedSuccessfull"] != null)
+	{
+		<div class="alert alert-success alert-success-style1">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+			<p><strong>Success!</strong> @TempData["companyProfileUpdatedSuccessfull"]</p>
+		</div>
+	}
+
+	@if (TempData["companyProfileUpdateError"] != null)
+	{
+		<div class="alert alert-danger alert-mg-b alert-success-style4">
+			<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+				<span class="icon-sc-cl" aria-hidden="true">×</span>
+			</button>
+			<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+			<p><strong>Danger!</strong> @TempData["companyProfileUpdateError"]</p>
+		</div>
+	}
+
+	
+
+
+</div>

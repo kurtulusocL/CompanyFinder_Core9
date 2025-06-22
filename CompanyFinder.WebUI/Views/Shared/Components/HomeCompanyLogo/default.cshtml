@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Logo>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<img src="~/img/us/logo/@item.ImageUrl" alt="bi2bi.com" style="max-height:39px;max-width:160px;min-height:39px;min-width:160px;" asp-append-version="true" />
+}

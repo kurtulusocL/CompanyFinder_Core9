@@ -1,0 +1,149 @@
+﻿@model Announcement
+@{
+	ViewData["Title"] = "Update Announcement";
+	ViewData["Subtitle"] = "Announcement Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Announcement" asp-action="kurtulusocL">Announcement Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Announcement" asp-action="AdminAnnouncement">Admin Announcement</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Announcement" asp-action="UserAnnouncement">Company User Announcement</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Announcement" asp-action="AnnouncementforEveryone">Announcement for Everyone</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Announcement" asp-action="AnnouncementOps">Announcement Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="basic-form-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline12-list shadow-reset mg-t-30">
+						<div class="sparkline12-hd">
+							<div class="main-sparkline12-hd">
+								<h1>@ViewData["Title"]</h1>
+								<div class="sparkline12-outline-icon">
+									<span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline12-graph">
+							<div class="basic-login-form-ad">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="all-form-element-inner">
+											<form asp-controller="Announcement" asp-action="Edit" method="post" enctype="multipart/form-data">
+												@Html.AntiForgeryToken()
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label style="color:blue">Announcement Image</label>
+																<input class="form-control btn-info" type="file" name="image" accept=".png, .jpg, .jpeg">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-lg-12">
+															<strong style="color:blue">Announcement Title <span class="text-danger">*</span></strong>
+															<input type="text" asp-for="Title" name="Title" class="form-control" required />
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-lg-12">
+															<strong style="color:blue">Announcement Subtitle</strong>
+															<input type="text" asp-for="Subtitle" name="Subtitle" class="form-control" />
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-lg-4">
+															<strong style="color:blue">Announcement for Admin <span class="text-danger">*</span></strong>
+															<br />
+															<label>
+																<input class="pull-left radio-checked" type="radio" asp-for="ForAdmin" name="ForAdmin" id="ForAdmin_Yes" value="True"> Yes
+															</label>
+														</div>
+														<div class="col-lg-4">
+															<strong style="color:blue">Announcement for Company <span class="text-danger">*</span></strong>
+															<br />
+															<label>
+																<input class="pull-left radio-checked" type="radio" asp-for="ForCompany" name="ForCompany" id="ForCompany_Yes" value="True"> Yes
+															</label>
+														</div>
+														<div class="col-lg-4">
+															<strong style="color:blue">Announcement for Everyone <span class="text-danger">*</span></strong>
+															<br />
+															<label>
+																<input class="pull-left radio-checked" type="radio" asp-for="ForEverybody" name="ForEverybody" id="ForEverybody_Yes" value="True"> Yes
+															</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="row">
+														<div class="col-lg-12">
+															<strong style="color:blue">Announcement Description<span class="text-danger">*</span></strong>
+															<textarea type="text" asp-for="Desc" name="Desc" class="ckeditor" required></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="form-group-inner">
+													<div class="login-btn-inner">
+														<div class="row">
+															<div class="col-lg-7"></div>
+															<div class="col-lg-5">
+																<div class="login-horizental cancel-wp pull-left">
+																	<button class="btn btn-custon-rounded-four btn-primary" type="submit">Update Announcement</button>
+																	<a asp-controller="Announcement" asp-action="kurtulusocL" class="btn btn-custon-rounded-four btn-warning">Cancel</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<partial name="_adminCrudAlertPartial" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

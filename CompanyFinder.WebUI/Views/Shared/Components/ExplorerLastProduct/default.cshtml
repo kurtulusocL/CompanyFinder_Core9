@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Product>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<div class="item">
+			<div class="client_dp">
+				<img src="~/img/company/product/@item.ImageUrl" style="max-height:120px;max-width:120px;" asp-append-version="true" />
+			</div>
+			<div class="team-card">
+				<div class="name_designation">
+					<h5>
+						<a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">@item.Name</a>
+					</h5>
+					@if (item.CompanyId != null)
+					{
+						<span>Firma: @item.Company.Name</span>
+					}
+				</div>
+				<div class="description">
+					@if (item.ProductSubcategoryId != null)
+					{
+						<p>@item.ProductSubcategory.Name, @item.ProductCategory.Name</p>
+					}
+					else
+					{
+						<p>@item.ProductCategory.Name</p>
+					}
+					@if (item.IsAvailable == true)
+					{
+						<p>Ürün Stokta Mevcut</p>
+					}
+					else
+					{
+						if (item.AvailableDate != null)
+						{
+							<p>
+								Ürün @item.AvailableDate.Value.ToShortDateString() tarihinde stokta olacak.
+							</p>
+						}
+						else
+						{
+							<p>Ürün Stokta Yok.</p>
+						}
+					}
+				</div>
+				<div style="color:black">
+					<ul>
+						<li>Kayıt Tarihi: @item.CreatedDate.ToShortDateString()</li>
+						<li>@item.Questions.Count() araştırma</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+}

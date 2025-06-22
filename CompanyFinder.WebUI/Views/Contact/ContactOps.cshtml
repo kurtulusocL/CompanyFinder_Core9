@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Contact>
+@{
+	ViewData["Title"] = "All Contact List";
+	ViewData["Subtitle"] = "Contact Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Contact" asp-action="kurtulusocL">Contact Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Contact" asp-action="ContactOps">Contact Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="static-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline12-list shadow-reset mg-t-30">
+						<div class="sparkline12-hd">
+							<div class="main-sparkline12-hd">
+								<h1>@ViewData["Title"]</h1>
+								<div class="sparkline12-outline-icon">
+									<span>
+										<a asp-controller="Contact" asp-action="Create" class="btn btn-custon-rounded-two btn-primary">+ Add New One</a>
+									</span>
+									<span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline12-graph">
+							<div class="static-table-list">
+								<table class="table hover-table">
+									<thead>
+										<tr>
+											<th>Location</th>
+											<th>Principal Email</th>
+											<th>Business Email</th>
+											<th>Mernis No</th>
+											<th>Status</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td>
+													@item.City, @item.Country
+												</td>
+												<td>@item.PrincipalEmail</td>
+												<td>@item.BusinessEmail</td>
+												<td>
+													@if (item.Mernis != null)
+													{
+														@item.Mernis
+													}
+													else
+													{
+														<strong style="color:darkred">No Mernis</strong>
+													}
+												</td>
+												<td>
+													@if (item.IsActive == true)
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/cancelled.jpg" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													@if (item.IsDeleted == true)
+													{
+														<img src="~/img/statics/delete.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+												</td>
+												<td>
+													<a asp-controller="Contact" asp-action="ContactDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-info btn-sm">Detail</a>
+													<a asp-controller="Contact" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-success btn-sm">Edit</a>
+													<a asp-controller="Contact" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-danger btn-sm">Delete</a>
+													@if (item.IsActive == true)
+													{
+														<a asp-controller="Contact" asp-action="SetDeActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeActive</a>
+													}
+													else
+													{
+														<a asp-controller="Contact" asp-action="SetActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetActive</a>
+													}
+													@if (item.IsDeleted == true)
+													{
+														<a asp-controller="Contact" asp-action="SetNotDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetNotDeleted</a>
+													}
+													else
+													{
+														<a asp-controller="Contact" asp-action="SetDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeleted</a>
+													}
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

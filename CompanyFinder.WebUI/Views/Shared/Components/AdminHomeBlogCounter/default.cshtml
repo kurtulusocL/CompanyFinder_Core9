@@ -1,0 +1,21 @@
+﻿@model Blog
+@{
+	Layout = null;
+}
+
+@if (ViewData["blogCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Blog</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["blogCount"]</span></h3>
+		</div>
+	</div>
+}

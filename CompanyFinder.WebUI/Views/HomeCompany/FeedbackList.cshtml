@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Feedback>
+@{
+	ViewData["Title"] = "Geri Bildirim Listesi";
+	ViewData["Subtitle"] = "Göndermiş Olduğunuz Geri Bildirimlerin Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+    <div class="container">
+        <div class="row">
+            <div class="inner-heading">
+                <h2>@ViewData["Title"]</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="faq">
+    <div class="container">
+        <div class="col-md-12">
+            <div id="accordion">
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#@item.Id" aria-expanded="true" aria-controls="collapseOne">
+                                    <span class="s_no">@item.Title</span>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="@item.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Başlığı: @item.Title</p>
+                                <p>Konusu: @item.Subject</p>
+                                @Html.Raw(item.Desc)
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="confirmSetDeleted('CompanyOperation', 'DeleteFeedback', @item.Id); return false;" class="btn btn-danger btn-sm btn-outline">Sil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+﻿@model AdminUpdateProfileDto
+@{
+	ViewData["Title"] = "Update Profile";
+	ViewData["Subtitle"] = "Update Your Admin Profile Informations";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="login-form-area mg-t-30 mg-b-15">
+		<div class="container-fluid">
+			<div class="row">
+				<form asp-controller="AccountAdmin" asp-action="Register" method="post" id="adminpro-register-form" class="adminpro-form">
+					@Html.AntiForgeryToken()
+					<div class="col-lg-12">
+						<div class="login-bg">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="login-title">
+										<h1>@ViewData["Subtitle"]</h1>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="login-input-area">
+										<span class="badge badge-info"><strong>Username *</strong></span>
+										<input type="text" asp-for="Username" name="Username" required placeholder="Username" />
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="login-input-area register-mg-rt">
+										<span class="badge badge-info"><strong>Phone Number *</strong></span>
+										<input type="text" asp-for="PhoneNumber" name="PhoneNumber" required placeholder="Phone Number" />
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="login-input-area register-mg-rt">
+										<span class="badge badge-info"><strong>Email Address *</strong></span>
+										<input type="email" asp-for="Email" name="Email" required placeholder="Email Address" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="login-input-area">
+										<span class="badge badge-info"><strong>City *</strong></span>
+										<input type="text" asp-for="City" name="City" required placeholder="City" />
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="login-input-area register-mg-rt">
+										<span class="badge badge-info"><strong>Country *</strong></span>
+										<input type="text" asp-for="Country" name="Country" required placeholder="Country" />
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="login-input-area register-mg-rt">
+										<span class="badge badge-info"><strong>Title *</strong></span>
+										<input type="text" asp-for="Title" name="Title" required placeholder="Title" readonly />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-10">
+									<div class="login-input-area">
+										<span class="badge badge-info"><strong>Use Confirm Code while Login</strong></span>
+										<br /><br />
+										<input type="radio" asp-for="IsLoginConfirmCode" name="IsLoginConfirmCode" id="IsLoginConfirmCode_Yes" value="True" /> Yes, Use Code 
+										<input type="radio" asp-for="IsLoginConfirmCode" name="IsLoginConfirmCode" id="IsLoginConfirmCode_No" value="False" /> No, Don't Use Code
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6"></div>
+								<div class="col-lg-6">
+									<div class="login-button-pro">
+										<button type="submit" class="login-button login-button-lg">Update Profile</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>				
+			</div>
+			<hr />
+			<partial name="_adminCrudAlertPartial" />
+		</div>
+	</div>
+</div>

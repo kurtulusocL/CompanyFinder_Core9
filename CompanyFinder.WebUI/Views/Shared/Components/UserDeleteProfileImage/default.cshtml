@@ -1,0 +1,13 @@
+﻿@model ProfileImage
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<img src="~/img/us/profileImage/@Model.ImageUrl" class="img-circle circle-border m-b-md" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" asp-append-version="true">
+}
+else
+{
+	<img src="~/img/statics/user.png" class="img-circle circle-border m-b-md" style="max-height:100px;max-width:100px;min-height:100px;min-width:100px;" asp-append-version="true">
+}

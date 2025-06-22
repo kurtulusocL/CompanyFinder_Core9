@@ -1,0 +1,21 @@
+﻿@model Appointment
+@{
+	Layout = null;
+}
+
+@if (ViewData["appointmentCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Appointment</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["appointmentCount"]</span></h3>
+		</div>
+	</div>
+}

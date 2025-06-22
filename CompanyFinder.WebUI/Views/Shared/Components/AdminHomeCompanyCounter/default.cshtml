@@ -1,0 +1,21 @@
+﻿@model Company
+@{
+	Layout = null;
+}
+
+@if (ViewData["companyCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Company</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["companyCount"]</span></h3>
+		</div>
+	</div>
+}

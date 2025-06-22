@@ -1,0 +1,60 @@
+﻿@model News
+@{
+	ViewData["Title"] = "Haber & Duyuru Detayı";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="team_member_detail">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					<div class="member-pic">
+						<img src="~/img/us/news/@Model.ImageUrl" style="max-height:331px;max-width:350px;" asp-append-version="true" />	
+					</div>					
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+					<div class="about_member">
+						<div class="name_designation">
+							<h3>@Model.Title</h3>
+						</div>						
+						<div class="clearfix"></div>
+						<div class="blockquote">
+							<p>@Model.Subtitle</p>
+						</div>
+						<div class="description">
+							@if (Model.Detail != null)
+							{
+								<p>@Model.Detail</p>
+							}
+							<p>
+								@Html.Raw(Model.Desc)
+							</p>
+							<br />
+							<p class="text-right">Paylaşım Tarihi: @Model.CreatedDate.ToShortDateString()</p>
+						</div>
+						@await Component.InvokeAsync("NewsHit", new { id = Model.Id })
+					</div>					
+					<div class="contact-detail">						
+						<ul>							
+							<li>
+								<a asp-controller="News" asp-action="Like" asp-route-id="@Model.Id" class="btn btn-danger btn-sm btn-outline">Beğen</a>
+							</li>
+							<li>@Model.Hit.ToString() görüntülenme</li>
+							<li>@Model.Like.ToString() beğeni</li>
+						</ul>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

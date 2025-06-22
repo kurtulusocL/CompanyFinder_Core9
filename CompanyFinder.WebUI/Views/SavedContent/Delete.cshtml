@@ -1,0 +1,157 @@
+﻿@model SavedContent
+@{
+	ViewData["Title"] = "Delete Saved Content";
+	ViewData["Subtitle"] = "Saved Content Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="SavedContent" asp-action="kurtulusocL">Saved Content Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="SavedContent" asp-action="NotSavedContent">Not Saved Contents</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="SavedContent" asp-action="SavedContentOps">Saved Content Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="widget-text-box">
+							<div class="social-widget-result social-widget1-result">
+								<span>
+									@if (Model.IsSaved == true)
+									{
+										<strong style="color:darkblue">Saved at @Model.SavedDate.ToShortDateString()</strong>
+									}
+									else
+									{
+										<strong style="color:darkred">Left Saved Content</strong>
+									}
+								</span>
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<h4>Saved Content</h4>
+								@if (Model.CompanyId != null || Model.BlogId != null || Model.ProductId != null || Model.CompanyPartnershipId != null)
+								{
+									if (Model.CompanyId != null)
+									{
+										<ul>
+											<li>Company Content Saved</li>
+											<li>CompanyID: @Model.CompanyId</li>
+											<li>Company Name: @Model.Company.Name</li>
+										</ul>
+									}
+									if (Model.BlogId != null)
+									{
+										<ul>
+											<li>Blog Content Saved</li>
+											<li>BlogId: @Model.BlogId</li>
+											<li>Blog Title: @Model.Blog.Title</li>
+										</ul>
+									}
+									if (Model.ProductId != null)
+									{
+										<ul>
+											<li>Product Content Saved</li>
+											<li>ProductId: @Model.ProductId</li>
+											<li>Product Name: @Model.Product.Name</li>
+										</ul>
+									}
+									@if (Model.CompanyPartnershipId != null)
+									{
+										<ul>
+											<li>Company Partnership Content Saved</li>
+											<li>Company PartnershipId: @Model.CompanyPartnershipId</li>
+											@if (Model.CompanyPartnership.CompanyId != null)
+											{
+												<li>CompanyId: @Model.CompanyPartnership.CompanyId</li>
+												<li>Company: @Model.CompanyPartnership.Company.Name</li>
+											}
+											else
+											{
+												<li>
+													<strong style="color:maroon">No Company Info</strong>
+												</li>
+											}
+										</ul>
+									}
+								}
+								else
+								{
+									<strong style="color:darkred">Not Information</strong>
+								}
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<h4>User Information</h4>
+								@if (Model.UserId != null)
+								{
+									<ul>
+										<li>UserId: @Model.UserId</li>
+										<li>Name Surname: @Model.User.NameSurname</li>
+										<li>Email: @Model.User.Email</li>
+										<li>Location: @Model.User.City, @Model.User.Country</li>
+									</ul>
+								}
+								else
+								{
+									<strong style="color:darkred">No User Admin Info</strong>
+								}
+							</div>
+							@if (Model.UpdatedDate != null)
+							{
+								<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+							}
+							@if (Model.IsActive == true)
+							{
+								<p>Active</p>
+							}
+							else
+							{
+								<p>DeActive</p>
+							}
+							@if (Model.IsDeleted == true)
+							{
+								<p>Deleted</p>
+							}
+							else
+							{
+								<p>Not Deleted</p>
+							}
+							<div class="text-right like-love-list">
+								<a href="#" onclick="confirmDelete('SavedContent', 'DeleteSavedContent', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

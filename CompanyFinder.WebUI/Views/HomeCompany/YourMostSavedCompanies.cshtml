@@ -1,0 +1,116 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
+@model IPagedList<Company>
+@{
+	ViewData["Title"] = "En Fazla Kaydedilen Firmalarınız Listesi";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<div class="contact-form">
+					<table class="table table-hover display" id="table_id">
+						<thead>
+							<tr style="color:black">
+								<th>Kaydedilme</th>
+								<th>Logo</th>
+								<th data-class-name="companyName">Firma Adı</th>
+								<th>Kuruluş</th>
+								<th data-class-name="location">Lokasyon</th>
+								<th data-class-name="category">Kategori</th>
+								<th>Diğer İstatistikler</th>
+								<th>Katılma Tarihi</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr style="color:black">
+									<td>@item.SaveContents.Count()</td>
+									<td>
+										<img src="~/img/company/logo/@item.Logo" style="max-height:90px;max-width:90px;min-height:90px;min-width:90px;" asp-append-version="true" />
+									</td>
+									<td>@item.Name</td>
+									<td>@item.FoundationDate.ToShortDateString()</td>
+									<td>
+										@if (item.CityId != null)
+										{
+											<span>
+												@item.City.Name, @item.Country.Name
+											</span>
+										}
+										else
+										{
+											<span>
+												@item.Country.Name
+											</span>
+										}
+									</td>
+									<td>
+										@if (item.CompanySubcategoryId != null)
+										{
+											<span>
+												@item.CompanySubcategory.Name, @item.CompanyCategory.Name
+											</span>
+										}
+										else
+										{
+											<span>@item.CompanyCategory.Name</span>
+										}
+									</td>
+									<td>
+										<ul>
+											<li>@item.Hits.Count() görüntülenme</li>
+											<li>@item.Likes.Count() beğeni</li>
+											<li>@item.Appointments.Count() randevu</li>
+											<li>@item.Comments.Count() yorum</li>
+											<li>@item.Products.Count()</li>
+											<li>@item.Blogs.Count() blog</li>
+										</ul>
+									</td>
+									<td>@item.CreatedDate.ToShortDateString()</td>
+									<td>
+										<a asp-controller="HomeCompany" asp-action="SavedCompanyUserList" asp-route-id="@item.Id" class="btn btn-info btn-sm" target="_blank">Kaydedenler</a>
+										<a asp-controller="Company" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary btn-sm" target="_blank">İncele</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="pagination">
+				<div class="pagination-info">
+					@Html.PagedListPager(Model, page => Url.Action("YourMostSavedCompanies", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

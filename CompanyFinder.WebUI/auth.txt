@@ -1,0 +1,16 @@
+ ----- admin auth ----------------
+
+kurtulus@gmail.com  --> ocL_1972
+semih.igneli@gmail.com --> Semih.1234
+alican@gmail.com --> Alican.1234
+ekin@gmail.com --> Ekin.1234
+
+------- company --------
+aykut@gmail.com ---> Kartal.12345
+ahmet@gmail.com ---> Ahmet.1234
+kurtulusocals@outlook.com ---> Efe.S1234
+kurtulusocals@gmail.com ---> Ciğdem.1234
+iklim@gmail.com ---> Yilmaz.1234
+gizem@gmail.com ---> Gizem.12345
+kurtulusocal@gmail.com --> Alex.123456
+kurtulusocal@outlook.com --> Hagi.1234

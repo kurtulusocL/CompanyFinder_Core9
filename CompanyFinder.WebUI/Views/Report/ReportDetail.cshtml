@@ -1,0 +1,419 @@
+﻿@model Report
+@{
+	ViewData["Title"] = "Report Detail";
+	ViewData["Subtitle"] = "Report Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Report" asp-action="kurtulusocL">Report Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="AnsweredReport">Answered Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="NotAnsweredReport">Not Answered Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="FixedReport">Fixed Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="NotFixedReport">Not Fixed Reports</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Report" asp-action="ReportOps">Report Answer Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="project-details-area mg-b-40">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="project-details-wrap shadow-reset">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Active Status:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="btn-group project-list-ad">
+												@if (Model.IsActive == true)
+												{
+													<button class="btn btn-white btn-xs">Active</button>
+												}
+												else
+												{
+													<button class="btn btn-white btn-xs">DeActive</button>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Deleted Status:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="btn-group project-list-ad">
+												@if (Model.IsDeleted == true)
+												{
+													<button class="btn btn-white btn-xs">Deleted</button>
+												}
+												else
+												{
+													<button class="btn btn-white btn-xs">Not Deleted</button>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Created Date:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.CreatedDate.ToLongDateString()</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Updated Date:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.UpdatedDate != null)
+												{
+													<span>@Model.UpdatedDate.Value.ToLongDateString()</span>
+												}
+												else
+												{
+													<span>---</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>ID No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												<span>@Model.Id</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>User Id No:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.UserId != null)
+												{
+													<span>@Model.UserId</span>
+												}
+												else
+												{
+													<span class="badge badge-danger">No User Id</span>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="project-details-mg">
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											<div class="project-details-st">
+												<span><strong>Fix Operation:</strong></span>
+											</div>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="project-details-dt">
+												@if (Model.IsFixed == true)
+												{
+													<a asp-controller="Report" asp-action="SetNotFixed" asp-route-id="@Model.Id" class="btn btn-custon-rounded-two btn-warning btn-sm">Set Not Fixed</a>
+												}
+												else
+												{
+													<a asp-controller="Report" asp-action="SetFixed" asp-route-id="@Model.Id" class="btn btn-custon-rounded-two btn-warning btn-sm">Set Fixed</a>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="project-details-tab">
+									<ul class="nav nav-tabs res-pd-less-sm">
+										<li class="active">
+											<a data-toggle="tab" href="#menu1">@ViewData["Title"]</a>
+										</li>
+									</ul>
+									<div class="tab-content res-tab-content-project">
+										<div id="menu1" class="tab-pane fade in active animated zoomInLeft">
+											<div class="project-details-completeness">
+												<dl class="table table-striped">
+													<dt class="col-sm-4">
+														Report Title
+													</dt>
+													<dd class="col-sm-8">
+														@Model.Title
+													</dd>
+													<dt class="col-sm-4">
+														Report Description
+													</dt>
+													<dd class="col-sm-8">
+														@Model.Desc
+													</dd>
+													<dt class="col-sm-4">
+														Report Category
+													</dt>
+													<dd class="col-sm-8">
+														@Model.ReportCategory.Name
+													</dd>
+													<dt class="col-sm-4">
+														Report Answers
+													</dt>
+													<dd class="col-sm-8">
+														@Model.ReportAnswers.Count()
+													</dd>
+													<dt class="col-sm-4">
+														Report Hit
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.Hit != null)
+														{
+															<span><i class="fa fa-eye"></i> @Model.Hit.Value.ToString()</span>
+														}
+														else
+														{
+															<span><i class="fa fa-eye"></i> 0</span>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Is Fixed
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.IsFixed == true)
+														{
+															<strong style="color:darkblue">Fixed Report</strong>
+															if (Model.FixedDate != null)
+															{
+																<span>Fixed at</span>
+																<span class="badge badge-info">@Model.FixedDate.Value.ToShortDateString()</span>
+															}
+														}
+														else
+														{
+															<strong style="color:darkred">Not Fixed Report</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														Report For
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.BlogId != null || Model.CommentId != null || Model.CommentAnswerId != null || Model.CompanyId != null || Model.ProductId != null || Model.CompanyPartnershipId != null || Model.CompanyFormId != null || Model.CompanyFormAnswerId != null)
+														{
+															if (Model.BlogId != null)
+															{
+																<ul>
+																	<li>Blog Report</li>
+																	<li>BlogId: @Model.BlogId</li>
+																</ul>
+															}
+															if (Model.CommentId != null)
+															{
+																<ul>
+																	<li>Comment Report</li>
+																	<li>CommentId: @Model.CommentId</li>
+																</ul>
+															}
+															if (Model.CommentAnswerId != null)
+															{
+																<ul>
+																	<li>Comment Answer Report</li>
+																	<li>Comment AnswerId: @Model.CommentAnswerId</li>
+																</ul>
+															}
+															if (Model.CompanyId != null)
+															{
+																<ul>
+																	<li>Company Report</li>
+																	<li>CompanyId: @Model.CompanyId</li>
+																</ul>
+															}
+															if (Model.ProductId != null)
+															{
+																<ul>
+																	<li>Product Report</li>
+																	<li>ProductId: @Model.ProductId</li>
+																</ul>
+															}
+															@if (Model.CompanyPartnershipId != null)
+															{
+																<ul>
+																	<li>Company Partnership Report</li>
+																	<li>CompanyId: @Model.CompanyPartnershipId</li>
+																	@if (Model.CompanyPartnership.CompanyId != null)
+																	{
+																		<li>CompanyId: @Model.CompanyPartnership.CompanyId</li>
+																		<li>Company: @Model.CompanyPartnership.Company.Name</li>
+																	}
+																	else
+																	{
+																		<li>
+																			<strong style="color:maroon">No Company Info</strong>
+																		</li>
+																	}
+																</ul>
+															}
+															if (Model.CompanyFormId != null)
+															{
+																<ul>
+																	<li>Company Form Report</li>
+																	<li>Company FormId: @Model.CompanyFormId</li>
+																	@if (Model.CompanyForm.CompanyId != null)
+																	{
+																		<li>CompanyId: @Model.CompanyForm.CompanyId</li>
+																		<li>Company: @Model.CompanyForm.Company.Name</li>
+																	}
+																	else
+																	{
+																		<li>
+																			<strong style="color:maroon">No Company Info</strong>
+																		</li>
+																	}
+																</ul>
+															}
+															if (Model.CompanyFormAnswerId != null)
+															{
+																<ul>
+																	<li>Company Form Answer Report</li>
+																	<li>Company Form AnswerId: @Model.CompanyFormAnswerId</li>
+																	@if (Model.CompanyFormAnswer.CompanyFormId != null)
+																	{
+																		<li>Company FormId: @Model.CompanyFormId</li>
+																	}
+																	else
+																	{
+																		<li>
+																			<strong style="color:maroon">No Company Form Info</strong>
+																		</li>
+																	}
+																</ul>
+															}
+														}
+														else
+														{
+															<strong style="color:darkred">Not Information</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														User Info
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.UserId != null)
+														{
+															<ul>
+																<li>UserId: @Model.UserId</li>
+																<li>Name Surname: @Model.User.NameSurname</li>
+																<li>Email: @Model.User.NameSurname</li>
+																<li>Location: @Model.User.City, @Model.User.Country</li>
+															</ul>
+														}
+														else
+														{
+															<strong style="color:darkred">No User Admin Info</strong>
+														}
+													</dd>
+													<dt class="col-sm-4">
+														User Status
+													</dt>
+													<dd class="col-sm-8">
+														@if (Model.UserId != null)
+														{
+															<ul>
+																@if (Model.User.IsActive == true)
+																{
+																	<li>Active User</li>
+																}
+																else
+																{
+																	<li>De Active User</li>
+																}
+																@if (Model.User.IsDeleted == true)
+																{
+																	<li>Deleted User</li>
+																}
+																else
+																{
+																	<li>Not Deleted User</li>
+																}
+															</ul>
+														}
+														else
+														{
+															<strong style="color:darkred">No User Information</strong>
+														}
+													</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

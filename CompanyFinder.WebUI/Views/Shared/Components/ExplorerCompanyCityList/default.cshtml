@@ -1,0 +1,18 @@
+﻿@model IEnumerable<City>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li>
+		@if (item.CountryId != null)
+		{
+			<a asp-controller="Company" asp-action="City" asp-route-id="@item.Id">@item.Name - (@item.Country.Name)</a>
+		}
+		else
+		{
+			<a asp-controller="Company" asp-action="City" asp-route-id="@item.Id">@item.Name</a>
+		}
+	</li>
+}

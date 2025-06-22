@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OurServices>
+@{
+	ViewData["Title"] = "Hizmetlerimiz";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="services" class="index-3 inner pdb-70">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="row blog-isotope">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 blog-iso-item">
+						<div class="item card_mr_top">
+							<div class="service-card">
+								@if (item.IconUrl != null)
+								{
+									<div class="service_icon">
+										<img src="~/img/us/ourService/@item.IconUrl" style="max-height:57px;max-width:51px;" asp-append-version="true" />
+									</div>
+								}
+								else
+								{
+									<div class="service_icon">
+										<img src="~/img/statics/verification.png" style="max-height:57px;max-width:51px;" asp-append-version="true" />
+									</div>
+								}
+								<div class="service_detail">
+									<h5>@item.Title</h5>
+									<p>@Html.Raw(item.Desc)</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</section>
+<section id="work-status" class="index-3">
+	<h3 class="d-none">heading</h3>
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					@await Component.InvokeAsync("OurServicesUserCounter")
+				</div>
+				<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					@await Component.InvokeAsync("OurServicesCompanyCounter")
+				</div>
+				<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					@await Component.InvokeAsync("OurServicesProductCounter")
+				</div>				
+				<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					@await Component.InvokeAsync("OurServicesBlogCounter")
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay"></div>
+</section>

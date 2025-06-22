@@ -1,0 +1,180 @@
+﻿@model CompanyPartnership
+@{
+	ViewData["Title"] = "Delete Company Partnership Request";
+	ViewData["Subtitle"] = "Company Partnership Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="kurtulusocL">Company Partnership Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="StartDate">Partnership by Start Date</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="ExpiryDate">Partnership by Expiry Date</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="Available">Available Partnerships</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="NotAvailable">Not Available Partnerships</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="CompanyPartnershipOps">Company Partnership Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widgets-personal-info-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="author-widgets-single widget-ov-mg-t-30 widget-ov-mg-t-n-30 widget-ov-mg-t-l-30 shadow-reset">
+						<div class="persoanl-widget-hd persoanl1-widget-hd">
+							<h2>
+								Title: @Model.Title
+							</h2>
+							<h2>
+								Description: @Model.Desc
+							</h2>
+							<h4>Category: @Model.ProductCategory.Name</h4>
+							<p>
+								Started Date: @Model.StartDate.ToShortDateString()
+							</p>
+							<p>
+								Expiry Date: @Model.ExpiryDate.ToShortDateString()
+							</p>
+							<p>
+								@if (Model.IsAvailable == true)
+								{
+									<strong style="color:darkblue">Available Partnership Request</strong>
+								}
+								else
+								{
+									<strong style="color:maroon">Not Available Partnership Request</strong>
+								}
+							</p>
+							@if (Model.UserId != null)
+							{
+								<p>
+									<ul>
+										<li>UserId: @Model.UserId</li>
+										<li>User: @Model.User.NameSurname</li>
+										<li>Email: @Model.User.Email</li>
+										<li>Location: @Model.User.City, @Model.User.Country</li>
+									</ul>
+								</p>
+							}
+							else
+							{
+								<p>No User Info</p>
+							}
+							@if (Model.CompanyId != null)
+							{
+								<p>
+									<ul>
+										<li>Company: @Model.Company.Name</li>
+										@if (Model.Company.CityId != null)
+										{
+											<li>Location: @Model.Company.City.Name, @Model.Company.Country.Name</li>
+										}
+										else
+										{
+											<li>Location: @Model.Company.Country.Name</li>
+										}
+									</ul>
+								</p>
+							}
+							else
+							{
+								<p>No Company Info</p>
+							}
+							<div class="social-widget-result social-widget1-result">
+								<ul>
+									<li>
+										<span>
+											Hits: @Model.Hits.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Likes: @Model.Likes.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Reports: @Model.Reports.Count()
+										</span>
+									</li>
+									<li>
+										<span>
+											Saved: @Model.SavedContents.Count()
+										</span>
+									</li>
+								</ul>
+							</div>
+							<div class="social-widget-result social-widget1-result">
+								<span>Created At: @Model.CreatedDate.ToShortDateString()</span>
+							</div>
+							<div class="widget-text-box">
+								@if (Model.Detail != null)
+								{
+									<h2>
+										Detail: @Model.Detail
+									</h2>
+								}
+								else
+								{
+									<strong style="color:darkred">No Detail</strong>
+								}								
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Updated At: @Model.UpdatedDate.Value.ToShortDateString()</p>
+								}
+								@if (Model.IsActive == true)
+								{
+									<p>Active</p>
+								}
+								else
+								{
+									<p>DeActive</p>
+								}
+								@if (Model.IsDeleted == true)
+								{
+									<p>Deleted</p>
+								}
+								else
+								{
+									<p>Not Deleted</p>
+								}
+								<div class="text-right like-love-list">
+									<a href="#" onclick="confirmDelete('CompanyPartnershipManagement', 'DeleteCompanyPartnership', @Model.Id); return false;" class="btn btn-custon-rounded-three btn-danger btn-sm"> Delete </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

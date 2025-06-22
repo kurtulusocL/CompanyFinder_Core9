@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\company\blog\multiImage\" />
+    <Folder Include="wwwroot\img\company\logo\" />
+    <Folder Include="wwwroot\img\company\images\" />
+    <Folder Include="wwwroot\img\company\formImage\" />
+    <Folder Include="wwwroot\img\company\product\multiImage\" />
+    <Folder Include="wwwroot\img\us\logo\" />
+    <Folder Include="wwwroot\img\us\announcement\" />
+    <Folder Include="wwwroot\img\us\ad\" />
+    <Folder Include="wwwroot\img\us\about\" />
+    <Folder Include="wwwroot\img\us\layoutInfo\" />
+    <Folder Include="wwwroot\img\us\email\" />
+    <Folder Include="wwwroot\img\us\sectorNews\" />
+    <Folder Include="wwwroot\img\us\ourService\" />
+    <Folder Include="wwwroot\img\us\profileImage\" />
+    <Folder Include="wwwroot\img\us\news\" />
+    <Folder Include="wwwroot\img\us\socialMedia\" />
+    <Folder Include="wwwroot\img\us\slider\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.85" />
+    <PackageReference Include="X.PagedList" Version="10.5.7" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
+    <PackageReference Include="X.PagedList.Web.Common" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyFinder.Business\CompanyFinder.Business.csproj" />
+    <ProjectReference Include="..\CompanyFinder.Core\CompanyFinder.Core.csproj" />
+    <ProjectReference Include="..\CompanyFinder.DataAccess\CompanyFinder.DataAccess.csproj" />
+    <ProjectReference Include="..\CompanyFinder.Entities\CompanyFinder.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

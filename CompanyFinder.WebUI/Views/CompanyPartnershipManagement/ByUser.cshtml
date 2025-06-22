@@ -1,0 +1,205 @@
+﻿@using System.Web
+@model IEnumerable<CompanyPartnership>
+@{
+	ViewData["Title"] = "Active Company Partnership Request List by User";
+	ViewData["Subtitle"] = "Company Partnership Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="kurtulusocL">Company Partnership Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="StartDate">Partnership by Start Date</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="ExpiryDate">Partnership by Expiry Date</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="Available">Available Partnerships</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="NotAvailable">Not Available Partnerships</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="CompanyPartnership" asp-action="CompanyPartnershipOps">Company Partnership Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="companyInfo">Company Info</th>
+											<th data-field="userInfo">User Info</th>
+											<th data-field="title">Title</th>
+											<th data-field="category">Category</th>
+											<th data-field="description">Description</th>
+											<th data-field="started/expire">Started / Expire</th>
+											<th data-field="available">Available</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.CompanyId != null)
+													{
+														<ul>
+															<li>CompanyId: @item.CompanyId</li>
+															<li>Company: @item.Company.Name</li>
+															@if (item.Company.CityId != null)
+															{
+																<li>Location: @item.Company.City.Name, @item.Company.Country.Name</li>
+															}
+															else
+															{
+																<li>Location: @item.Company.Country.Name</li>
+															}
+														</ul>
+														<br />
+														<a asp-controller="CompanyPartnership" asp-action="Company" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-info">
+															See All Requests
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No Company Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.UserId != null)
+													{
+														<ul>
+															<li>UserId: @item.UserId</li>
+															<li>User: @item.User.NameSurname</li>
+															<li>Location: @item.User.City, @item.User.Country</li>
+														</ul>
+														<br />
+														<a asp-controller="CompanyPartnership" asp-action="ByUserForAdmin" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-info">
+															See All Requests for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No User Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.Title.Length > 45)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Title, 45) + " ...")
+													}
+													else
+													{
+														@item.Title
+													}
+												</td>
+												<td>
+													@item.ProductCategory.Name
+													<br />
+													<a asp-controller="CompanyPartnership" asp-action="Category" asp-route-id="@item.ProductCategoryId" class="btn btn-custon-rounded-two btn-info">
+														See All
+													</a>
+												</td>
+												<td>
+													@if (item.Desc.Length > 45)
+													{
+														@Html.Raw(HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Desc, 45) + " ..."))
+													}
+													else
+													{
+														@Html.Raw(item.Desc)
+													}
+												</td>
+												<td>
+													<span>
+														Started at: @item.StartDate.ToLongDateString(), Expiry at: @item.ExpiryDate.ToLongDateString()
+													</span>
+												</td>
+												<td>
+													@if (item.IsAvailable == true)
+													{
+														<span class="badge badge-info">Available</span>
+													}
+													else
+													{
+														<span class="badge badge-warning">Not Available</span>
+													}
+												</td>
+												<td>
+													<a asp-controller="CompanyPartnership" asp-action="CompanyPartnershipDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

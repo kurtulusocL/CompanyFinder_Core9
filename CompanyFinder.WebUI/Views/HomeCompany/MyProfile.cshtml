@@ -1,0 +1,135 @@
+﻿@model User
+@{
+	ViewData["Title"] = "Profilim";
+	ViewData["Subtitle"] = "Kullanıcı Profili";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="inner-banner">
+	<div class="container">
+		<div class="row">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="our_team" class="inner">
+	<div id="ui-ux">
+		<div class="container">
+			<div class="section_heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12 content_sec">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-xs-3"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="item team-card card_mr_bt">
+							<div class="client_dp">
+								@await Component.InvokeAsync("CompanyUserProfileLogo", new { id = Model.Id })
+							</div>
+							<div class="name_designation">
+								<h5><a>@Model.NameSurname</a></h5>
+								<span>Kullanıcı Adı: @Model.UserName</span>
+							</div>
+							<div class="description">
+								<p>Lokasyon: @Model.City, @Model.Country</p>
+								<p>
+									İletişim Bilgileri:
+									<br />
+									Telefon Numarası: @Model.PhoneNumber, Email Adresi: @Model.Email
+								</p>
+								<p>Profil @Model.CreatedDate.ToShortDateString() tarihinde kaydedildi.</p>
+								@if (Model.UpdatedDate != null)
+								{
+									<p>Profil @Model.UpdatedDate.Value.ToShortDateString() tarihinde güncellendi.</p>
+								}
+								<p>
+									@if (Model.IsActive == true)
+									{
+										<span class="badge badge-info">Aktif Profil</span>
+									}
+								</p>
+							</div>
+							<div class="social_links">
+								<ul>
+									<li><a asp-controller="AccountCompany" asp-action="UpdateProfile" asp-route-id="@Model.Id" class="btn btn-success btn-sm">Profili Güncelle</a></li>
+									<li><a asp-controller="AccountCompany" asp-action="ChangePassword" asp-route-id="@Model.Id" class="btn btn-success btn-sm">Şifreyi Değiştir</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-xs-3"></div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 work-status">
+					<div class="row">
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Products.Count()</span></div>
+								<div class="title" style="color:black">Eklenen Toplam Ürün</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Companies.Count()</span></div>
+								<div class="title" style="color:black">Eklenen Toplam Firma</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Blogs.Count()</span></div>
+								<div class="title" style="color:black">Yazılan Toplam Blog</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Questions.Count()</span></div>
+								<div class="title" style="color:black">Sorulan Toplam Soru</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 work-status">
+					<div class="row">
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.QuestionAnswers.Count()</span></div>
+								<div class="title" style="color:black">Cevaplanan Toplam Soru</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Comments.Count()</span></div>
+								<div class="title" style="color:black">Yapılan Toplam Yorum</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.CommentAnswers.Count()</span></div>
+								<div class="title" style="color:black">Cevaplanan Toplam Yorum</div>
+							</div>
+						</div>
+						<div class="counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="counter_content">
+								<div class="display" style="color:black"><span class="counter">@Model.Appointments.Count()</span></div>
+								<div class="title" style="color:black">Toplam Randevu Talebi</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

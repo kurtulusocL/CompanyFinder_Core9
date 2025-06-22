@@ -1,0 +1,14 @@
+﻿@model IEnumerable<LayoutInfo>
+@{
+	Layout = null;
+}
+
+@foreach(var item in Model)
+{
+	<meta name="bi2bi.com" content="bi2bi.com">
+	<meta name="title" content="@item.Title">
+	<meta name="keywords" content="@item.Keyword">
+	<meta name="content" content="@item.Content">
+	<meta name="author" content="@item.Author">
+	<meta name="language" content="@item.Language">
+}

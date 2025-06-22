@@ -1,0 +1,110 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="row">
+	@if (TempData["blogCommentCreateError"] != null || TempData["companyCommentCreateError"] != null || TempData["companyAppointmentSentSuccessfull"] != null || TempData["companyAppointmentSentError"] != null || TempData["companyQuestionSentSuccessfull"] != null || TempData["companyQuestionSentError"] != null || TempData["productQuestionCreateSuccessfull"] != null || TempData["productQuestionCreateError"] != null || TempData["productCommentCreateError"] != null || TempData["companyCommentCreateError"] != null)
+	{
+		if (TempData["blogCommentCreateError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["blogCommentCreateError"]</p>
+			</div>
+		}
+		if (TempData["companyCommentCreateError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["companyCommentCreateError"]</p>
+			</div>
+		}
+		if (TempData["companyAppointmentSentSuccessfull"] != null)
+		{
+			<div class="alert alert-success alert-success-style1">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+				<p><strong>Başarılı!</strong> @TempData["companyAppointmentSentSuccessfull"]</p>
+			</div>
+		}
+		if (TempData["companyAppointmentSentError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["companyAppointmentSentError"]</p>
+			</div>
+		}
+		if (TempData["companyQuestionSentSuccessfull"] != null)
+		{
+			<div class="alert alert-success alert-success-style1">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+				<p><strong>Başarılı!</strong> @TempData["companyQuestionSentSuccessfull"]</p>
+			</div>
+		}
+		if (TempData["companyQuestionSentError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["companyQuestionSentError"]</p>
+			</div>
+		}
+		if (TempData["productQuestionCreateSuccessfull"] != null)
+		{
+			<div class="alert alert-success alert-success-style1">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-checked-pro admin-check-sucess"></span>
+				<p><strong>Başarılı!</strong> @TempData["productQuestionCreateSuccessfull"]</p>
+			</div>
+		}
+		if (TempData["productQuestionCreateError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["productQuestionCreateError"]</p>
+			</div>
+		}
+		if (TempData["productCommentCreateError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["productCommentCreateError"]</p>
+			</div>
+		}
+		if (TempData["companyCommentCreateError"] != null)
+		{
+			<div class="alert alert-danger alert-mg-b alert-success-style4">
+				<button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+					<span class="icon-sc-cl" aria-hidden="true">×</span>
+				</button>
+				<span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+				<p><strong>Hata!</strong> @TempData["companyCommentCreateError"]</p>
+			</div>
+		}
+
+	}
+</div>

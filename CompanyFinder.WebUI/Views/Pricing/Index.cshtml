@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Pricing>
+@{
+	ViewData["Title"] = "Fiyatlandırma";
+	ViewData["Subtitle"] = "Fiyat Detayları ve Bilgi Alma";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="inner-banner" class="index-3">
+	<div class="container">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<div class="inner-heading">
+				<h2>@ViewData["Title"]</h2>
+				<div class="separator left-align">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active" aria-current="page">@ViewData["Subtitle"]</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="pricing" class="index-3">
+	<div class="container">
+		<div class="section_heading">
+			<h2><span>@ViewData["Title"]</span></h2>
+			<div class="separator">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="heading_content">
+				@ViewData["Subtitle"]
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 content_sec">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 price_card">
+						<div class="plan-title">
+							<h4>@item.Title</h4>
+							<div class="separator">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+						<div class="price_amount"> <strong>@item.Price.ToString("C2")</strong> </div>
+						@if (item.Subtitle != null)
+						{
+							<div class="price_amount">
+								<p>@item.Subtitle</p>
+							</div>
+						}
+						<div class="features">
+							<ul>
+								<li>@item.PricingCategory.Name</li>
+								<li class="deactive">
+									@Html.Raw(item.Desc)
+								</li>								
+							</ul>
+						</div>
+						<div class="purchase">
+							<a class="purchase_now" asp-controller="Pricing" asp-action="GetContact" asp-route-id="@item.Id">Bilgi Al</a>
+						</div>
+					</div>
+					
+				}
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</section>

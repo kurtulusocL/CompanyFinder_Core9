@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Contact>
+@{
+	Layout = null;
+}
+
+@foreach(var item in Model)
+{
+	<div class="mail-to"><i class="flat flaticon-mail-black-envelope-symbol"></i>@item.BusinessEmail</div>
+	<span class="separator-pipesign white"></span>
+	<div class="call-on"><i class="flat flaticon-map-receiver"> </i>@item.City, @item.Country</div>
+	
+}

@@ -1,0 +1,95 @@
+﻿@model Company
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	<li class="nav-item dropdown megamenu">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:black">Firma & Ürün</a>
+		<ul class="dropdown-menu megamenu">
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a> --> Operasyonlar --></a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="CompanyCreate" asp-route-id="@Model.UserId">Firma Ekle</a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="CustomerCreate" asp-route-id="@Model.Id">Müşteri Ekle</a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="CompanyImageCreate" asp-route-id="@Model.Id">Firma Resimlerini Ekle</a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="ProductCreate" asp-route-id="@Model.Id">Ürün Ekle</a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyForm" asp-action="TopicCreate" asp-route-id="@Model.Id">Forum Konusu Yayınla</a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="BlogCreate" asp-route-id="@Model.Id">Blog Makalesi Ekle</a></li>
+					<li class="dropdown-item"><a> --> Firmaya Gelenler --> </a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyAppointmentList" asp-route-id="@Model.UserId">Randevu Talepleri</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyQuestionList" asp-route-id="@Model.UserId">Firmaya Gelen Sorular</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyReportList" asp-route-id="@Model.UserId">Firmaya Gelen Şikayetler</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyCommentList" asp-route-id="@Model.UserId">Firmaya Gelen Yorumlar</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourSavedCompanyList" asp-route-id="@Model.UserId">Kaydedilen Firmalarınız</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyLikeList" asp-route-id="@Model.UserId">Beğenilen Firmalarınız</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyHitList" asp-route-id="@Model.UserId">Görüntülenen Firmalarınız</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a> --> Teklif / Talep ve Forum --></a></li>
+					<li class="dropdown-item"><a asp-controller="CompanyOperation" asp-action="CompanyPartnershipCreate" asp-route-id="@Model.Id">Teklif / Talep Yayınla</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="PartnershipList" asp-route-id="@Model.Id">Teklif / Talep Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourSavedPartnershipList" asp-route-id="@Model.UserId">Kaydedilen Teklif/Talep</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourPartnershipLikeList" asp-route-id="@Model.UserId">Beğenilen Teklif/Talep</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourPartnershipHitList" asp-route-id="@Model.UserId">Görüntülenen Teklif/Talep</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostLikedCompanyForm">En Fazla Beğenilen Forumlar</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="MostHitCompanyForm">En Fazla Görüntülenen Forumlar</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostLikedCompanyForm" asp-route-id="@Model.UserId">Sizin En Fazla Beğenilen Forumlarınız</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourMostHitCompanyForm" asp-route-id="@Model.UserId">Sizin En Fazla Görüntilenen Forumlarınız</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourFormAnswerList" asp-route-id="@Model.UserId">Forum Cevaplarınız</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a> --> Firma Hareketleri --></a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CompanyContactList" asp-route-id="@Model.Id">İletişim Bilgi Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CompanyImageList" asp-route-id="@Model.Id">Firma Resim Listesi</a></li>					
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="ProductList" asp-route-id="@Model.Id">Ürün Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="YourCompanyForumList" asp-route-id="@Model.Id">Forum Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="ProductStockList">Ürün Stok Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="BlogList" asp-route-id="@Model.Id">Blog Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CustomerList" asp-route-id="@Model.Id">Müşteri Listesi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="AppointmentList" asp-route-id="@Model.UserId">Giden Randevu Talebi</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="LikeList" asp-route-id="@Model.UserId">Beğendikleriniz</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="HitList" asp-route-id="@Model.UserId">Görüntüledikleriniz</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="QuestionList" asp-route-id="@Model.UserId">Sorularınız</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="ReportList" asp-route-id="@Model.UserId">Şikayetler</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CommentList" asp-route-id="@Model.UserId">Yorumlar</a></li>
+					<li class="dropdown-item"><a asp-controller="HomeCompany" asp-action="CompanyMessageList" asp-route-id="@Model.Id">Sistem Mesajları</a></li>
+				</ul>
+			</li>
+			@await Component.InvokeAsync("CompanyUserHeaderForProduct", new { id = Model.Id })
+		</ul>
+	</li>
+}
+else
+{
+	<li class="nav-item dropdown megamenu">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown">Firma & Ürün</a>
+		<ul class="dropdown-menu megamenu">
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+			<li class="megamenu-column">
+				<ul>
+					<li class="dropdown-item"><a asp-controller="" asp-action="" asp-route-id="">---</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+}

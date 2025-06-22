@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CommentAnswer>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<li class="comment-item">
+		<div class="comment">
+			@if (item.UserId != null)
+			{
+				@await Component.InvokeAsync("ExplorerCommentCompanyLogo", new { id = item.UserId })
+			}
+			else
+			{
+				<img src="~/img/statics/noImage.jpg" style="max-height:100px;max-width:100px;" asp-append-version="true" />
+			}
+			<div class="visitor_description">
+				<div class="name_date">
+					@if (item.UserId != null)
+					{
+						<h6>@item.User.NameSurname</h6>
+					}
+					<div class="date">
+						@item.CreatedDate.ToShortDateString()
+					</div>
+					<div class="date">
+						<a asp-controller="CompanyOperation" asp-action="SendCommentAnswerReport" asp-route-id="@item.Id" class="btn btn-danger btn-sm" style="color:black">Bildir</a>
+					</div>
+				</div>
+				@if (item.Title != null)
+				{
+					<p>Cevap Başlığı: @item.Title</p>
+				}
+				<p>Cevap: @item.Text</p>
+			</div>
+		</div>
+	</li>
+}

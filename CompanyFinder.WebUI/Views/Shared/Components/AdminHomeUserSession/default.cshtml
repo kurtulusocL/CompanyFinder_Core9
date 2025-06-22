@@ -1,0 +1,92 @@
+﻿@model IEnumerable<UserSession>
+@{
+	Layout = null;
+}
+
+<div class="col-lg-12">
+	<div class="sparkline8-list shadow-reset">
+		<div class="sparkline8-hd">
+			<div class="main-sparkline8-hd">
+				<h1>All User First 150 Login / Logout Times</h1>
+				<div class="sparkline8-outline-icon">
+					<a asp-controller="UserSession" asp-action="kurtulusocL" class="btn btn-info btn-sm">See All Data</a>
+					<span class="sparkline8-collapse-link"><i class="fa fa-chevron-up"></i></span>
+				</div>
+			</div>
+		</div>
+		<div class="sparkline8-graph">
+			<div class="datatable-dashv1-list custom-datatable-overright">
+				<div id="toolbar">
+					<select class="form-control">
+						<option value="">Export Basic</option>
+						<option value="all">Export All</option>
+						<option value="selected">Export Selected</option>
+					</select>
+				</div>
+				<table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+					<thead>
+						<tr>
+							<th data-field="state" data-checkbox="true"></th>
+							<th data-field="id">ID</th>
+							<th data-field="userInfo">UserInfo</th>
+							<th data-field="username">Username</th>
+							<th data-field="logindate">Login Date</th>
+							<th data-field="logoutDate">Logout Date</th>
+							<th data-field="stillOnline">Still Online</th>
+							<th>Detail</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td></td>
+								<td>@item.Id</td>
+								<td>
+									@if (item.UserId != null)
+									{
+										<ul>
+											<li>Title: @item.User.Title</li>
+											<li>UserId: @item.UserId</li>
+											<li>Username: @item.User.UserName</li>
+											<li>Email: @item.User.Email</li>
+										</ul>
+									}
+									else
+									{
+										<strong style="color:maroon">No User Information</strong>
+									}
+								</td>
+								<td>@item.Username</td>
+								<td>@item.LoginDate.ToString()</td>
+								<td>
+									@if (item.LogoutDate != null)
+									{
+										<p>@item.LogoutDate.Value.ToString()</p>
+									}
+									else
+									{
+										<span class="btn btn-info">Still Online</span>
+									}
+								</td>
+								<td>
+									@if (item.IsOnline == true)
+									{
+										<span class="badge badge-info">Still Online</span>
+									}
+									else
+									{
+										<span class="badge badge-info">Off</span>
+									}
+								</td>
+								<td>
+									<a asp-controller="UserSession" asp-action="UserSessionDetail" asp-route-id="@item.Id" class="btn btn-info btn-sm">See Detail</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

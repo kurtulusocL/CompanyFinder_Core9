@@ -1,0 +1,54 @@
+﻿@model List<RoleAssignVM>
+@{
+	ViewData["Title"] = "Role Assign";
+	ViewData["Subtitle"] = "Set Role(s) For Admin";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="static-table-area mg-b-40">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline12-list shadow-reset mg-t-30">
+						<div class="sparkline12-graph">
+							<div class="static-table-list">
+								<form asp-action="RoleAssign" asp-controller="AccountAdmin" method="post">
+									@Html.AntiForgeryToken()
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Select to Role(s)</th>
+												<th>Role Name</th>
+											</tr>
+										</thead>
+										<tbody>
+											@for (int i = 0; i < Model.Count; i++)
+											{
+												<tr>
+													<td><input type="checkbox" asp-for="@Model[i].HasAssign" /> </td>
+													<td>
+														@Model[i].RoleName
+														<input type="hidden" asp-for="@Model[i].RoleId" />
+														<input type="hidden" asp-for="@Model[i].RoleName" />
+													</td>
+												</tr>
+											}
+											<tr>
+												<td>
+													<button type="submit" class="btn btn-custon-rounded-four btn-primary">Set Role</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>								
+							</div>
+							<hr />
+							<partial name="_adminCrudAlertPartial" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

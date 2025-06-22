@@ -1,0 +1,99 @@
+﻿@model Product
+@{
+	ViewData["Title"] = "Ürün Güncelleme";
+	ViewData["Subtitle"] = "Ürün Bilgilerinizi Buradan Güncelleyebilirsiniz";
+	ViewData["Warning"] = "* ile gösterilen alanlar zorunludur.";
+	Layout = "~/Views/Shared/_companyUserLayout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<br />
+					<p>@ViewData["Warning"]</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="CompanyOperation" asp-action="ProductUpdate" method="post" enctype="multipart/form-data">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Kategori Listesi *</strong>
+									<select class="form-control" asp-for="ProductCategoryId" name="ProductCategoryId" id="productCategory" required>
+										<option>-- Ürününüz İçin Bir Kategori Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Altkategori Listesi</strong>
+									<select class="form-control" asp-for="ProductSubcategoryId" name="ProductSubcategoryId" id="productSubcategory" disabled>
+										<option>-- Ürününüz İçin Bir Altkategori Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Ürününüzün Adı *</strong>
+								<input type="text" asp-for="Name" name="Name" placeholder="Firmanızın İsmi *" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Ürün Açıklama Metni *</strong>
+								<textarea type="text" class="ckeditor" asp-for="Desc" name="Desc" placeholder="Firmanızın Tanıtım Metnini Bu Alana Yazabilirsiniz *" required></textarea>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Ürününüze Yorum Yapılabilsin Mi? (İstemiyorsanız Boş Bırakabilirsiniz.)</strong></span>
+								<input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_Yes" value="True" />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Diğer Firmalar Ürün Hakkında Soru Sorabilsin Mi? (İstemiyorsanız Boş Bırakabilirsiniz.)</strong></span>
+								<input type="radio" asp-for="IsQuestionable" name="IsQuestionable" id="IsQuestionable_Yes" value="True" />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Ürününüz Halihazırda Uygun Mu?</strong></span>
+								<input type="radio" asp-for="IsAvailable" name="IsAvailable" id="IsAvailable_Yes" value="True" />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<strong style="color:blue">Değilse Uygun Olacağı Tarih</strong>
+								<input type="date" asp-for="AvailableDate" name="AvailableDate" />
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 form-group">
+								<strong style="color:blue">Ürün Resmi *</strong>
+								<input class="form-control btn-info" type="file" name="image" accept=".png, .jpg, .jpeg" required>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 form-group">
+								<strong style="color:blue">Ürün Fiyatı</strong>
+								<input type="text" class="form-control" asp-for="Price" name="Price" placeholder="İleride Eklenecek Bir Özellik" disable />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+								<strong style="color:blue">Eklenebilir Diğer Bilgiler</strong>
+								<textarea type="text" class="form-control" asp-for="OtherText" name="OtherText" placeholder="Eklenebilir Diğer Bilgiler"></textarea>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Ürünü Güncelle </button>
+								<input type="hidden" asp-for="UserId" />
+								<input type="hidden" asp-for="ProductCategoryId" />
+								<input type="hidden" asp-for="ProductSubcategoryId" />
+								<input type="hidden" asp-for="CompanyId" />
+								<input type="hidden" asp-for="Id" value="@Model.Id" />
+							</div>
+						</div>
+					</form>
+					<br />
+					<partial name="_companyCrudAlertPartial" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

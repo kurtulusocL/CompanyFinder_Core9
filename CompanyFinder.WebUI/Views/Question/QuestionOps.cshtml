@@ -1,0 +1,217 @@
+﻿@using System.Web
+@model IEnumerable<Question>
+@{
+	ViewData["Title"] = "All Question List";
+	ViewData["Subtitle"] = "Question Navigator";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="breadcome-area mg-b-30 small-dn">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcome-list map-mg-t-40-gl shadow-reset">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="breadcome-heading">
+									@ViewData["Subtitle"]
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+								<ul class="breadcome-menu">
+									<li>
+										<a asp-controller="Question" asp-action="kurtulusocL">Question Home</a> <span class="bread-slash">/</span>
+									</li>
+									<li>
+										<a asp-controller="Question" asp-action="QuestionOps">Report Category Ops</a> <span class="bread-slash">/</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="data-table-area mg-b-40">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline13-list shadow-reset">
+						<div class="sparkline13-hd">
+							<div class="main-sparkline13-hd">
+								<h1>@ViewData["Title"] </h1>
+								<div class="sparkline13-outline-icon">
+									<span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+								</div>
+							</div>
+						</div>
+						<div class="sparkline13-graph">
+							<div class="datatable-dashv1-list custom-datatable-overright">
+								<div id="toolbar">
+									<select class="form-control">
+										<option value="">Export Basic</option>
+										<option value="all">Export All</option>
+										<option value="selected">Export Selected</option>
+									</select>
+								</div>
+								<table id="table"
+									   data-toggle="table"
+									   data-pagination="true"
+									   data-resizable="true"
+									   data-search="true"
+									   data-show-columns="true"
+									   data-show-pagination-switch="true"
+									   data-show-refresh="true"
+									   data-key-events="true"
+									   data-show-toggle="true"
+									   data-cookie="true"
+									   data-cookie-id-table="saveId"
+									   data-show-export="true"
+									   data-click-to-select="true"
+									   data-toolbar="#toolbar">
+									<thead>
+										<tr>
+											<th data-field="state" data-checkbox="true"></th>
+											<th data-field="id">ID</th>
+											<th data-field="question">Question</th>
+											<th data-field="userInfo">User Info</th>
+											<th data-field="questionFor">Question For</th>
+											<th data-field="answers">Answers</th>
+											<th>Hit</th>
+											<th>Status</th>
+											<th>Ops</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+											<tr>
+												<td></td>
+												<td>@item.Id</td>
+												<td>
+													@if (item.Text.Length > 70)
+													{
+														@HttpUtility.HtmlDecode(ReadMore.SafeSubstring(item.Text, 70) + " ...")
+													}
+													else
+													{
+														@item.Text
+													}
+												</td>
+												<td>
+													@if (item.UserId != null)
+													{
+														<ul>
+															<li>UserId: @item.UserId</li>
+															<li>Name Surname: @item.User.NameSurname</li>
+															<li>Email: @item.User.NameSurname</li>
+															<li>Location: @item.User.City, @item.User.Country</li>
+														</ul>
+														<a asp-controller="Quesiton" asp-action="UserQuestion" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-primary">
+															See All Questions
+														</a>
+														<a asp-controller="Quesiton" asp-action="UserQuestionForAdmin" asp-route-id="@item.UserId" class="btn btn-custon-rounded-two btn-primary">
+															See All Questions for Admin
+														</a>
+													}
+													else
+													{
+														<strong style="color:darkred">No User Info</strong>
+													}
+												</td>
+												<td>
+													@if (item.CompanyId != null || item.ProductId != null)
+													{
+														if (item.CompanyId != null)
+														{
+															<ul>
+																<li>Company Question</li>
+																<li>CompanyId: @item.CompanyId</li>
+																<li>Company: @item.Company.Name</li>
+															</ul>
+															<a asp-controller="Quesiton" asp-action="CompanyQuestion" asp-route-id="@item.CompanyId" class="btn btn-custon-rounded-two btn-primary">
+																See All Questions
+															</a>
+														}
+														if (item.ProductId != null)
+														{
+															<ul>
+																<li>Product Question</li>
+																<li>ProductId: @item.ProductId</li>
+																<li>Product Name: @item.Product.Name</li>
+																@if (item.Product.CompanyId != null)
+																{
+																	<li>Product CompanyId: @item.Product.CompanyId</li>
+																	<li>Product Company: @item.Product.Company.Name</li>
+																}
+																else
+																{
+																	<li><strong style="color:darkred">No Product Company Info</strong></li>
+																}
+															</ul>
+															<a asp-controller="Quesiton" asp-action="ProductQuestion" asp-route-id="@item.ProductId" class="btn btn-custon-rounded-two btn-primary">
+																See All Questions
+															</a>
+														}
+													}
+													else
+													{
+														<strong style="color:darkred">Not Information</strong>
+													}
+												</td>
+												<td>@item.QuestionAnswers.Count()</td>
+												<td>
+													<i class="fa fa-eye"></i> @item.Hit.ToString()
+												</td>
+												<td>
+													@if (item.IsActive == true)
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/cancelled.jpg" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													@if (item.IsDeleted == true)
+													{
+														<img src="~/img/statics/delete.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+													else
+													{
+														<img src="~/img/statics/verification.png" class="img-responsive" style="max-height:25px;max-width:25px;min-height:25px;min-width:25px" asp-append-version="true" />
+													}
+												</td>
+												<td>
+													<a asp-controller="Question" asp-action="QuestionDetail" asp-route-id="@item.Id" class="btn btn-custon-rounded-two btn-info btn-sm">Detail</a>
+													<a asp-controller="Question" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-danger btn-sm">Delete</a>
+													@if (item.IsActive == true)
+													{
+														<a asp-controller="Question" asp-action="SetDeActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeActive</a>
+													}
+													else
+													{
+														<a asp-controller="Question" asp-action="SetActive" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetActive</a>
+													}
+													@if (item.IsDeleted == true)
+													{
+														<a asp-controller="Question" asp-action="SetNotDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetNotDeleted</a>
+													}
+													else
+													{
+														<a asp-controller="Question" asp-action="SetDeleted" asp-route-id="@item.Id" class="btn btn-custon-rounded-three btn-warning btn-sm">SetDeleted</a>
+													}
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

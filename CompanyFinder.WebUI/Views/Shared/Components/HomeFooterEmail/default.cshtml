@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Contact>
+@{
+	Layout = null;
+}
+
+@foreach(var item in Model)
+{
+	<div class="detail">
+		<h5>İletişim İçin</h5>
+		<div class="content">Genel İletişim : @item.PrincipalEmail<br />İş İçin : @item.BusinessEmail</div>
+	</div>
+}

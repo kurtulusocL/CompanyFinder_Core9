@@ -1,0 +1,21 @@
+﻿@model Ad
+@{
+	Layout = null;
+}
+
+@if (ViewData["adCount"] == null)
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">Still No Ad</span></h3>
+		</div>
+	</div>
+}
+else
+{
+	<div class="income-rate-total">
+		<div class="price-adminpro-rate">
+			<h3><span class="counter">@ViewData["adCount"]</span></h3>
+		</div>
+	</div>
+}

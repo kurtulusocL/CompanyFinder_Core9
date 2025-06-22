@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Logo>
+@{
+	Layout = null;
+}
+
+@foreach (var item in Model)
+{
+	<a class="navbar-brand" asp-controller="Home" asp-action="Index" title="bi2bi.com">
+		<img src="~/img/us/logo/@item.ImageUrl" style="max-height:40px;max-width:165px;min-height:40px;min-width:165px;" alt="bi2bi.com" asp-append-version="true" />
+	</a>
+}

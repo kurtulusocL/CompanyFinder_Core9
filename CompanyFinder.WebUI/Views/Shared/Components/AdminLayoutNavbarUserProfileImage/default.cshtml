@@ -1,0 +1,29 @@
+﻿@model ProfileImage
+@{
+	Layout = null;
+}
+
+@if (Model != null)
+{
+	if (Model.ImageUrl != null && Model.UserId != null)
+	{
+		<a asp-controller="HomeAdmin" asp-action="MyProfile" asp-route-id="@Model.UserId">
+			<img src="~/img/us/profileImage/@Model.ImageUrl" style="max-height:75px;max-width:75px;min-height:75px;min-width:75px;" asp-append-version="true" />
+		</a>
+	}
+	else
+	{
+		if (Model.UserId != null)
+		{
+			<a asp-controller="HomeAdmin" asp-action="MyProfile" asp-route-id="@Model.UserId">
+				<img src="~/img/statics/user.png" style="max-height:75px;max-width:75px;min-height:75px;min-width:75px;" asp-append-version="true" />
+			</a>
+		}
+	}
+}
+else
+{
+	<a>
+		<img src="~/img/statics/noImage.jpg" style="max-height:75px;max-width:75px;min-height:75px;min-width:75px;" asp-append-version="true" />
+	</a>
+}

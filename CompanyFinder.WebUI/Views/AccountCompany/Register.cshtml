@@ -1,0 +1,99 @@
+﻿@model UserRegisterDto
+@{
+	ViewData["Title"] = "Firma Kaydı";
+	ViewData["Subtitle"] = "Firmanızı Kaydedin ve Kolaylıkların Tadını Çıkarın.";
+	ViewData["markup *"] = "* ile Belirtilen Alanlar Zorunlu Alanlardır ve Boş Geçilemez.";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contact-us">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12"></div>
+			<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+				<div class="form-header text-center">
+					<h4>@ViewData["Title"]</h4>
+					<div class="separator">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<p>@ViewData["Subtitle"]</p>
+					<p>@ViewData["markup *"]</p>
+					<hr />
+					<p>
+						<ul>
+							<li>Güvenliğiniz için belirlediğiniz şifrelerde bazı kurallarımız var. Bu kurallar: </li>
+							<li>Şifrenizde en az bir tane karakter (",.;-_?!*=") bulunmak zorundadır.</li>
+							<li>Şifrenizde en az bir tane büyük harf ve yine en az bir tane küçük harf bulunmak zorundadır.</li>
+							<li>Şifreniz en az 8 karakter olmalıdır.</li>
+						</ul>
+					</p>
+				</div>
+				<div class="contact-form">
+					<form asp-controller="AccountCompany" asp-action="Register" method="post">
+						@Html.AntiForgeryToken()
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="text" asp-for="NameSurname" name="NameSurname" placeholder="Adınız Soyadınız *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="email" asp-for="Email" name="Email" placeholder="Email Adresiniz *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="text" asp-for="City" name="City" placeholder="Bulunduğunuz Şehir *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="text" asp-for="Country" name="Country" placeholder="Bulunduğunuz Ülke *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="date" asp-for="Birthdate" name="Birthdate" placeholder="Doğum Tarihiniz *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="text" asp-for="PhoneNumber" name="PhoneNumber" placeholder="Telefon Numaranız *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="password" asp-for="Password" name="Password" placeholder="Bir Şifre Belirleyin *" required />
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<input type="password" asp-for="ConfirmPassword" name="ConfirmPassword" placeholder="Şifreyi Tekrar Yazın *" required />
+							</div>
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 form-group">
+								<span class="badge badge-info"><strong>Hizmet Şartlarını ve Kullanım Koşullarını Kabul Ediyorum *</strong></span>
+								<input type="radio" asp-for="IsAcceptedPolicies" name="IsAcceptedPolicies" id="IsAcceptedPolicies_Yes" value="True" required />
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
+								<button type="submit">Kaydı Tamamla </button>
+							</div>
+						</div>
+					</form>					
+					<br />
+					<partial name="_frontEndAlertPartial" />
+					<div class="float-right">
+						<span style="color:black">
+							Zaten Üye Misiniz?
+							<a asp-controller="AccountCompany" asp-action="Login" class="btn btn-primary btn-sm btn-rounded"> Giriş Yapmak İçin</a>
+						</span>
+					</div>
+					<br /><hr />
+					<div class="row">
+						<ul>
+							<li>
+								<a asp-controller="UserAgreement" asp-action="Index" class="btn btn-default" target="_blank">Kullanıcı Sözleşmesi ve Hizmet Şartları</a>
+							</li>
+							<li>
+								<a asp-controller="DataPolicy" asp-action="Index" class="btn btn-default" target="_blank">Kullanıcı Aydınlatma Metni ve KVKK Bilgilendirme</a>
+							</li>
+							<li>
+								<a asp-controller="Frequently" asp-action="Index" class="btn btn-default" target="_blank">Sıkça Sorulan Sorular</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12"></div>
+		</div>
+	</div>
+</section>

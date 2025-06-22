@@ -1,0 +1,20 @@
+﻿@{
+	Layout = null;
+}
+
+@if (ViewData["questionCount"] == null)
+{
+	<div class="counter_content">
+		<div class="title">Toplam</div>
+		<h2><span class="counter">0</span></h2>
+		<div class="title">Araştırma</div>
+	</div>
+}
+else
+{
+	<div class="counter_content">
+		<div class="title">Toplam</div>
+		<h2><span class="counter">@ViewData["questionCount"]</span></h2>
+		<div class="title">Araştırma</div>
+	</div>
+}

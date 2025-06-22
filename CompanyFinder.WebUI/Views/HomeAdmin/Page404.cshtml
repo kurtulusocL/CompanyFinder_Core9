@@ -1,0 +1,48 @@
+﻿@{
+	ViewData["Title"] = "404 Not Found";
+	ViewData["Subtitle"] = "There Was An Error While Going ToThe Page that You Searched ";
+	ViewData["Desc"] = "There was no page seems page that you wanted to see or there was an error. If you can not find a solution, please report this issue to manager.";
+	Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="wrapper-pro">
+	<div class="pie-bar-line-area mg-b-15">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sparkline11-list shadow-reset">
+						<div class="sparkline11-hd">
+							<div class="main-sparkline11-hd">
+								<h1>@ViewData["Title"]</h1>								
+							</div>
+						</div>
+						<div class="sparkline11-graph">
+                            <div class="widgets-personal-info-area">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="personal-info-wrap shadow-reset">
+                                                <div class="widget-head-info-box">
+                                                    <div class="persoanl-widget-hd">
+                                                        <h2>@ViewData["Title"]</h2>
+                                                        <p>@ViewData["Subtitle"]</p>
+                                                    </div>
+                                                    <img src="~/img/statics/question.png" class="img-circle circle-border m-b-md" alt="profile">
+                                                </div>
+                                                <div class="widget-text-box">                                                  
+                                                    <p>@ViewData["Desc"]</p>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
