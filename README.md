@@ -1,0 +1,3 @@
+- some class and controller (accounts) need refactoring like information of mail account should type appsetting.js file.
+- create a new company in the company service need retype code.
+- for thoose reasons this project 90% finished.
