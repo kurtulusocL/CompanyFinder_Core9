@@ -111,7 +111,7 @@ namespace CompanyFinder.Business.Services.Concrete
 
                         SmtpClient client = new SmtpClient();
                         client.Connect("smtp.gmail.com", 587, false);
-                        client.Authenticate("registermail.activation@gmail.com", "qcec eigi lqqn qeqn");
+                        client.Authenticate("registermail.activation@gmail.com", "your password key");
                         await client.SendAsync(mimeMessage);
                         client.Disconnect(true);
 
