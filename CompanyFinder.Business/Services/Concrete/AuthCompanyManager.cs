@@ -98,7 +98,7 @@ namespace CompanyFinder.Business.Services.Concrete
                         if (user.IsLoginConfirmCode == true)
                         {
                             MimeMessage mimeMessage = new MimeMessage();
-                            MailboxAddress mailboxAddressFrom = new MailboxAddress("bi2bi.com", "email address");
+                            MailboxAddress mailboxAddressFrom = new MailboxAddress("bi2bi.com", "registermail.activation@gmail.com");
                             MailboxAddress mailboxAddressTo = new MailboxAddress(user.UserName, user.Email);
 
                             mimeMessage.From.Add(mailboxAddressFrom);
@@ -111,7 +111,7 @@ namespace CompanyFinder.Business.Services.Concrete
 
                             SmtpClient client = new SmtpClient();
                             client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("", "password key");
+                            client.Authenticate("registermail.activation@gmail.com", "qcec eigi lqqn qeqn");
                             await client.SendAsync(mimeMessage);
                             client.Disconnect(true);
 
@@ -210,7 +210,7 @@ namespace CompanyFinder.Business.Services.Concrete
                     if (result.Succeeded)
                     {
                         MimeMessage mimeMessage = new MimeMessage();
-                        MailboxAddress mailboxAddressFrom = new MailboxAddress("bi2bi.com", "email address");
+                        MailboxAddress mailboxAddressFrom = new MailboxAddress("bi2bi.com", "registermail.activation@gmail.com");
                         MailboxAddress mailboxAddressTo = new MailboxAddress(user.UserName, user.Email);
 
                         mimeMessage.From.Add(mailboxAddressFrom);
@@ -223,7 +223,7 @@ namespace CompanyFinder.Business.Services.Concrete
 
                         SmtpClient client = new SmtpClient();
                         client.Connect("smtp.gmail.com", 587, false);
-                        client.Authenticate("email address", "password key");
+                        client.Authenticate("registermail.activation@gmail.com", "qcec eigi lqqn qeqn");
                         await client.SendAsync(mimeMessage);
                         client.Disconnect(true);
 

@@ -161,22 +161,21 @@ namespace CompanyFinder.Business.Services.Concrete
             }
         }
 
-        public async Task<IEnumerable<CompanySubcategory>> GetAllIncludingForAddCompanyByCategoryIdAsync(int? categoryId)
+        public async Task<IEnumerable<CompanySubcategory>> GetAllIncludingForAddCompanyByCategoryIdAsync(int? companyCategoryId)
         {
             try
             {
-                if (categoryId == null)
-                    throw new ArgumentNullException(nameof(categoryId), "CategoryId was null");
+                if (companyCategoryId == null)
+                    throw new ArgumentNullException(nameof(companyCategoryId), "companyCategoryId was null");
 
-                var result = await _companySubcategoryDal.GetAllIncludeByIdAsync(categoryId, "CompanyCategoryId",
+                var result = await _companySubcategoryDal.GetAllIncludeByIdAsync(companyCategoryId, "CompanyCategoryId",
                      new Expression<Func<CompanySubcategory, bool>>[]
-                    {
-                        i => i.IsActive == true,
-                        y=> y.IsDeleted == false
-                    },
-                    i => i.CompanyCategory,
-                    i => i.Companies
-                );
+                     {
+                        i =>i.IsActive == true,
+                        i=> i.IsDeleted == false,
+                        i=>i.CompanyCategoryId==companyCategoryId
+                     }, i => i.CompanyCategory, i => i.Companies);
+
                 return result.OrderBy(i => i.Name).ToList();
             }
             catch (Exception)

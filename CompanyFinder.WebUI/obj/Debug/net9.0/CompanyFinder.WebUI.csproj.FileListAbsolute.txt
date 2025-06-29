@@ -584,7 +584,6 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\ob
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\44ns1me53j-s4l5at1n23.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\tp68vgakzv-b9sayid5wm.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\xwcefy9hp2-kz97c0agr0.gz
-C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\pjb1vjspzm-llqvzgkcti.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\b7niawvyu2-7ovg7038rf.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\kcwf0gklhx-2y6dzpkk86.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\sokb2bcq0y-xtxxf3hu2r.gz
@@ -1260,4 +1259,11 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\bi
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\kz3rtvgmw9-8aub6qjmvh.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\yz23569e35-2q7xajiwkh.gz
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\mq8fzoj2c4-q5llq280cj.gz
-C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\a7mpuko78t-c5ufo9501s.gz
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\CompanyFinder.WebUI.sourcelink.json
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\bh00lu5gae-pfn43ovcji.gz
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\9jg7dlq45z-nps9h13sfe.gz
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\obj\Debug\net9.0\compressed\a7mpuko78t-8xkv7po649.gz

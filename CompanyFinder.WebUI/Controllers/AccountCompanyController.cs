@@ -153,14 +153,14 @@ namespace CompanyFinder.WebUI.Controllers
 
                 SmtpClient client = new SmtpClient("smtp.yandex.com.tr", 587);
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("email address", "bi2bi.com");
+                mail.From = new MailAddress("kurtulusocal@yandex.com", "bi2bi.com");
                 mail.Priority = MailPriority.High;
                 mail.Subject = "Şifremi Unuttum...";
                 mail.To.Add(new MailAddress(model.Email, ""));
                 mail.Body = "Şifre Sıfırlama İsteği" + " " + "Buradaki linke tıklayarak şifrenizi sıfırlayabilirsiniz. Lütfen linke tıklayın: <a href=\"" + callbackUrl + "\">link</a>";
                 mail.IsBodyHtml = true;
 
-                NetworkCredential enter = new NetworkCredential("email address", "password key");
+                NetworkCredential enter = new NetworkCredential("kurtulusocal@yandex.com", "skparzdygcxxxaqt");
                 client.UseDefaultCredentials = false;
                 client.EnableSsl = true;
                 client.Credentials = enter;

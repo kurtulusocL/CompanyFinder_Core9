@@ -22,7 +22,7 @@ namespace CompanyFinder.Business.Services.Abstract
         Task<bool> CreateAsync(string name, string desc, DateTime foundationDate, string? slogan, string? websiteUrl, bool isCommentable, int countryId, int? cityId, int companyCategoryId, int? companySubcategoryId, string userId, IFormFile image);
         Task<bool> UpdateAsync(string name, string desc, DateTime foundationDate, string? slogan, string? websiteUrl, bool isCommentable, int countryId, int? cityId, int companyCategoryId, int? companySubcategoryId, string userId, int id, IFormFile image);
         Task<bool> DeleteAsync(Company entity, int id);
-        Task<List<SelectListItem>> LocationSelectSystem(int? companyCountryId, string tip);
+        Task<List<SelectListItem>> LocationSelectSystem(int? id, string tip);
         Task<List<SelectListItem>> CategorySelectSystem(int? companyCategoryId, string tip);        
         Task<bool> SetCommentableAsync(int id);
         Task<bool> SetNotCommentableAsync(int id);

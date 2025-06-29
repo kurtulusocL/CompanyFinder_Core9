@@ -88,8 +88,8 @@ namespace CompanyFinder.WebUI.Controllers
         }
         public async Task<IActionResult> CompanyCreate(string id)
         {
-            ViewBag.Cities = await _cityService.GetAllIncludingCompanyCitiesForAdd();
-            ViewBag.Subcategories = await _companySubcategoryService.GetAllIncludingCompanySubcategoriesForAdd();
+            //ViewBag.Cities = await _cityService.GetAllIncludingCompanyCitiesForAdd();
+            //ViewBag.Subcategories = await _companySubcategoryService.GetAllIncludingCompanySubcategoriesForAdd();
             ViewBag.UserId = await _userService.GetByIdAsync(id);
             Company model = new Company
             {
@@ -773,11 +773,11 @@ namespace CompanyFinder.WebUI.Controllers
 
 
         [HttpPost]
-        public async Task<JsonResult> CompanyCategorySelectSystem(int? categoryId, string tip)
+        public async Task<JsonResult> CategorySelectSystem(int? companyCategoryId, string tip)
         {
             try
             {
-                var result = await _companyService.CategorySelectSystem(categoryId, tip);
+                var result = await _companyService.CategorySelectSystem(companyCategoryId, tip);
                 return Json(new { ok = true, text = result });
             }
             catch (Exception ex)
@@ -786,19 +786,19 @@ namespace CompanyFinder.WebUI.Controllers
                 {
                     ok = false,
                     text = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = $"Error: {ex.Message}", Value = "" }
-                }
+            {
+                new SelectListItem { Text = $"Error: {ex.Message}", Value = "" }
+            }
                 });
             }
         }
 
         [HttpPost]
-        public async Task<JsonResult> CompanyLocationSelectSystem(int? countryId, string tip)
+        public async Task<JsonResult> LocationSelectSystem(int? id, string tip)
         {
             try
             {
-                var result = await _companyService.LocationSelectSystem(countryId, tip);
+                var result = await _companyService.LocationSelectSystem(id, tip);
                 return Json(new { ok = true, text = result });
             }
             catch (Exception ex)
@@ -807,9 +807,9 @@ namespace CompanyFinder.WebUI.Controllers
                 {
                     ok = false,
                     text = new List<SelectListItem>
-                {
-                    new SelectListItem { Text = $"Error: {ex.Message}", Value = "" }
-                }
+            {
+                new SelectListItem { Text = $"Error: {ex.Message}", Value = "" }
+            }
                 });
             }
         }

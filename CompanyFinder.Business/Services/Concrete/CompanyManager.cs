@@ -25,90 +25,90 @@ namespace CompanyFinder.Business.Services.Concrete
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<List<SelectListItem>> CategorySelectSystem(int? categoryId, string tip)
+        public async Task<List<SelectListItem>> CategorySelectSystem(int? companyCategoryId, string tip)
         {
-            var result = new List<SelectListItem>();
-
-            switch (tip)
+            try
             {
-                case "getCompanyCategories":
-                    var companyCategories = await _companyCategoryService.GetAllIncludingForAddCompanyAsync();
-                    result = companyCategories.Select(companyCategory => new SelectListItem
-                    {
-                        Text = companyCategory.Name,
-                        Value = companyCategory.Id.ToString()
-                    }).ToList();
-                    break;
+                var result = new List<SelectListItem>();
 
-                case "getCompanySubcategories":
-                    if (categoryId == null)
-                    {
-                        throw new ArgumentNullException(nameof(categoryId), "Company Category ID can not be empty.");
-                    }
+                switch (tip)
+                {
+                    case "getCompanyCategories":
+                        var companyCategories = await _companyCategoryService.GetAllIncludingForAddCompanyAsync();
+                        result = companyCategories.Select(companyCategory => new SelectListItem
+                        {
+                            Text = companyCategory.Name,
+                            Value = companyCategory.Id.ToString()
+                        }).ToList();
+                        break;
 
-                    var companySubcategories = await _companySubcategoryService.GetAllIncludingForAddCompanyByCategoryIdAsync(categoryId.Value);
-                    result = companySubcategories.Select(companySubcategory => new SelectListItem
-                    {
-                        Text = companySubcategory.Name,
-                        Value = companySubcategory.Id.ToString()
-                    }).ToList();
-                    break;
+                    case "getCompanySubcategories":
+                        if (companyCategoryId == null)
+                        {
+                            throw new ArgumentNullException(nameof(companyCategoryId), "Company Category ID can not be empty.");
+                        }
 
-                default:
-                    throw new ArgumentException($"Unsupported type: {tip}");
+                        var companySubcategories = await _companySubcategoryService.GetAllIncludingForAddCompanyByCategoryIdAsync(companyCategoryId.Value);
+                        result = companySubcategories.Select(companySubcategory => new SelectListItem
+                        {
+                            Text = companySubcategory.Name,
+                            Value = companySubcategory.Id.ToString()
+                        }).ToList();
+                        break;
+
+                    default:
+                        throw new ArgumentException($"Unsupported type: {tip}");
+                }
+
+                return result;
             }
-            return result;
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("There was an error", ex);
-            //}
+            catch (Exception)
+            {
+                return new List<SelectListItem>();
+            }
         }
 
-        public async Task<List<SelectListItem>> LocationSelectSystem(int? countryId, string tip)
+        public async Task<List<SelectListItem>> LocationSelectSystem(int? id, string tip)
         {
-            var result = new List<SelectListItem>();
-
-            switch (tip)
+            try
             {
-                case "getCompanyCountries":
-                    var companyCountries = await _countryService.GetAllIncludingForAddCompanyAsync();
-                    result = companyCountries.Select(companyCountry => new SelectListItem
-                    {
-                        Text = companyCountry.Name,
-                        Value = companyCountry.Id.ToString()
-                    }).ToList();
-                    break;
+                var result = new List<SelectListItem>();
 
-                case "getCompanyCities":
-                    if (countryId == null)
-                    {
-                        throw new ArgumentNullException(nameof(countryId), "Country ID can not be empty.");
-                    }
+                switch (tip)
+                {
+                    case "getCompanyCountries":
+                        var companyCountries = await _countryService.GetAllIncludingForAddCompanyAsync();
+                        result = companyCountries.Select(companyCountry => new SelectListItem
+                        {
+                            Text = companyCountry.Name,
+                            Value = companyCountry.Id.ToString()
+                        }).ToList();
+                        break;
 
-                    var companyCities = await _cityService.GetAllIncludingForAddCompanyAsync(countryId.Value);
-                    result = companyCities.Select(companyCity => new SelectListItem
-                    {
-                        Text = companyCity.Name,
-                        Value = companyCity.Id.ToString()
-                    }).ToList();
-                    break;
+                    case "getCompanyCities":
+                        if (id == null)
+                        {
+                            throw new ArgumentNullException(nameof(id), "Country ID can not be empty.");
+                        }
 
-                default:
-                    throw new ArgumentException($"Unsupported type: {tip}");
+                        var companyCities = await _cityService.GetAllIncludingForAddCompanyAsync(id.Value);
+                        result = companyCities.Select(companyCity => new SelectListItem
+                        {
+                            Text = companyCity.Name,
+                            Value = companyCity.Id.ToString()
+                        }).ToList();
+                        break;
+
+                    default:
+                        throw new ArgumentException($"Unsupported type: {tip}");
+                }
+
+                return result;
             }
-            return result;
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("There was an error", ex);
-            //}
+            catch (Exception)
+            {
+                return new List<SelectListItem>();
+            }
         }
 
         public async Task<bool> CreateAsync(string name, string desc, DateTime foundationDate, string? slogan, string? websiteUrl, bool isCommentable, int countryId, int? cityId, int companyCategoryId, int? companySubcategoryId, string userId, IFormFile image)

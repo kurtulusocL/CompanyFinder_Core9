@@ -194,8 +194,9 @@ namespace CompanyFinder.Business.Services.Concrete
                     new Expression<Func<City, bool>>[]
                     {
                         i => i.IsActive == true,
-                        y=> y.IsDeleted == false
-                    }, null,
+                        y=> y.IsDeleted == false,
+                        i=>i.CountryId==countryId
+                    },
                     i => i.AdTargets,
                     i => i.Companies,
                     i => i.Country

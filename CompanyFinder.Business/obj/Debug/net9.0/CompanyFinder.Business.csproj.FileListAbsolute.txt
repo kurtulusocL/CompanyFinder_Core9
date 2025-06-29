@@ -30,3 +30,4 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.Business
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.Business\obj\Debug\net9.0\CompanyFinder.Business.pdb
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.Business\obj\Debug\net9.0\CompanyFinder.Business.genruntimeconfig.cache
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.Business\obj\Debug\net9.0\ref\CompanyFinder.Business.dll
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.Business\obj\Debug\net9.0\CompanyFinder.Business.sourcelink.json

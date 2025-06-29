@@ -6,7 +6,7 @@ using X.PagedList.Extensions;
 
 namespace CompanyFinder.WebUI.Controllers
 {
-    [AuditLog]
+   [AuditLog]
     [ExceptionHandler]
     [Authorize(Roles = "Companies")]
     public class HomeCompanyController : Controller

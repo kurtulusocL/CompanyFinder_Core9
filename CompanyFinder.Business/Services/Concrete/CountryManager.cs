@@ -138,7 +138,7 @@ namespace CompanyFinder.Business.Services.Concrete
                 i=>i.IsActive==true,
                 y=>y.IsDeleted==false
                 }, null, y => y.Companies, y => y.Cities, y => y.AdTargets);
-                return result.OrderByDescending(i => i.Companies.Count()).ToList();
+                return result.OrderByDescending(i => i.Name).ToList();
             }
             catch (Exception)
             {

@@ -152,6 +152,7 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\ww
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\js\bootstrap.min.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\lang\is.js
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\js\seleccion\company\CompanySelection.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\lang\cs.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\css\select2\select2.min.css
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
@@ -192,6 +193,7 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\ww
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\lang\fa.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\lang\en-au.js
+C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\js\seleccion\company\CompanyLocation.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\samples\old\htmlwriter\outputhtml.html
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\css\tab-menus.css
@@ -464,7 +466,6 @@ C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\ww
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\web\service-detail.html
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\plugins\specialchar\dialogs\lang\et.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\js\data-table\bootstrap-table-resizable.js
-C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\js\seleccion\company\companyselection.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\css\main.css
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\admin\js\flot\jquery.flot.pie.js
 C:\Users\kurtu\OneDrive\Masaüstü\Projects\CompanyFinder\CompanyFinder.WebUI\wwwroot\temp\thirdPart\ckeditor\plugins\specialchar\dialogs\lang\ko.js
@@ -992,7 +993,8 @@ wwwroot\img\us\socialMedia\5c26719c-9468-47c9-a560-b76c1e4b9c85.png
 wwwroot\img\us\socialMedia\91bf5882-314f-4872-bd4c-e4759bf6a7b2.png
 wwwroot\img\us\socialMedia\978a03aa-94cc-43e2-9b52-f04a964191ce.jpg
 wwwroot\js\deleteAlert.js
-wwwroot\js\seleccion\company\companyselection.js
+wwwroot\js\seleccion\company\CompanyLocation.js
+wwwroot\js\seleccion\company\CompanySelection.js
 wwwroot\js\seleccion\product\ProductSelection.js
 wwwroot\js\seleccion\select.js
 wwwroot\js\setDeletedAlert.js

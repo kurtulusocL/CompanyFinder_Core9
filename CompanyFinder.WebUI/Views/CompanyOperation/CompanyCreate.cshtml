@@ -38,6 +38,38 @@
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
 								<div class="chosen-select-single mg-b-20">
 									<strong style="color:blue">Şehir Listesi *</strong>
+									<select class="form-control" asp-for="CityId" name="CityId" id="companyCity" disabled required>
+										<option>-- Firmanızın Bulunduğu Şehri Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Kategori Listesi *</strong>
+									<select class="form-control" asp-for="CompanyCategoryId" name="CompanyCategoryId" id="companyCategory" required>
+										<option>-- Firmanız İçin Bir Kategori Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Altkategori Listesi</strong>
+									<select class="form-control" asp-for="CompanySubcategoryId" name="CompanySubcategoryId" id="companySubcategory" disabled>
+										<option>-- Firmanız İçin Bir Altkategori Seçin --</option>
+									</select>
+								</div>
+							</div>
+							@* <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Ülke Listesi *</strong>
+									<select class="form-control" asp-for="CountryId" name="CountryId" id="companyCountry" required>
+										<option>-- Firmanızın Bulunduğu Ülkeyi Seçin --</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+								<div class="chosen-select-single mg-b-20">
+									<strong style="color:blue">Şehir Listesi *</strong>
 									<select class="form-control" asp-for="CityId" name="CityId" required>
 										@foreach (var item in ViewBag.Cities)
 										{
@@ -45,8 +77,8 @@
 										}
 									</select>
 								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+							</div> *@
+							@* <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
 								<div class="chosen-select-single mg-b-20">
 									<strong style="color:blue">Kategori Listesi *</strong>
 									<select class="form-control" asp-for="CompanyCategoryId" name="CompanyCategoryId" id="companyCategory" required>
@@ -64,7 +96,7 @@
 										}
 									</select>
 								</div>
-							</div>
+							</div> *@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
 								<strong style="color:blue">Firmanızın İsmi *</strong>
 								<input type="text" asp-for="Name" name="Name" placeholder="Firmanızın İsmi *" required />
@@ -91,8 +123,8 @@
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
 								<span class="badge badge-info"><strong>Firmanıza Yorum Yapılabilsin Mi? *</strong></span>
-								<input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_Yes" value="True" />
-								<input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_No" value="False" />
+								<span style="color:black">Evet</span> <input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_Yes" value="True" />
+								<span style="color:black">Hayır</span> <input type="radio" asp-for="IsCommentable" name="IsCommentable" id="IsCommentable_No" value="False" />
 							</div>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group text-center">
 								<button type="submit">Firmayı Kaydet </button>
